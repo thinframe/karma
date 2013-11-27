@@ -16,7 +16,8 @@
         "thinframe/command_line": "dev-master",
         "thinframe/annotations": "dev-master",
         "thinframe/pcntl": "dev-master",
-        "thinframe/server": "dev-master"
+        "thinframe/server": "dev-master",
+        "monolog/monolog": "1.7.0"
     },
     "bin": ["bin/thinframe-karma.php"],
     "autoload": {

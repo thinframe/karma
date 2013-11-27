@@ -4,3 +4,14 @@ services:
         arguments: ['@thinframe.cli.commander','@thinframe.cli.arguments_container']
         tags:
             - {name: 'thinframe.events.listener'}
+
+    thinframe.karma.listeners.exception:
+        class: 'ThinFrame\Karma\Listeners\ErrorListener'
+        tags:
+            - {name: 'thinframe.events.listener'}
+
+    thinframe.karma.listeners.cli_exceptions:
+        class: 'ThinFrame\Karma\Listeners\CliErrorListener'
+        arguments: ['@thinframe.cli.shortcodes_output_driver']
+        tags:
+            - {name: 'thinframe.events.listener'}
