@@ -1,0 +1,6 @@
+services:
+    thinframe.karma.listeners.commander:
+        class: 'ThinFrame\Karma\Listeners\CommanderListener'
+        arguments: ['@thinframe.cli.commander','@thinframe.cli.arguments_container']
+        tags:
+            - {name: 'thinframe.events.listener'}

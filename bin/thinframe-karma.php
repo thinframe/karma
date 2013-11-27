@@ -16,3 +16,8 @@ require_once KARMA_ROOT . 'vendor/autoload.php';
 $karmaApplication = new KarmaApplication();
 
 $karmaContainer = $karmaApplication->getApplicationContainer();
+
+$dispatcher = $karmaContainer->get('thinframe.events.dispatcher');
+/** @var $dispatcher \ThinFrame\Events\Dispatcher */
+
+$dispatcher->trigger(new \ThinFrame\Events\SimpleEvent('karma.power_up'));

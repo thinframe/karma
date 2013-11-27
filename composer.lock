@@ -585,12 +585,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thinframe/applications.git",
-                "reference": "4af4be062ec4b107bd267033c323ad5fd7e148b2"
+                "reference": "c704414a5572f1e3a7aa8604fa4c84ab111d64c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thinframe/applications/zipball/4af4be062ec4b107bd267033c323ad5fd7e148b2",
-                "reference": "4af4be062ec4b107bd267033c323ad5fd7e148b2",
+                "url": "https://api.github.com/repos/thinframe/applications/zipball/c704414a5572f1e3a7aa8604fa4c84ab111d64c9",
+                "reference": "c704414a5572f1e3a7aa8604fa4c84ab111d64c9",
                 "shasum": ""
             },
             "require": {
@@ -625,7 +625,7 @@
                 "ecosystem",
                 "thinframe"
             ],
-            "time": "2013-11-11 18:57:55"
+            "time": "2013-11-27 20:14:32"
         },
         {
             "name": "thinframe/command_line",
@@ -633,12 +633,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thinframe/command_line.git",
-                "reference": "c023b7fd3931d1536fd8fc9c3c4ff4d8819c477a"
+                "reference": "947f2fcb8ad2d57b1a896615392c7de9ffa04371"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thinframe/command_line/zipball/c023b7fd3931d1536fd8fc9c3c4ff4d8819c477a",
-                "reference": "c023b7fd3931d1536fd8fc9c3c4ff4d8819c477a",
+                "url": "https://api.github.com/repos/thinframe/command_line/zipball/947f2fcb8ad2d57b1a896615392c7de9ffa04371",
+                "reference": "947f2fcb8ad2d57b1a896615392c7de9ffa04371",
                 "shasum": ""
             },
             "require": {
@@ -676,7 +676,7 @@
                 "command line",
                 "thinframe"
             ],
-            "time": "2013-11-11 19:20:21"
+            "time": "2013-11-27 20:16:23"
         },
         {
             "name": "thinframe/events",

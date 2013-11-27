@@ -1,0 +1,6 @@
+services:
+    thinframe.karma.commands.help:
+        class: 'ThinFrame\Karma\Commands\HelpCommand'
+        arguments: ['@thinframe.cli.commander','@thinframe.cli.shortcodes_output_driver']
+        tags:
+            - {name:'thinframe.cli.parent_command'}

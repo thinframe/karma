@@ -37,7 +37,10 @@ class KarmaApplication extends AbstractApplication
      */
     public function getConfigurationFiles()
     {
-        return [];
+        return [
+            'resources/listeners.yml',
+            'resources/commands.yml',
+        ];
     }
 
     /**
