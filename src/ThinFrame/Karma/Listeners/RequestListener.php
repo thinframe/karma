@@ -5,6 +5,7 @@ namespace ThinFrame\Karma\Listeners;
 use Psr\Log\LoggerInterface;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Events\SimpleEvent;
+use ThinFrame\Http\Constants\StatusCode;
 
 /**
  * Class RequestListener
@@ -40,12 +41,25 @@ class RequestListener implements ListenerInterface
         return ['thinframe.http.inbound_request' => ['method' => 'onRequest']];
     }
 
+    /**
+     * Handle HTTP request
+     *
+     * @param SimpleEvent $event
+     */
     public function onRequest(SimpleEvent $event)
     {
         $request = $event->getPayload()->get('request')->get();
         /* @var $request \ThinFrame\Http\Foundation\RequestInterface */
 
         $this->logger->info('Received request from ' . $request->getRemoteIp() . ' to ' . $request->getPath());
+
+        //TODO: dispatch router
+
+        $response = $event->getPayload()->get('response')->get();
+        /* @var $response \ThinFrame\Http\Foundation\ResponseInterface */
+        $response->setStatusCode(new StatusCode(StatusCode::NOT_FOUND));
+        $response->addContent("\0");
+        $response->end();
     }
 
 }

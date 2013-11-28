@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "728c1cce05d50b4fbd29851951b29888",
+    "hash": "119c88c6e5c883cffa605a55a2ccc1f8",
     "packages": [
         {
             "name": "evenement/evenement",
@@ -555,6 +555,64 @@
             "time": "2013-11-24 20:17:07"
         },
         {
+            "name": "symfony/routing",
+            "version": "v2.3.7",
+            "target-dir": "Symfony/Component/Routing",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Routing.git",
+                "reference": "7d41463094752e87a0fae60316d236abecb8a034"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Routing/zipball/7d41463094752e87a0fae60316d236abecb8a034",
+                "reference": "7d41463094752e87a0fae60316d236abecb8a034",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "doctrine/common": "~2.2",
+                "psr/log": "~1.0",
+                "symfony/config": "~2.2",
+                "symfony/yaml": "~2.0"
+            },
+            "suggest": {
+                "doctrine/common": "",
+                "symfony/config": "",
+                "symfony/yaml": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Routing\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Routing Component",
+            "homepage": "http://symfony.com",
+            "time": "2013-09-29 19:41:41"
+        },
+        {
             "name": "symfony/yaml",
             "version": "dev-master",
             "target-dir": "Symfony/Component/Yaml",
@@ -840,12 +898,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thinframe/http.git",
-                "reference": "63c488ef9c083f455bdca942da7c24f99c30e35c"
+                "reference": "f2968f395167d5f0da5d248573697069fe90b84a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thinframe/http/zipball/63c488ef9c083f455bdca942da7c24f99c30e35c",
-                "reference": "63c488ef9c083f455bdca942da7c24f99c30e35c",
+                "url": "https://api.github.com/repos/thinframe/http/zipball/f2968f395167d5f0da5d248573697069fe90b84a",
+                "reference": "f2968f395167d5f0da5d248573697069fe90b84a",
                 "shasum": ""
             },
             "require": {
@@ -879,7 +937,7 @@
                 "interfaces",
                 "thinframe"
             ],
-            "time": "2013-11-12 20:09:20"
+            "time": "2013-11-28 04:18:41"
         },
         {
             "name": "thinframe/pcntl",
@@ -930,12 +988,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thinframe/server.git",
-                "reference": "e805876083842308499538d9743368f4a93b0b2b"
+                "reference": "50d7ef020f4e7e2b18c263d6ad2e6ea83c7f0ca5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thinframe/server/zipball/e805876083842308499538d9743368f4a93b0b2b",
-                "reference": "e805876083842308499538d9743368f4a93b0b2b",
+                "url": "https://api.github.com/repos/thinframe/server/zipball/50d7ef020f4e7e2b18c263d6ad2e6ea83c7f0ca5",
+                "reference": "50d7ef020f4e7e2b18c263d6ad2e6ea83c7f0ca5",
                 "shasum": ""
             },
             "require": {
@@ -971,7 +1029,7 @@
                 "server",
                 "thinframe"
             ],
-            "time": "2013-11-12 21:14:25"
+            "time": "2013-11-28 04:18:25"
         }
     ],
     "packages-dev": [

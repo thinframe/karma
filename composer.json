@@ -17,7 +17,8 @@
         "thinframe/annotations": "dev-master",
         "thinframe/pcntl": "dev-master",
         "thinframe/server": "dev-master",
-        "monolog/monolog": "1.7.0"
+        "monolog/monolog": "1.7.0",
+        "symfony/routing": "2.3.7"
     },
     "bin": ["bin/thinframe-karma.php"],
     "autoload": {
