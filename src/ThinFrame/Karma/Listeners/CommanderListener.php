@@ -14,6 +14,7 @@ use ThinFrame\CommandLine\Commands\Commander;
 use ThinFrame\CommandLine\Commands\Iterators\CompletionIterator;
 use ThinFrame\CommandLine\Commands\Iterators\ExecuteIterator;
 use ThinFrame\Events\ListenerInterface;
+use ThinFrame\Foundation\Exceptions\Exception;
 
 /**
  * Class CommanderListener
@@ -66,7 +67,10 @@ class CommanderListener implements ListenerInterface
         if ($this->argumentsContainer->getArgumentAt(0) == 'compgen') {
             $this->commander->iterate(new CompletionIterator($this->argumentsContainer));
         } else {
-            $this->commander->iterate(new ExecuteIterator($this->argumentsContainer));
+            $this->commander->iterate($executor = new ExecuteIterator($this->argumentsContainer));
+            if (!$executor->isStopped()) {
+                throw new Exception('Cannot find the command you requested');
+            }
         }
     }
 }

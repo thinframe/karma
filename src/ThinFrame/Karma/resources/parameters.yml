@@ -1,0 +1,3 @@
+parameters:
+    karma.paths.root: .
+    karma.paths.logs: '%karma.paths.root%/app/logs/'

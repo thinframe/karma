@@ -40,6 +40,8 @@ class KarmaApplication extends AbstractApplication
         return [
             'resources/listeners.yml',
             'resources/commands.yml',
+            'resources/parameters.yml',
+            'resources/loggers.yml',
         ];
     }
 

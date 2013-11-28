@@ -9,6 +9,8 @@ services:
         class: 'ThinFrame\Karma\Listeners\ErrorListener'
         tags:
             - {name: 'thinframe.events.listener'}
+        calls:
+            - [setLogger, ['@thinframe.karma.logger.cli']]
 
     thinframe.karma.listeners.cli_exceptions:
         class: 'ThinFrame\Karma\Listeners\CliErrorListener'

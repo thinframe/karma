@@ -1,6 +1,8 @@
 <?php
 namespace ThinFrame\Karma\Listeners;
 
+use Psr\Log\LoggerInterface;
+use ThinFrame\Events\Constants\Priority;
 use ThinFrame\Events\Dispatcher;
 use ThinFrame\Events\DispatcherAwareInterface;
 use ThinFrame\Events\ListenerInterface;
@@ -19,6 +21,10 @@ class ErrorListener implements ListenerInterface, DispatcherAwareInterface
      * @var Dispatcher
      */
     private $dispatcher;
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
 
     /**
      * __construct
@@ -27,6 +33,14 @@ class ErrorListener implements ListenerInterface, DispatcherAwareInterface
     {
         set_exception_handler([$this, 'forwardException']);
         set_error_handler([$this, 'forwardError']);
+    }
+
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
     }
 
     /**
@@ -69,7 +83,12 @@ class ErrorListener implements ListenerInterface, DispatcherAwareInterface
     {
         return [
             ExceptionEvent::EVENT_ID => [
-                'method' => 'onException'
+                'method'   => 'onException',
+                'priority' => Priority::MIN
+            ],
+            ErrorEvent::EVENT_ID     => [
+                'method'   => 'onError',
+                'priority' => Priority::MIN
             ]
         ];
     }
@@ -81,6 +100,21 @@ class ErrorListener implements ListenerInterface, DispatcherAwareInterface
      */
     public function onException(ExceptionEvent $event)
     {
-        //TODO: log exception using monolog
+        $this->logger->critical(
+            'Exception occured: ' . $event->getException()->getMessage(),
+            ['exception' => $event->getException()]
+        );
+        exit($event->getException()->getCode());
+    }
+
+    /**
+     * Handle error event
+     *
+     * @param ErrorEvent $event
+     */
+    public function onError(ErrorEvent $event)
+    {
+        $this->logger->error($event->getMessage(), iterator_to_array($event->getPayload()));
+        exit($event->getNumber());
     }
 }
