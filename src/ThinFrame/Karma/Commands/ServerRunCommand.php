@@ -1,38 +1,38 @@
 <?php
 
-/**
- * /src/ThinFrame/Karma/Commands/ServerCommand.php
- *
- * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
- * @license   MIT license (see the license file in the root directory)
- */
-
 namespace ThinFrame\Karma\Commands;
 
 use ThinFrame\CommandLine\ArgumentsContainer;
 use ThinFrame\CommandLine\Commands\AbstractCommand;
 use ThinFrame\CommandLine\IO\OutputDriverInterface;
+use ThinFrame\Server\HttpServer;
 
 /**
- * Class ServerCommand
+ * Class ServerRunCommand
  *
  * @package ThinFrame\Karma\Commands
  * @since   0.1
  */
-class ServerCommand extends AbstractCommand
+class ServerRunCommand extends AbstractCommand
 {
+    /**
+     * @var HttpServer
+     */
+    private $server;
     /**
      * @var OutputDriverInterface
      */
     private $outputDriver;
 
     /**
-     * __construct
+     * Constructor
      *
+     * @param HttpServer            $server
      * @param OutputDriverInterface $outputDriver
      */
-    public function __construct(OutputDriverInterface $outputDriver)
+    public function __construct(HttpServer $server, OutputDriverInterface $outputDriver)
     {
+        $this->server       = $server;
         $this->outputDriver = $outputDriver;
     }
 
@@ -43,7 +43,7 @@ class ServerCommand extends AbstractCommand
      */
     public function getArgument()
     {
-        return 'server';
+        return 'run';
     }
 
     /**
@@ -54,7 +54,7 @@ class ServerCommand extends AbstractCommand
     public function getDescriptions()
     {
         return [
-            'server' => 'HTTP server commands'
+            'server run' => 'Start the HTTP server'
         ];
     }
 
@@ -68,10 +68,12 @@ class ServerCommand extends AbstractCommand
     public function execute(ArgumentsContainer $arguments)
     {
         $this->outputDriver->send(
-            '[format foreground="blue" effects="bold"]Please execute one of the following commands:[/format] '
+            '[format foreground="blue" background="white"] HTTP server is listening at [/format]'
         );
         $this->outputDriver->send(
-            '([format effects="bold"]start[/format])' . PHP_EOL
+            '[format foreground="black" effects="bold" background="white"]{host}:{port} [/format]' . PHP_EOL,
+            ['host' => $this->server->getHost(), 'port' => $this->server->getPort()]
         );
+        $this->server->start();
     }
 }

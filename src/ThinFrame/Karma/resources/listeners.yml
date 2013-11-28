@@ -17,3 +17,15 @@ services:
         arguments: ['@thinframe.cli.shortcodes_output_driver']
         tags:
             - {name: 'thinframe.events.listener'}
+
+    thinframe.karma.listeners.request:
+        class: 'ThinFrame\Karma\Listeners\RequestListener'
+        arguments: ['@thinframe.karma.logger.server']
+        tags:
+            - {name: 'thinframe.events.listener'}
+
+    thinframe.karma.listeners.assets_resolver:
+        class: 'ThinFrame\Karma\Listeners\AssetsResolverListener'
+        arguments: ['%karma.paths.assets%','@thinframe.server.react.event_loop']
+        tags:
+          - {name: 'thinframe.events.listener'}

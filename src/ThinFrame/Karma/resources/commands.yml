@@ -10,3 +10,9 @@ services:
         arguments: ['@thinframe.cli.shortcodes_output_driver']
         tags:
             - {name:'thinframe.cli.parent_command'}
+
+    thinframe.karma.commands.server.run:
+        class: 'ThinFrame\Karma\Commands\ServerRunCommand'
+        tags:
+            - {name:'thinframe.cli.child_command', parent:'thinframe.karma.commands.server'}
+        arguments: ['@thinframe.server','@thinframe.cli.shortcodes_output_driver']

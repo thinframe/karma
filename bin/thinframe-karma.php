@@ -2,6 +2,8 @@
 
 use ThinFrame\Karma\KarmaApplication;
 
+declare(ticks = 2);
+
 /**
  * Karma root directory
  */

@@ -15,6 +15,10 @@ services:
         parent: 'thinframe.karma.logger.handler'
         arguments: ['%karma.paths.logs%cli.log']
 
+    thinframe.karma.logger.handler.server:
+        parent: 'thinframe.karma.logger.handler'
+        arguments: ['%karma.paths.logs%server.log']
+
 
     thinframe.karma.logger.cli:
         class: 'Monolog\Logger'
@@ -23,3 +27,11 @@ services:
             - [pushHandler,['@thinframe.karma.logger.handler.error']]
             - [pushHandler,['@thinframe.karma.logger.handler.debug']]
             - [pushHandler,['@thinframe.karma.logger.handler.cli']]
+
+    thinframe.karma.logger.server:
+        class: 'Monolog\Logger'
+        arguments: ['server']
+        calls:
+            - [pushHandler,['@thinframe.karma.logger.handler.error']]
+            - [pushHandler,['@thinframe.karma.logger.handler.debug']]
+            - [pushHandler,['@thinframe.karma.logger.handler.server']]
