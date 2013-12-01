@@ -22,4 +22,4 @@ $karmaContainer = $karmaApplication->getApplicationContainer();
 $dispatcher = $karmaContainer->get('thinframe.events.dispatcher');
 /** @var $dispatcher \ThinFrame\Events\Dispatcher */
 
-$dispatcher->trigger(new \ThinFrame\Events\SimpleEvent('karma.power_up'));
+$dispatcher->trigger(new \ThinFrame\Events\SimpleEvent('karma.power_up', ['application' => $karmaApplication]));
