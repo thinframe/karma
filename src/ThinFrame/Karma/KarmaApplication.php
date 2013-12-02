@@ -42,6 +42,8 @@ class KarmaApplication extends AbstractApplication
             'resources/commands.yml',
             'resources/parameters.yml',
             'resources/loggers.yml',
+            'resources/annotations_handlers.yml',
+            'resources/services.yml',
         ];
     }
 
@@ -69,4 +71,18 @@ class KarmaApplication extends AbstractApplication
             new ServerApplication()
         ];
     }
+
+    /**
+     * Application metaData
+     *
+     * @return array
+     */
+    protected function metaData()
+    {
+        return [
+            'path_autoload' => 'Controller/'
+        ];
+    }
+
+
 }

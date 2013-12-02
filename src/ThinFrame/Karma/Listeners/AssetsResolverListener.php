@@ -41,7 +41,7 @@ class AssetsResolverListener implements ListenerInterface
      */
     public function getEventMappings()
     {
-        return ['thinframe.http.inbound_request' => ['method' => 'onRequest', 'priority' => Priority::HIGH]];
+        return ['thinframe.http.inbound_request' => ['method' => 'onRequest', 'priority' => Priority::MAX]];
     }
 
     /**

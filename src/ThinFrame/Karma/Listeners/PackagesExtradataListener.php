@@ -1,14 +1,21 @@
 <?php
 namespace ThinFrame\Karma\Listeners;
 
+use PhpCollection\Map;
 use ThinFrame\Applications\AbstractApplication;
-use ThinFrame\Composer\ComposerHelper;
 use ThinFrame\Events\Constants\Priority;
 use ThinFrame\Events\Dispatcher;
 use ThinFrame\Events\DispatcherAwareInterface;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Events\SimpleEvent;
+use ThinFrame\Karma\Helpers\FileLoader;
 
+/**
+ * Class PackagesExtradataListener
+ *
+ * @package ThinFrame\Karma\Listeners
+ * @since   0.1
+ */
 class PackagesExtradataListener implements ListenerInterface, DispatcherAwareInterface
 {
     /**
@@ -34,6 +41,11 @@ class PackagesExtradataListener implements ListenerInterface, DispatcherAwareInt
         ];
     }
 
+    /**
+     * Handle thinframe.power_up event
+     *
+     * @param SimpleEvent $event
+     */
     public function onPowerUp(SimpleEvent $event)
     {
         $app = $event->getPayload()->get('application')->get();
@@ -55,11 +67,13 @@ class PackagesExtradataListener implements ListenerInterface, DispatcherAwareInt
     public function onAppMetadata(SimpleEvent $event)
     {
         $metadata = $event->getPayload()->get('metadata')->get();
-
+        /* @var $metadata Map */
         foreach ($metadata as $key => $value) {
             switch ($key) {
                 case 'path_autoload':
-                    //do nothing
+                    FileLoader::doRequire(
+                        $metadata->get('application_path')->get() . DIRECTORY_SEPARATOR . $value
+                    );
                     break;
                 default:
                     //noop
@@ -69,12 +83,12 @@ class PackagesExtradataListener implements ListenerInterface, DispatcherAwareInt
     }
 
     /**
+     * Attach Dispatcher
+     *
      * @param Dispatcher $dispatcher
      */
     public function setDispatcher(Dispatcher $dispatcher)
     {
         $this->dispatcher = $dispatcher;
     }
-
-
 }

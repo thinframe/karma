@@ -710,12 +710,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thinframe/applications.git",
-                "reference": "c704414a5572f1e3a7aa8604fa4c84ab111d64c9"
+                "reference": "4c253215896b6a661d6710ab09568381b0c14c20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thinframe/applications/zipball/c704414a5572f1e3a7aa8604fa4c84ab111d64c9",
-                "reference": "c704414a5572f1e3a7aa8604fa4c84ab111d64c9",
+                "url": "https://api.github.com/repos/thinframe/applications/zipball/4c253215896b6a661d6710ab09568381b0c14c20",
+                "reference": "4c253215896b6a661d6710ab09568381b0c14c20",
                 "shasum": ""
             },
             "require": {
@@ -750,7 +750,7 @@
                 "ecosystem",
                 "thinframe"
             ],
-            "time": "2013-11-27 20:14:32"
+            "time": "2013-12-01 21:03:49"
         },
         {
             "name": "thinframe/command_line",

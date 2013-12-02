@@ -3,6 +3,7 @@
 namespace ThinFrame\Karma\Listeners;
 
 use Psr\Log\LoggerInterface;
+use ThinFrame\Events\Constants\Priority;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Events\SimpleEvent;
 use ThinFrame\Http\Constants\StatusCode;
@@ -38,7 +39,7 @@ class RequestListener implements ListenerInterface
      */
     public function getEventMappings()
     {
-        return ['thinframe.http.inbound_request' => ['method' => 'onRequest']];
+        return ['thinframe.http.inbound_request' => ['method' => 'onRequest', 'priority' => Priority::MIN]];
     }
 
     /**

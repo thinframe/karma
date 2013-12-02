@@ -1,0 +1,3 @@
+services:
+    thinframe.karma.route_collection:
+        class: 'Symfony\Component\Routing\RouteCollection'

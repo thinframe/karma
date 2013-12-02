@@ -34,3 +34,15 @@ services:
         class: 'ThinFrame\Karma\Listeners\PackagesExtradataListener'
         tags:
           - {name: 'thinframe.events.listener'}
+
+    thinframe.karma.kisteners.routes_preloader:
+        class: 'ThinFrame\Karma\Listeners\RoutesPreloaderListener'
+        arguments: ['@thinframe.annotations.processor']
+        tags:
+          - {name: 'thinframe.events.listener'}
+
+    thinframe.karma.listeners.routes_resolver:
+        class: 'ThinFrame\Karma\Listeners\RouteResolverListener'
+        arguments: ['@thinframe.karma.route_collection']
+        tags:
+          - {name: 'thinframe.events.listener'}
