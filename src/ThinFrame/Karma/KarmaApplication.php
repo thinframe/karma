@@ -78,16 +78,4 @@ class KarmaApplication extends AbstractApplication
             new ServerApplication()
         ];
     }
-
-    /**
-     * Application metaData
-     *
-     * @return array
-     */
-    protected function metaData()
-    {
-        return [
-            'path_autoload' => 'Controller/'
-        ];
-    }
 }
