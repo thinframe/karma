@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * /src/ThinFrame/Karma/Controller/BaseController.php
+ *
+ * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Controller;
 
 use ThinFrame\Events\Dispatcher;
@@ -29,6 +36,8 @@ class BaseController implements DispatcherAwareInterface
     protected $dispatcher;
 
     /**
+     * Constructor
+     *
      * @param RequestInterface  $request
      * @param ResponseInterface $response
      */
@@ -39,6 +48,8 @@ class BaseController implements DispatcherAwareInterface
     }
 
     /**
+     * Attach dispatcher
+     *
      * @param Dispatcher $dispatcher
      */
     public function setDispatcher(Dispatcher $dispatcher)

@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * /src/ThinFrame/Karma/Listeners/CliErrorListener.php
+ *
+ * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Listeners;
 
 use ThinFrame\CommandLine\IO\OutputDriverInterface;
@@ -20,7 +28,7 @@ class CliErrorListener implements ListenerInterface
     private $outputDriver;
 
     /**
-     * __construct
+     * Construct
      *
      * @param OutputDriverInterface $outputDriver
      */
@@ -46,6 +54,11 @@ class CliErrorListener implements ListenerInterface
         ];
     }
 
+    /**
+     * Handle error
+     *
+     * @param ErrorEvent $event
+     */
     public function onError(ErrorEvent $event)
     {
         $this->sendErrorLine('');
@@ -92,5 +105,4 @@ class CliErrorListener implements ListenerInterface
         $this->sendErrorLine('For more details please check the logs');
         $this->sendErrorLine('');
     }
-
 }

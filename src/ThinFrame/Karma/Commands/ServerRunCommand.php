@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * /src/ThinFrame/Karma/Commands/ServerRunCommand.php
+ *
+ * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Commands;
 
 use ThinFrame\CommandLine\ArgumentsContainer;
@@ -54,6 +61,8 @@ class ServerRunCommand extends AbstractCommand implements DispatcherAwareInterfa
     }
 
     /**
+     * Attach dispatcher
+     *
      * @param Dispatcher $dispatcher
      */
     public function setDispatcher(Dispatcher $dispatcher)

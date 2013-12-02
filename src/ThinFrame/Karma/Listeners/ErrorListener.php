@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * /src/ThinFrame/Karma/Listeners/ErrorListener.php
+ *
+ * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Listeners;
 
 use Psr\Log\LoggerInterface;
@@ -27,7 +35,7 @@ class ErrorListener implements ListenerInterface, DispatcherAwareInterface
     private $logger;
 
     /**
-     * __construct
+     * Constructor
      */
     function __construct()
     {
@@ -36,6 +44,8 @@ class ErrorListener implements ListenerInterface, DispatcherAwareInterface
     }
 
     /**
+     * Attach logger
+     *
      * @param LoggerInterface $logger
      */
     public function setLogger($logger)
@@ -67,6 +77,8 @@ class ErrorListener implements ListenerInterface, DispatcherAwareInterface
     }
 
     /**
+     * Attach dispatcher
+     *
      * @param Dispatcher $dispatcher
      */
     public function setDispatcher(Dispatcher $dispatcher)

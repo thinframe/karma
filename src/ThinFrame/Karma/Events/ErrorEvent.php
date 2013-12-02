@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * /src/ThinFrame/Karma/Events/ErrorEvent.php
+ *
+ * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Events;
 
 use ThinFrame\Events\AbstractEvent;
@@ -16,6 +23,8 @@ class ErrorEvent extends AbstractEvent
     const EVENT_ID = 'karma.error';
 
     /**
+     * Constructor
+     *
      * @param int    $number
      * @param string $message
      * @param string $file
@@ -35,6 +44,8 @@ class ErrorEvent extends AbstractEvent
     }
 
     /**
+     * Get error number
+     *
      * @return int
      */
     public function getNumber()
@@ -43,6 +54,8 @@ class ErrorEvent extends AbstractEvent
     }
 
     /**
+     * Get error message
+     *
      * @return string
      */
     public function getMessage()
@@ -51,6 +64,8 @@ class ErrorEvent extends AbstractEvent
     }
 
     /**
+     * Get error file
+     *
      * @return string
      */
     public function getFile()
@@ -59,6 +74,8 @@ class ErrorEvent extends AbstractEvent
     }
 
     /**
+     * Get error line
+     *
      * @return int
      */
     public function getLine()

@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * /src/ThinFrame/Karma/Events/RequestArgumentsEvent.php
+ *
+ * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Events;
 
 use ThinFrame\Events\AbstractEvent;
@@ -93,5 +101,4 @@ class RequestArgumentsEvent extends AbstractEvent
     {
         return $this->getPayload()->get('action')->get();
     }
-
 }

@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * /src/ThinFrame/Karma/Listeners/RouteResolverListener.php
+ *
+ * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Listeners;
 
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
@@ -44,6 +52,8 @@ class RouteResolverListener implements ListenerInterface, DispatcherAwareInterfa
     }
 
     /**
+     * Attach dispatcher
+     *
      * @param Dispatcher $dispatcher
      */
     public function setDispatcher(Dispatcher $dispatcher)
@@ -138,5 +148,4 @@ class RouteResolverListener implements ListenerInterface, DispatcherAwareInterfa
         $response->addContent((string)$actionResponseFilter->getActionResponse());
         $response->end();
     }
-
 }

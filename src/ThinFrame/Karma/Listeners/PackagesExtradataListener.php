@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * /src/ThinFrame/Karma/Listeners/PackagesExtradataListener.php
+ *
+ * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Listeners;
 
 use PhpCollection\Map;
@@ -62,6 +70,8 @@ class PackagesExtradataListener implements ListenerInterface, DispatcherAwareInt
     }
 
     /**
+     * Handle application metadata event
+     *
      * @param SimpleEvent $event
      */
     public function onAppMetadata(SimpleEvent $event)

@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * /src/ThinFrame/Karma/Listeners/RequestListener.php
+ *
+ * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Listeners;
 
 use Psr\Log\LoggerInterface;
@@ -62,5 +69,4 @@ class RequestListener implements ListenerInterface
         $response->addContent("\0");
         $response->end();
     }
-
 }
