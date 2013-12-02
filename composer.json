@@ -1,15 +1,21 @@
 {
     "name": "thinframe/karma",
+    "type": "library",
+    "homepage": "http://thinframe.net",
     "description": "Experimental HTTP server written in PHP",
+    "keywords": ["php", "thinframe", "karma", "http server"],
     "license": "MIT",
     "authors": [
         {
             "name": "Sorin Badea",
-            "email": "sorin.badea91@gmail.com"
+            "email": "sorin.badea91@gmail.com",
+            "homepage": "http://sorinbadea.me",
+            "role": "Developer"
         }
     ],
     "minimum-stability": "dev",
     "require": {
+        "php": ">=5.4.0",
         "thinframe/foundation": "dev-master",
         "thinframe/events": "dev-master",
         "thinframe/applications": "dev-master",
