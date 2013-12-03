@@ -114,7 +114,7 @@ class ErrorListener implements ListenerInterface, DispatcherAwareInterface
     {
         $this->logger->critical(
             'Exception occured: ' . $event->getException()->getMessage(),
-            ['exception' => $event->getException()]
+            ['exception' => $event->getException()->getTraceAsString()]
         );
         exit($event->getException()->getCode());
     }

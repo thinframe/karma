@@ -3,35 +3,23 @@ services:
         class: 'Monolog\Handler\StreamHandler'
         abstract: true
 
-    thinframe.karma.logger.handler.error:
-        parent: 'thinframe.karma.logger.handler'
-        arguments: ['%karma.paths.logs%error.log','error']
-
-    thinframe.karma.logger.handler.debug:
-        parent: 'thinframe.karma.logger.handler'
-        arguments: ['%karma.paths.logs%debug.log','debug']
-
     thinframe.karma.logger.handler.cli:
         parent: 'thinframe.karma.logger.handler'
-        arguments: ['%karma.paths.logs%cli.log']
+        arguments: ['%karma.paths.logs%cli.log','critical']
 
     thinframe.karma.logger.handler.server:
         parent: 'thinframe.karma.logger.handler'
-        arguments: ['%karma.paths.logs%server.log']
+        arguments: ['%karma.paths.logs%server.log','critical']
 
 
     thinframe.karma.logger.cli:
         class: 'Monolog\Logger'
         arguments: ['cli']
         calls:
-            - [pushHandler,['@thinframe.karma.logger.handler.error']]
-            - [pushHandler,['@thinframe.karma.logger.handler.debug']]
             - [pushHandler,['@thinframe.karma.logger.handler.cli']]
 
     thinframe.karma.logger.server:
         class: 'Monolog\Logger'
         arguments: ['server']
         calls:
-            - [pushHandler,['@thinframe.karma.logger.handler.error']]
-            - [pushHandler,['@thinframe.karma.logger.handler.debug']]
             - [pushHandler,['@thinframe.karma.logger.handler.server']]

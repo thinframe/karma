@@ -46,3 +46,9 @@ services:
         arguments: ['@thinframe.karma.route_collection']
         tags:
           - {name: 'thinframe.events.listener'}
+
+    thinframe.karma.listeners.signal:
+        class: 'ThinFrame\Karma\Listeners\SignalListener'
+        arguments: ['@thinframe.pcntl.signal_catcher','@thinframe.server.react.event_loop']
+        tags:
+          - {name: 'thinframe.events.listener'}

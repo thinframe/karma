@@ -18,8 +18,10 @@ use ThinFrame\Events\Dispatcher;
 use ThinFrame\Events\DispatcherAwareInterface;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Events\SimpleEvent;
+use ThinFrame\Http\Constants\StatusCode;
 use ThinFrame\Karma\Events\ActionResponseEvent;
 use ThinFrame\Karma\Events\RequestArgumentsEvent;
+use ThinFrame\Karma\Exceptions\HttpException;
 use ThinFrame\Server\HttpRequest;
 use ThinFrame\Server\HttpResponse;
 
@@ -96,6 +98,16 @@ class RouteResolverListener implements ListenerInterface, DispatcherAwareInterfa
             $event->stopPropagation();
         } catch (ResourceNotFoundException $e) {
             //do nothing
+        } catch (HttpException $e) {
+            $response->setStatusCode($e->getStatusCode());
+            $response->addContent($e->getMessage());
+            $response->end();
+            $event->stopPropagation();
+        } catch (\Exception $e) {
+            $response->setStatusCode(new StatusCode(StatusCode::INTERNAL_SERVER_ERROR));
+            $response->addContent(trim($e->getMessage()) != "" ? $e->getMessage() : "\0");
+            $response->end();
+            $event->stopPropagation();
         }
     }
 

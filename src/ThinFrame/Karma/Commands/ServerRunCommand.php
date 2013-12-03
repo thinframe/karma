@@ -100,6 +100,9 @@ class ServerRunCommand extends AbstractCommand implements DispatcherAwareInterfa
             '[format foreground="black" effects="bold" background="white"]{host}:{port} [/format]' . PHP_EOL,
             ['host' => $this->server->getHost(), 'port' => $this->server->getPort()]
         );
+
+        $this->outputDriver->send('Press [format effects=bold]CTRL+C[/format] to stop the server' . PHP_EOL);
+
         $this->server->start();
     }
 }

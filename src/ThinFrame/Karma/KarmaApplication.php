@@ -14,6 +14,7 @@ use ThinFrame\Applications\AbstractApplication;
 use ThinFrame\Applications\DependencyInjection\ContainerConfigurator;
 use ThinFrame\CommandLine\CommandLineApplication;
 use ThinFrame\Events\EventsApplication;
+use ThinFrame\Pcntl\PcntlApplication;
 use ThinFrame\Server\ServerApplication;
 
 /**
@@ -75,7 +76,8 @@ class KarmaApplication extends AbstractApplication
             new EventsApplication(),
             new CommandLineApplication(),
             new AnnotationsApplication(),
-            new ServerApplication()
+            new ServerApplication(),
+            new PcntlApplication()
         ];
     }
 }

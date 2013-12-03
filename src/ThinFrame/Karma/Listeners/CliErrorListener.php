@@ -61,6 +61,7 @@ class CliErrorListener implements ListenerInterface
      */
     public function onError(ErrorEvent $event)
     {
+        $this->outputDriver->send(PHP_EOL);
         $this->sendErrorLine('');
         $this->sendErrorLine('A PHP error has occurred');
         $this->sendErrorLine('');
@@ -71,6 +72,7 @@ class CliErrorListener implements ListenerInterface
         $this->sendErrorLine('');
         $this->sendErrorLine('Please check the logs for more details');
         $this->sendErrorLine('');
+        $this->outputDriver->send(PHP_EOL);
     }
 
     /**
@@ -94,6 +96,7 @@ class CliErrorListener implements ListenerInterface
     public function onException(ExceptionEvent $event)
     {
         $exception = $event->getException();
+        $this->outputDriver->send(PHP_EOL);
         $this->sendErrorLine('');
         $this->sendErrorLine('Fatal error: an exception has occurred');
         $this->sendErrorLine('');
@@ -104,5 +107,6 @@ class CliErrorListener implements ListenerInterface
         $this->sendErrorLine('');
         $this->sendErrorLine('For more details please check the logs');
         $this->sendErrorLine('');
+        $this->outputDriver->send(PHP_EOL);
     }
 }
