@@ -17,11 +17,11 @@ use ThinFrame\Events\Constants\Priority;
 use ThinFrame\Events\Dispatcher;
 use ThinFrame\Events\DispatcherAwareInterface;
 use ThinFrame\Events\ListenerInterface;
-use ThinFrame\Events\SimpleEvent;
-use ThinFrame\Http\Constants\StatusCode;
 use ThinFrame\Karma\Events\ActionResponseEvent;
 use ThinFrame\Karma\Events\RequestArgumentsEvent;
-use ThinFrame\Karma\Exceptions\HttpException;
+use ThinFrame\Karma\Exceptions\Http\InternalServerErrorException;
+use ThinFrame\Server\Events\HttpRequestEvent;
+use ThinFrame\Server\Exceptions\AbstractHttpException;
 use ThinFrame\Server\HttpRequest;
 use ThinFrame\Server\HttpResponse;
 
@@ -70,20 +70,21 @@ class RouteResolverListener implements ListenerInterface, DispatcherAwareInterfa
      */
     public function getEventMappings()
     {
-        return ['thinframe.http.inbound_request' => ['method' => 'onRequest', 'priority' => Priority::LOW]];
+        return [HttpRequestEvent::EVENT_ID => ['method' => 'onRequest', 'priority' => Priority::LOW]];
     }
 
     /**
-     * Handle thinframe.http.inbount_request event
+     * Handle http request
      *
-     * @param SimpleEvent $event
+     * @param HttpRequestEvent $event
+     *
+     * @throws InternalServerErrorException
+     * @throws AbstractHttpException
      */
-    public function onRequest(SimpleEvent $event)
+    public function onRequest(HttpRequestEvent $event)
     {
-        $request  = $event->getPayload()->get('request')->get();
-        $response = $event->getPayload()->get('response')->get();
-        /* @var $request \ThinFrame\Server\HttpRequest */
-        /* @var $response \ThinFrame\Server\HttpResponse */
+        $request  = $event->getRequest();
+        $response = $event->getResponse();
 
         $requestContext = new RequestContext(
             '',
@@ -98,16 +99,11 @@ class RouteResolverListener implements ListenerInterface, DispatcherAwareInterfa
             $event->stopPropagation();
         } catch (ResourceNotFoundException $e) {
             //do nothing
-        } catch (HttpException $e) {
-            $response->setStatusCode($e->getStatusCode());
-            $response->addContent($e->getMessage());
-            $response->end();
-            $event->stopPropagation();
+        } catch (AbstractHttpException $e) {
+            //send it up into the chain
+            throw $e;
         } catch (\Exception $e) {
-            $response->setStatusCode(new StatusCode(StatusCode::INTERNAL_SERVER_ERROR));
-            $response->addContent(trim($e->getMessage()) != "" ? $e->getMessage() : "\0");
-            $response->end();
-            $event->stopPropagation();
+            throw new InternalServerErrorException('', $e);
         }
     }
 

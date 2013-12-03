@@ -15,6 +15,7 @@ use ThinFrame\CommandLine\IO\OutputDriverInterface;
 use ThinFrame\Events\Dispatcher;
 use ThinFrame\Events\DispatcherAwareInterface;
 use ThinFrame\Events\SimpleEvent;
+use ThinFrame\Karma\KarmaApplication;
 use ThinFrame\Server\HttpServer;
 
 /**
@@ -91,7 +92,7 @@ class ServerRunCommand extends AbstractCommand implements DispatcherAwareInterfa
      */
     public function execute(ArgumentsContainer $arguments)
     {
-        $this->dispatcher->trigger(new SimpleEvent('karma.server.pre_start'));
+        $this->dispatcher->trigger(new SimpleEvent(KarmaApplication::SERVER_PRE_START_EVENT_ID));
 
         $this->outputDriver->send(
             '[format foreground="blue" background="white"] HTTP server is listening at [/format]'

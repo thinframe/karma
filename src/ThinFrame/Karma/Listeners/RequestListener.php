@@ -12,8 +12,8 @@ namespace ThinFrame\Karma\Listeners;
 use Psr\Log\LoggerInterface;
 use ThinFrame\Events\Constants\Priority;
 use ThinFrame\Events\ListenerInterface;
-use ThinFrame\Events\SimpleEvent;
-use ThinFrame\Http\Constants\StatusCode;
+use ThinFrame\Karma\Exceptions\Http\NotFoundException;
+use ThinFrame\Server\Events\HttpRequestEvent;
 
 /**
  * Class RequestListener
@@ -46,27 +46,18 @@ class RequestListener implements ListenerInterface
      */
     public function getEventMappings()
     {
-        return ['thinframe.http.inbound_request' => ['method' => 'onRequest', 'priority' => Priority::MIN]];
+        return [HttpRequestEvent::EVENT_ID => ['method' => 'onRequest', 'priority' => Priority::MIN]];
     }
 
     /**
      * Handle HTTP request
      *
-     * @param SimpleEvent $event
+     * @param HttpRequestEvent $event
+     *
+     * @throws NotFoundException
      */
-    public function onRequest(SimpleEvent $event)
+    public function onRequest(HttpRequestEvent $event)
     {
-        $request = $event->getPayload()->get('request')->get();
-        /* @var $request \ThinFrame\Http\Foundation\RequestInterface */
-
-        $this->logger->info('Received request from ' . $request->getRemoteIp() . ' to ' . $request->getPath());
-
-        //TODO: dispatch router
-
-        $response = $event->getPayload()->get('response')->get();
-        /* @var $response \ThinFrame\Http\Foundation\ResponseInterface */
-        $response->setStatusCode(new StatusCode(StatusCode::NOT_FOUND));
-        $response->addContent("\0");
-        $response->end();
+        throw new NotFoundException();
     }
 }

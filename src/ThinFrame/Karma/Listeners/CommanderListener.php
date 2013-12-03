@@ -15,6 +15,7 @@ use ThinFrame\CommandLine\Commands\Iterators\CompletionIterator;
 use ThinFrame\CommandLine\Commands\Iterators\ExecuteIterator;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Foundation\Exceptions\Exception;
+use ThinFrame\Karma\KarmaApplication;
 
 /**
  * Class CommanderListener
@@ -53,7 +54,7 @@ class CommanderListener implements ListenerInterface
     public function getEventMappings()
     {
         return [
-            'karma.power_up' => [
+            KarmaApplication::POWER_UP_EVENT_ID => [
                 'method' => 'onPowerUp'
             ]
         ];

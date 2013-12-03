@@ -13,8 +13,8 @@ use React\EventLoop\LoopInterface;
 use React\Stream\Stream;
 use ThinFrame\Events\Constants\Priority;
 use ThinFrame\Events\ListenerInterface;
-use ThinFrame\Events\SimpleEvent;
 use ThinFrame\Http\Utils\MimeTypeGuesser;
+use ThinFrame\Server\Events\HttpRequestEvent;
 
 /**
  * Class AssetsResolverListener
@@ -49,21 +49,21 @@ class AssetsResolverListener implements ListenerInterface
      */
     public function getEventMappings()
     {
-        return ['thinframe.http.inbound_request' => ['method' => 'onRequest', 'priority' => Priority::MAX]];
+        return [HttpRequestEvent::EVENT_ID => ['method' => 'onRequest', 'priority' => Priority::MAX]];
     }
 
     /**
      * Handle request
      *
-     * @param SimpleEvent $event
+     * @param HttpRequestEvent $event
      */
-    public function onRequest(SimpleEvent $event)
+    public function onRequest(HttpRequestEvent $event)
     {
-        $request  = $event->getPayload()->get('request')->get();
-        $response = $event->getPayload()->get('response')->get();
-        /* @var $request \ThinFrame\Server\HttpRequest */
-        /* @var $response \ThinFrame\Server\HttpResponse */
+        $request  = $event->getRequest();
+        $response = $event->getResponse();
+
         $path = $this->assetsLocation . DIRECTORY_SEPARATOR . $request->getPath();
+
         if (file_exists($path) && is_file($path)) {
 
             $event->stopPropagation();

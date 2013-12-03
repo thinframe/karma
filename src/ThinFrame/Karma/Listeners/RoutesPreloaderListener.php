@@ -11,6 +11,7 @@ namespace ThinFrame\Karma\Listeners;
 
 use ThinFrame\Annotations\Processor;
 use ThinFrame\Events\ListenerInterface;
+use ThinFrame\Karma\KarmaApplication;
 
 /**
  * Class RoutesPreloaderListener
@@ -43,7 +44,7 @@ class RoutesPreloaderListener implements ListenerInterface
     public function getEventMappings()
     {
         return [
-            'karma.server.pre_start' => [
+            KarmaApplication::SERVER_PRE_START_EVENT_ID => [
                 'method' => 'onServerPreStart'
             ]
         ];

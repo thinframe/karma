@@ -17,6 +17,7 @@ use ThinFrame\Events\DispatcherAwareInterface;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Events\SimpleEvent;
 use ThinFrame\Karma\Helpers\FileLoader;
+use ThinFrame\Karma\KarmaApplication;
 
 /**
  * Class PackagesExtradataListener
@@ -39,11 +40,11 @@ class PackagesExtradataListener implements ListenerInterface, DispatcherAwareInt
     public function getEventMappings()
     {
         return [
-            'karma.power_up'             => [
+            KarmaApplication::POWER_UP_EVENT_ID             => [
                 'method'   => 'onPowerUp',
                 'priority' => Priority::CRITICAL
             ],
-            'karma.application.metadata' => [
+            KarmaApplication::APPLICATION_METADATA_EVENT_ID => [
                 'method' => 'onAppMetadata'
             ]
         ];
@@ -61,7 +62,7 @@ class PackagesExtradataListener implements ListenerInterface, DispatcherAwareInt
         foreach ($app->getMetadata() as $appName => $metadata) {
             $this->dispatcher->trigger(
                 new SimpleEvent(
-                    'karma.application.metadata',
+                    KarmaApplication::APPLICATION_METADATA_EVENT_ID,
                     ['application' => $appName, 'metadata' => $metadata]
                 )
             );
