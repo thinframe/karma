@@ -22,7 +22,7 @@ use ThinFrame\Server\HttpResponse;
  */
 class ActionResponseEvent extends AbstractEvent
 {
-    const EVENT_ID = 'thinframe.karma.request_arguments';
+    const EVENT_ID = 'thinframe.karma.action_response';
 
     /**
      * Constructor
@@ -80,6 +80,16 @@ class ActionResponseEvent extends AbstractEvent
     public function getActionResponse()
     {
         return $this->getPayload()->get('actionResponse')->get();
+    }
+
+    /**
+     * Replace action response
+     *
+     * @param $data
+     */
+    public function setActionResponse($data)
+    {
+        $this->getPayload()->set('actionResponse', $data);
     }
 
     /**
