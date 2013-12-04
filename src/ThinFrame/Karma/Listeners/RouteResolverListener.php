@@ -19,9 +19,7 @@ use ThinFrame\Events\DispatcherAwareInterface;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Karma\Events\ActionResponseEvent;
 use ThinFrame\Karma\Events\RequestArgumentsEvent;
-use ThinFrame\Karma\Exceptions\Http\InternalServerErrorException;
 use ThinFrame\Server\Events\HttpRequestEvent;
-use ThinFrame\Server\Exceptions\AbstractHttpException;
 use ThinFrame\Server\HttpRequest;
 use ThinFrame\Server\HttpResponse;
 
@@ -78,8 +76,7 @@ class RouteResolverListener implements ListenerInterface, DispatcherAwareInterfa
      *
      * @param HttpRequestEvent $event
      *
-     * @throws InternalServerErrorException
-     * @throws AbstractHttpException
+     * @throws \Exception
      */
     public function onRequest(HttpRequestEvent $event)
     {
@@ -99,11 +96,9 @@ class RouteResolverListener implements ListenerInterface, DispatcherAwareInterfa
             $event->stopPropagation();
         } catch (ResourceNotFoundException $e) {
             //do nothing
-        } catch (AbstractHttpException $e) {
+        } catch (\Exception $e) {
             //send it up into the chain
             throw $e;
-        } catch (\Exception $e) {
-            throw new InternalServerErrorException('', $e);
         }
     }
 
