@@ -70,6 +70,8 @@ class CliErrorListener implements ListenerInterface
         $this->sendErrorLine('For more details please check the logs');
         $this->sendErrorLine('');
         $this->outputDriver->send(PHP_EOL);
+
+        echo $exception->getTraceAsString();
     }
 
     /**

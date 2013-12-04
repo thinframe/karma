@@ -16,3 +16,21 @@ services:
         tags:
             - {name:'thinframe.cli.child_command', parent:'thinframe.karma.commands.server'}
         arguments: ['@thinframe.server','@thinframe.cli.shortcodes_output_driver']
+
+    thinframe.karma.commands.server.status:
+        class: 'ThinFrame\Karma\Commands\ServerStatusCommand'
+        tags:
+            - {name:'thinframe.cli.child_command', parent:'thinframe.karma.commands.server'}
+        arguments: ['@thinframe.cli.shortcodes_output_driver']
+
+    thinframe.karma.commands.server.stop:
+        class: 'ThinFrame\Karma\Commands\ServerStopCommand'
+        tags:
+            - {name:'thinframe.cli.child_command', parent:'thinframe.karma.commands.server'}
+        arguments: ['@thinframe.cli.shortcodes_output_driver']
+
+    thinframe.karma.commands.server.restart:
+        class: 'ThinFrame\Karma\Commands\ServerRestartCommand'
+        tags:
+            - {name:'thinframe.cli.child_command', parent:'thinframe.karma.commands.server'}
+        arguments: ['@thinframe.cli.shortcodes_output_driver']
