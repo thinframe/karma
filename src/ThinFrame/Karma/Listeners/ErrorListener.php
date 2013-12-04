@@ -14,8 +14,8 @@ use ThinFrame\Events\Constants\Priority;
 use ThinFrame\Events\Dispatcher;
 use ThinFrame\Events\DispatcherAwareInterface;
 use ThinFrame\Events\ListenerInterface;
-use ThinFrame\Karma\Events\ErrorEvent;
 use ThinFrame\Karma\Events\ExceptionEvent;
+use ThinFrame\Karma\Exceptions\PhpErrorException;
 
 /**
  * Class ExceptionListener
@@ -70,10 +70,12 @@ class ErrorListener implements ListenerInterface, DispatcherAwareInterface
      * @param string $message
      * @param string $file
      * @param int    $line
+     *
+     * @throws PhpErrorException
      */
     public function forwardError($number, $message, $file, $line)
     {
-        $this->dispatcher->trigger(new ErrorEvent($number, $message, $file, $line));
+        throw new PhpErrorException($message, $number, $file, $line);
     }
 
     /**
@@ -98,10 +100,6 @@ class ErrorListener implements ListenerInterface, DispatcherAwareInterface
                 'method'   => 'onException',
                 'priority' => Priority::MIN
             ],
-            ErrorEvent::EVENT_ID     => [
-                'method'   => 'onError',
-                'priority' => Priority::MIN
-            ]
         ];
     }
 
@@ -117,16 +115,5 @@ class ErrorListener implements ListenerInterface, DispatcherAwareInterface
             ['exception' => $event->getException()->getTraceAsString()]
         );
         exit($event->getException()->getCode());
-    }
-
-    /**
-     * Handle error event
-     *
-     * @param ErrorEvent $event
-     */
-    public function onError(ErrorEvent $event)
-    {
-        $this->logger->error($event->getMessage(), iterator_to_array($event->getPayload()));
-        exit($event->getNumber());
     }
 }

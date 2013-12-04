@@ -11,7 +11,6 @@ namespace ThinFrame\Karma\Listeners;
 
 use ThinFrame\CommandLine\IO\OutputDriverInterface;
 use ThinFrame\Events\ListenerInterface;
-use ThinFrame\Karma\Events\ErrorEvent;
 use ThinFrame\Karma\Events\ExceptionEvent;
 
 /**
@@ -47,45 +46,8 @@ class CliErrorListener implements ListenerInterface
         return [
             ExceptionEvent::EVENT_ID => [
                 'method' => 'onException'
-            ],
-            ErrorEvent::EVENT_ID     => [
-                'method' => 'onError'
             ]
         ];
-    }
-
-    /**
-     * Handle error
-     *
-     * @param ErrorEvent $event
-     */
-    public function onError(ErrorEvent $event)
-    {
-        $this->outputDriver->send(PHP_EOL);
-        $this->sendErrorLine('');
-        $this->sendErrorLine('A PHP error has occurred');
-        $this->sendErrorLine('');
-        $this->sendErrorLine('Message: ' . $event->getMessage());
-        $this->sendErrorLine('Number: ' . $event->getNumber());
-        $this->sendErrorLine('File: ' . $event->getFile());
-        $this->sendErrorLine('Line: ' . $event->getLine());
-        $this->sendErrorLine('');
-        $this->sendErrorLine('Please check the logs for more details');
-        $this->sendErrorLine('');
-        $this->outputDriver->send(PHP_EOL);
-    }
-
-    /**
-     * Send error line
-     *
-     * @param string $line
-     */
-    private function sendErrorLine($line)
-    {
-        $this->outputDriver->send(
-            '[format background="red" foreground="white" effects="bold"][center]{line}[/center][/format]',
-            ['line' => $line]
-        );
     }
 
     /**
@@ -108,5 +70,18 @@ class CliErrorListener implements ListenerInterface
         $this->sendErrorLine('For more details please check the logs');
         $this->sendErrorLine('');
         $this->outputDriver->send(PHP_EOL);
+    }
+
+    /**
+     * Send error line
+     *
+     * @param string $line
+     */
+    private function sendErrorLine($line)
+    {
+        $this->outputDriver->send(
+            '[format background="red" foreground="white" effects="bold"][center]{line}[/center][/format]',
+            ['line' => $line]
+        );
     }
 }
