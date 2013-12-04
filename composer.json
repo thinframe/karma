@@ -24,7 +24,8 @@
         "thinframe/pcntl": "dev-master",
         "thinframe/server": "dev-master",
         "monolog/monolog": "1.7.0",
-        "symfony/routing": "2.3.7"
+        "symfony/routing": "2.3.7",
+        "filp/whoops": "1.*"
     },
     "autoload": {
         "psr-0": {
