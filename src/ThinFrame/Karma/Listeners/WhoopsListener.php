@@ -11,6 +11,7 @@ namespace ThinFrame\Karma\Listeners;
 
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Http\Constants\StatusCode;
+use ThinFrame\Karma\Constants\Environment;
 use ThinFrame\Server\Events\UnknownHttpExceptionEvent;
 use Whoops\Run;
 
@@ -26,15 +27,21 @@ class WhoopsListener implements ListenerInterface
      * @var Run
      */
     private $whoops;
+    /**
+     * @var Environment
+     */
+    private $environment;
 
     /**
      * Constructor
      *
-     * @param Run $whoops
+     * @param Run         $whoops
+     * @param Environment $environment
      */
-    public function __construct(Run $whoops)
+    public function __construct(Run $whoops, Environment $environment)
     {
-        $this->whoops = $whoops;
+        $this->whoops      = $whoops;
+        $this->environment = $environment;
     }
 
     /**
@@ -44,11 +51,15 @@ class WhoopsListener implements ListenerInterface
      */
     public function getEventMappings()
     {
-        return [
-            UnknownHttpExceptionEvent::EVENT_ID => [
-                'method' => 'onUnknownException'
-            ]
-        ];
+        if ($this->environment->equals(Environment::DEVELOPMENT)) {
+            return [
+                UnknownHttpExceptionEvent::EVENT_ID => [
+                    'method' => 'onUnknownException'
+                ]
+            ];
+        } else {
+            return [];
+        }
     }
 
     /**

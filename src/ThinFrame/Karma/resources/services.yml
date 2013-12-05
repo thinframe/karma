@@ -9,3 +9,7 @@ services:
 
     thinframe.karma.whoops.handler:
         class: 'ThinFrame\Karma\Whoops\PrettyPageHandler'
+
+    thinframe.karma.environment:
+        class: 'ThinFrame\Karma\Constants\Environment'
+        arguments: ['%karma.environment%']

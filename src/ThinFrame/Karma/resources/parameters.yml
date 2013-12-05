@@ -6,3 +6,5 @@ parameters:
 
     thinframe.server.port: 1337
     thinframe.server.host: '127.0.0.1'
+
+    karma.environment: 'production'
