@@ -32,3 +32,9 @@ services:
             - {name: 'thinframe.events.listener'}
         calls:
             - [setOutputDriver,['@thinframe.cli.shortcodes_output_driver']]
+
+    thinframe.karma.listeners.whoops:
+        class: 'ThinFrame\Karma\Listeners\WhoopsListener'
+        arguments: ['@thinframe.karma.whoops.run','@thinframe.karma.environment']
+        tags:
+          - {name: 'thinframe.events.listener'}

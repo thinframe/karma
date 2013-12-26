@@ -30,3 +30,13 @@ services:
 
     thinframe.karma.route_collection:
         class: 'Symfony\Component\Routing\RouteCollection'
+
+    thinframe.karma.whoops.run:
+        class: 'Whoops\Run'
+        calls:
+            - ['pushHandler',['@thinframe.karma.whoops.handler']]
+
+    thinframe.karma.whoops.handler:
+        class: 'Whoops\Handler\PrettyPageHandler'
+        calls:
+            - [handleUnconditionally,[true]]
