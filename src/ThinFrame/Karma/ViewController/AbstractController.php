@@ -17,17 +17,17 @@ abstract class AbstractController
     /**
      * @var Dispatcher
      */
-    private $dispatcher;
+    protected $dispatcher;
 
     /**
      * @var Request
      */
-    private $request;
+    protected $request;
 
     /**
      * @var Response
      */
-    private $response;
+    protected $response;
 
     /**
      * Constructor

@@ -19,9 +19,16 @@ services:
         calls:
             - [setProcessor, ['@thinframe.annotations.processor']]
 
-    thinframe.karma.kisteners.request:
+    thinframe.karma.listeners.request:
         class: 'ThinFrame\Karma\Listeners\RequestListener'
         tags:
             - {name: 'thinframe.events.listener'}
         calls:
             - [setRouteCollection, ['@thinframe.karma.route_collection']]
+
+    thinframe.karma.listeners.error:
+        class: 'ThinFrame\Karma\Listeners\ErrorListener'
+        tags:
+            - {name: 'thinframe.events.listener'}
+        calls:
+            - [setOutputDriver,['@thinframe.cli.shortcodes_output_driver']]

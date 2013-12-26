@@ -74,6 +74,7 @@ class RequestListener implements ListenerInterface, DispatcherAwareInterface
      */
     public function onRequest(HttpRequestEvent $event)
     {
+        $event->getResponse()->getHeaders()->set('X-Powered-By', 'ThinFrame/Karma (v0.2, engine ReactPHP)');
         $matcher = new UrlMatcher($this->routeCollection, new RequestContext('', $event->getRequest()->getMethod()));
         try {
             $route = $matcher->match($event->getRequest()->getPath());
