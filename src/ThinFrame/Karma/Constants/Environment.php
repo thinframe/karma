@@ -1,4 +1,5 @@
 <?php
+
 namespace ThinFrame\Karma\Constants;
 
 use ThinFrame\Foundation\DataTypes\AbstractEnum;
@@ -7,7 +8,7 @@ use ThinFrame\Foundation\DataTypes\AbstractEnum;
  * Class Environment
  *
  * @package ThinFrame\Karma\Constants
- * @since   0.1
+ * @since   0.2
  */
 class Environment extends AbstractEnum
 {

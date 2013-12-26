@@ -1,12 +1,4 @@
 <?php
-
-/**
- * /src/ThinFrame/Karma/Commands/HelpCommand.php
- *
- * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
- * @license   MIT license (see the license file in the root directory)
- */
-
 namespace ThinFrame\Karma\Commands;
 
 use ThinFrame\CommandLine\ArgumentsContainer;
@@ -16,17 +8,18 @@ use ThinFrame\CommandLine\Commands\Iterators\DescriptionsIterator;
 use ThinFrame\CommandLine\IO\OutputDriverInterface;
 
 /**
- * Class HelpCommand
+ * Class Help
  *
  * @package ThinFrame\Karma\Commands
- * @since   0.1
+ * @since   0.2
  */
-class HelpCommand extends AbstractCommand
+class Help extends AbstractCommand
 {
     /**
      * @var Commander
      */
     private $commander;
+
     /**
      * @var OutputDriverInterface
      */
@@ -38,7 +31,7 @@ class HelpCommand extends AbstractCommand
      * @param Commander             $commander
      * @param OutputDriverInterface $outputDriver
      */
-    function __construct(Commander $commander, OutputDriverInterface $outputDriver)
+    public function __construct(Commander $commander, OutputDriverInterface $outputDriver)
     {
         $this->commander    = $commander;
         $this->outputDriver = $outputDriver;
@@ -61,9 +54,7 @@ class HelpCommand extends AbstractCommand
      */
     public function getDescriptions()
     {
-        return [
-            'help' => 'Show all available commands'
-        ];
+        return ['help' => 'Show this list'];
     }
 
     /**
@@ -78,17 +69,18 @@ class HelpCommand extends AbstractCommand
         $descriptionsIterator = new DescriptionsIterator();
         $this->commander->iterate($descriptionsIterator);
 
+        $maxSize = max(array_map('strlen', array_keys($descriptionsIterator->getDescriptions())));
+
         $this->outputDriver->send(PHP_EOL);
 
-        foreach ($descriptionsIterator->getDescriptions() as $command => $description) {
+        foreach ($descriptionsIterator->getDescriptions() as $key => $value) {
             $this->outputDriver->send(
-                '[format foreground="green" effects="bold"]{command}[/format]  ',
-                ['command' => $command]
+                '  [format foreground="green" effects="bold"]{command}[/format]',
+                ['command' => str_pad($key, $maxSize + 4, " ", STR_PAD_RIGHT)]
             );
             $this->outputDriver->send(
-                '[format effects="bold"]{description}[/format]' . PHP_EOL
-                ,
-                ['description' => $description]
+                '- [format effects="bold"]{description}[/format]' . PHP_EOL,
+                ['description' => $value]
             );
         }
 

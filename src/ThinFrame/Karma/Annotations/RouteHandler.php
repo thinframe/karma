@@ -1,39 +1,32 @@
 <?php
 
-/**
- * /src/ThinFrame/Karma/AnnotationsHandlers/RouterHandler.php
- *
- * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
- * @license   MIT license (see the license file in the root directory)
- */
-
-namespace ThinFrame\Karma\AnnotationsHandlers;
+namespace ThinFrame\Karma\Annotations;
 
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 use ThinFrame\Annotations\AnnotationsHandlerInterface;
 
 /**
- * Class RouterHandler
+ * Class RouteHandler
  *
- * @package ThinFrame\Karma\AnnotationsHandler
- * @since   0.1
+ * @package ThinFrame\Karma\Annotations
+ * @since   0.2
  */
-class RouterHandler implements AnnotationsHandlerInterface
+class RouteHandler implements AnnotationsHandlerInterface
 {
     /**
      * @var RouteCollection
      */
-    private $routesCollection;
+    private $routeCollection;
 
     /**
-     * Constructor
+     * Attach route collection to instance
      *
-     * @param RouteCollection $collection
+     * @param RouteCollection $routeCollection
      */
-    public function __construct(RouteCollection $collection)
+    public function setRouteCollection(RouteCollection $routeCollection)
     {
-        $this->routesCollection = $collection;
+        $this->routeCollection = $routeCollection;
     }
 
     /**
@@ -47,7 +40,7 @@ class RouterHandler implements AnnotationsHandlerInterface
      */
     public function handleClassAnnotations(\ReflectionClass $reflection, array $annotations, $targetObj = null)
     {
-        // noop
+        //noop
     }
 
     /**
@@ -74,8 +67,8 @@ class RouterHandler implements AnnotationsHandlerInterface
                         isset($route->methods) ? $route->methods : []
                     );
                     $symfonyRoute->setOption('karmaController', $reflection->getDeclaringClass()->getName());
-                    $symfonyRoute->setOption('karmaMethod', $reflection->getName());
-                    $this->routesCollection->add(
+                    $symfonyRoute->setOption('karmaAction', $reflection->getName());
+                    $this->routeCollection->add(
                         isset($route->name) ? $route->name : $reflection->getDeclaringClass()->getName(
                             ) . ':' . $reflection->getName(),
                         $symfonyRoute
@@ -96,6 +89,6 @@ class RouterHandler implements AnnotationsHandlerInterface
      */
     public function handlePropertyAnnotations(\ReflectionProperty $reflection, array $annotations, $targetObj = null)
     {
-        // noop
+        //noop
     }
 }

@@ -7,12 +7,12 @@ use ThinFrame\Http\Constants\StatusCode;
 use ThinFrame\Server\Exceptions\AbstractHttpException;
 
 /**
- * Class NotFoundException
+ * Class NotFoundHttpException
  *
  * @package ThinFrame\Karma\Exceptions\Http
- * @since   0.1
+ * @since   0.2
  */
-class NotFoundException extends AbstractHttpException
+class NotFoundHttpException extends AbstractHttpException
 {
     /**
      * Constructor

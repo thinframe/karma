@@ -1,12 +1,5 @@
 <?php
 
-/**
- * /src/ThinFrame/Karma/Listeners/CommanderListener.php
- *
- * @copyright 2013 Sorin Badea <sorin.badea91@gmail.com>
- * @license   MIT license (see the license file in the root directory)
- */
-
 namespace ThinFrame\Karma\Listeners;
 
 use ThinFrame\CommandLine\ArgumentsContainer;
@@ -14,6 +7,7 @@ use ThinFrame\CommandLine\Commands\Commander;
 use ThinFrame\CommandLine\Commands\Iterators\CompletionIterator;
 use ThinFrame\CommandLine\Commands\Iterators\ExecuteIterator;
 use ThinFrame\Events\ListenerInterface;
+use ThinFrame\Events\SimpleEvent;
 use ThinFrame\Foundation\Exceptions\Exception;
 use ThinFrame\Karma\KarmaApplication;
 
@@ -21,7 +15,7 @@ use ThinFrame\Karma\KarmaApplication;
  * Class CommanderListener
  *
  * @package ThinFrame\Karma\Listeners
- * @since   0.1
+ * @since   0.2
  */
 class CommanderListener implements ListenerInterface
 {
@@ -29,8 +23,9 @@ class CommanderListener implements ListenerInterface
      * @var Commander
      */
     private $commander;
+
     /**
-     * @var ArgumentsContainer;
+     * @var ArgumentsContainer
      */
     private $argumentsContainer;
 
@@ -61,9 +56,14 @@ class CommanderListener implements ListenerInterface
     }
 
     /**
-     * Handle karma.power_up event
+     *
+     * Handle power up event
+     *
+     * @param SimpleEvent $event
+     *
+     * @throws \ThinFrame\Foundation\Exceptions\Exception
      */
-    public function onPowerUp()
+    public function onPowerUp(SimpleEvent $event)
     {
         if ($this->argumentsContainer->getArgumentAt(0) == 'compgen') {
             $this->commander->iterate(new CompletionIterator($this->argumentsContainer));

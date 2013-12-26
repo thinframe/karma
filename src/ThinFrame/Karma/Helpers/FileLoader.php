@@ -9,7 +9,7 @@
 
 namespace ThinFrame\Karma\Helpers;
 
-use ThinFrame\Foundation\Helpers\Strings\StringValidator;
+use Stringy\StaticStringy;
 
 /**
  * FileLoader Helper
@@ -36,7 +36,7 @@ class FileLoader
 
                 self::doRequire($path . DIRECTORY_SEPARATOR . $child);
             }
-        } elseif (is_file($path) && StringValidator::endsWith($path, '.php')) {
+        } elseif (is_file($path) && StaticStringy::endsWith($path, '.php')) {
             require_once $path;
         }
     }

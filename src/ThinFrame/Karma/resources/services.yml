@@ -1,15 +1,32 @@
 services:
-    thinframe.karma.route_collection:
-        class: 'Symfony\Component\Routing\RouteCollection'
-
-    thinframe.karma.whoops.run:
-        class: 'Whoops\Run'
-        calls:
-            - ['pushHandler',['@thinframe.karma.whoops.handler']]
-
-    thinframe.karma.whoops.handler:
-        class: 'ThinFrame\Karma\Whoops\PrettyPageHandler'
-
     thinframe.karma.environment:
         class: 'ThinFrame\Karma\Constants\Environment'
-        arguments: ['%karma.environment%']
+        arguments: ['production']
+
+    thinframe.karma.logger.handler:
+        class: 'Monolog\Handler\StreamHandler'
+        abstract: true
+
+    thinframe.karma.logger.handler.cli:
+        parent: 'thinframe.karma.logger.handler'
+        arguments: ['%karma.paths.logs%cli.log','critical']
+
+    thinframe.karma.logger.handler.server:
+        parent: 'thinframe.karma.logger.handler'
+        arguments: ['%karma.paths.logs%server.log','critical']
+
+
+    thinframe.karma.logger.cli:
+        class: 'Monolog\Logger'
+        arguments: ['cli']
+        calls:
+            - [pushHandler,['@thinframe.karma.logger.handler.cli']]
+
+    thinframe.karma.logger.server:
+        class: 'Monolog\Logger'
+        arguments: ['server']
+        calls:
+            - [pushHandler,['@thinframe.karma.logger.handler.server']]
+
+    thinframe.karma.route_collection:
+        class: 'Symfony\Component\Routing\RouteCollection'

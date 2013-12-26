@@ -26,9 +26,7 @@ use ThinFrame\Server\ServerApplication;
  */
 class KarmaApplication extends AbstractApplication
 {
-    const POWER_UP_EVENT_ID             = 'karma.power_up';
-    const APPLICATION_METADATA_EVENT_ID = 'karma.application.metadata';
-    const SERVER_PRE_START_EVENT_ID     = 'karma.server.pre_start';
+    const POWER_UP_EVENT_ID = 'karma.power_up';
 
     /**
      * initialize configurator
@@ -52,10 +50,8 @@ class KarmaApplication extends AbstractApplication
         return [
             'resources/listeners.yml',
             'resources/commands.yml',
-            'resources/parameters.yml',
-            'resources/loggers.yml',
-            'resources/annotations_handlers.yml',
             'resources/services.yml',
+            'resources/annotations.yml',
         ];
     }
 
