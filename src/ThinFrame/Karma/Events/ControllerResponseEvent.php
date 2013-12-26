@@ -4,7 +4,6 @@ namespace ThinFrame\Karma\Events;
 
 use ThinFrame\Events\AbstractEvent;
 use ThinFrame\Karma\ViewController\AbstractController;
-use ThinFrame\Karma\ViewController\View;
 use ThinFrame\Server\Http\Request;
 use ThinFrame\Server\Http\Response;
 
@@ -102,7 +101,7 @@ class ControllerResponseEvent extends AbstractEvent
     /**
      * Get action response
      *
-     * @return View
+     * @return mixed
      */
     public function getActionResponse()
     {
