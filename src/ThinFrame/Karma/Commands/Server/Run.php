@@ -8,6 +8,8 @@ use ThinFrame\CommandLine\IO\OutputDriverInterface;
 use ThinFrame\Events\Dispatcher;
 use ThinFrame\Events\DispatcherAwareInterface;
 use ThinFrame\Events\SimpleEvent;
+use ThinFrame\Karma\Helpers\ServerHelper;
+use ThinFrame\Pcntl\Helpers\Exec;
 use ThinFrame\Server\Server;
 
 /**
@@ -83,6 +85,27 @@ class Run extends AbstractCommand implements DispatcherAwareInterface
      */
     public function execute(ArgumentsContainer $arguments)
     {
+        if ($arguments->getOption('daemon')) {
+            if (!ServerHelper::isRunning()) {
+                Exec::viaPipe('thinframe server run /dev/null 2>&1 &', KARMA_ROOT);
+            }
+            if (ServerHelper::isRunning()) {
+                $this->outputDriver->send(
+                    '[format foreground="red" background="white" effects="bold"]' .
+                    'Server is listening at {host}:{port}[/format]' . PHP_EOL,
+                    [
+                        'host' => $this->server->getHost(),
+                        'port' => $this->server->getPort()
+                    ]
+                );
+            } else {
+                $this->outputDriver->send(
+                    '[format foreground="red" effects="bold"]Failed to start server[/format]' . PHP_EOL
+                );
+                exit(1);
+            }
+            return;
+        }
         $this->dispatcher->trigger(new SimpleEvent('thinframe.server.pre_start'));
         $this->outputDriver->send(
             '[format foreground="red" background="white" effects="bold"]' .
@@ -92,6 +115,7 @@ class Run extends AbstractCommand implements DispatcherAwareInterface
                 'port' => $this->server->getPort()
             ]
         );
+        ServerHelper::savePID();
         $this->server->start();
     }
 
