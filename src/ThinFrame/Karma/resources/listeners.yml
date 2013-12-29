@@ -38,3 +38,10 @@ services:
         arguments: ['@thinframe.karma.whoops.run','@thinframe.karma.environment']
         tags:
           - {name: 'thinframe.events.listener'}
+
+    thinframe.karma.listeners.monitor:
+        class: 'ThinFrame\Karma\Listeners\MonitorListener'
+        tags:
+            - {name: 'thinframe.events.listener'}
+        arguments: ['@thinframe.cli.shortcodes_output_driver']
+
