@@ -23,6 +23,7 @@
         "thinframe/annotations": "dev-master",
         "thinframe/pcntl": "dev-master",
         "thinframe/server": "dev-master",
+        "thinframe/inotify": "dev-master",
         "monolog/monolog": "1.7.0",
         "symfony/routing": "2.3.7",
         "filp/whoops": "dev-master"

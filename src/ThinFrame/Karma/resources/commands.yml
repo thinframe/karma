@@ -27,3 +27,9 @@ services:
         arguments: ['@thinframe.cli.shortcodes_output_driver']
         tags:
             - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.server'}
+
+    thinframe.karma.commands.server.restart:
+        class: 'ThinFrame\Karma\Commands\Server\Restart'
+        arguments: ['@thinframe.cli.shortcodes_output_driver']
+        tags:
+            - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.server'}
