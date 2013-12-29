@@ -15,3 +15,15 @@ services:
         arguments: ['@thinframe.server','@thinframe.cli.shortcodes_output_driver']
         tags:
             - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.server'}
+
+    thinframe.karma.commands.server.stop:
+        class: 'ThinFrame\Karma\Commands\Server\Stop'
+        arguments: ['@thinframe.cli.shortcodes_output_driver']
+        tags:
+            - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.server'}
+
+    thinframe.karma.commands.server.status:
+        class: 'ThinFrame\Karma\Commands\Server\Status'
+        arguments: ['@thinframe.cli.shortcodes_output_driver']
+        tags:
+            - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.server'}

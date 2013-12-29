@@ -73,7 +73,10 @@ class Run extends AbstractCommand implements DispatcherAwareInterface
      */
     public function getDescriptions()
     {
-        return ['server run' => 'Start the HTTP server'];
+        return [
+            'server run'          => 'Start the HTTP server',
+            'server run --daemon' => 'Start the HTTP server as a daemon',
+        ];
     }
 
     /**
@@ -87,12 +90,13 @@ class Run extends AbstractCommand implements DispatcherAwareInterface
     {
         if ($arguments->getOption('daemon')) {
             if (!ServerHelper::isRunning()) {
-                Exec::viaPipe('thinframe server run /dev/null 2>&1 &', KARMA_ROOT);
+                Exec::viaPipe('bin/thinframe server run > /dev/null 2>&1 &', KARMA_ROOT);
+                sleep(2);
             }
             if (ServerHelper::isRunning()) {
                 $this->outputDriver->send(
-                    '[format foreground="red" background="white" effects="bold"]' .
-                    'Server is listening at {host}:{port}[/format]' . PHP_EOL,
+                    '[format foreground="green" background="black" effects="bold"]' .
+                    ' Server is listening at {host}:{port} [/format]' . PHP_EOL,
                     [
                         'host' => $this->server->getHost(),
                         'port' => $this->server->getPort()
@@ -100,7 +104,8 @@ class Run extends AbstractCommand implements DispatcherAwareInterface
                 );
             } else {
                 $this->outputDriver->send(
-                    '[format foreground="red" effects="bold"]Failed to start server[/format]' . PHP_EOL
+                    '[format foreground="red" background="black" effects="bold"] Failed to start server [/format]'
+                    . PHP_EOL
                 );
                 exit(1);
             }
@@ -108,8 +113,8 @@ class Run extends AbstractCommand implements DispatcherAwareInterface
         }
         $this->dispatcher->trigger(new SimpleEvent('thinframe.server.pre_start'));
         $this->outputDriver->send(
-            '[format foreground="red" background="white" effects="bold"]' .
-            'Server will start listening at {host}:{port}[/format]' . PHP_EOL,
+            '[format foreground="red" background="black" effects="bold"]' .
+            ' Server will start listening at {host}:{port} [/format]' . PHP_EOL,
             [
                 'host' => $this->server->getHost(),
                 'port' => $this->server->getPort()
@@ -118,5 +123,4 @@ class Run extends AbstractCommand implements DispatcherAwareInterface
         ServerHelper::savePID();
         $this->server->start();
     }
-
 }
