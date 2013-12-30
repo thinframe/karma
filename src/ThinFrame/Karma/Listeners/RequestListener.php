@@ -6,6 +6,7 @@ use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouteCollection;
+use ThinFrame\Events\Constants\Priority;
 use ThinFrame\Events\Dispatcher;
 use ThinFrame\Events\DispatcherAwareInterface;
 use ThinFrame\Events\ListenerInterface;
@@ -60,7 +61,8 @@ class RequestListener implements ListenerInterface, DispatcherAwareInterface
     {
         return [
             HttpRequestEvent::EVENT_ID => [
-                'method' => 'onRequest'
+                'method'   => 'onRequest',
+                'priority' => Priority::MIN
             ]
         ];
     }

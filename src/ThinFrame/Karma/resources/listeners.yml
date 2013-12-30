@@ -45,3 +45,10 @@ services:
             - {name: 'thinframe.events.listener'}
         arguments: ['@thinframe.cli.shortcodes_output_driver']
 
+
+    thinframe.karma.listeners.assets:
+        class: 'ThinFrame\Karma\Listeners\AssetsListener'
+        tags:
+            - {name: 'thinframe.events.listener'}
+        arguments: ['@thinframe.server.react.event_loop']
+
