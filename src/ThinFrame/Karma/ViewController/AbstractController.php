@@ -2,6 +2,7 @@
 
 namespace ThinFrame\Karma\ViewController;
 
+use PhpCollection\Map;
 use ThinFrame\Events\Dispatcher;
 use ThinFrame\Karma\Exceptions\Http\NotFoundHttpException;
 use ThinFrame\Server\Http\Request;
@@ -30,6 +31,11 @@ abstract class AbstractController
     protected $response;
 
     /**
+     * @var Map
+     */
+    protected $services;
+
+    /**
      * Constructor
      *
      * @param Dispatcher $dispatcher
@@ -41,8 +47,18 @@ abstract class AbstractController
         $this->dispatcher = $dispatcher;
         $this->response   = $response;
         $this->request    = $request;
+        $this->services   = new Map();
     }
 
+    /**
+     * Get attached services
+     *
+     * @return Map
+     */
+    public function getServices()
+    {
+        return $this->services;
+    }
 
     /**
      * Trigger controller action
