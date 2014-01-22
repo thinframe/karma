@@ -53,7 +53,7 @@ class Stop extends AbstractCommand
     {
         if (!ServerHelper::isRunning()) {
             $this->outputDriver->send(
-                '[format foreground="white" background="red" effects="bold"] Server is not running [/format]' . PHP_EOL
+                '[error] Server is not running [/error]' . PHP_EOL
             );
 
             return;
@@ -61,11 +61,11 @@ class Stop extends AbstractCommand
         $process = new Process(ServerHelper::getServerPID());
         if ($process->sendSignal(new Signal(Signal::KILL))) {
             $this->outputDriver->send(
-                '[format foreground="green" background="black" effects="bold"] Server will stop shortly [/format]' . PHP_EOL
+                '[success] Server will stop shortly [/success]' . PHP_EOL
             );
         } else {
             $this->outputDriver->send(
-                '[format foreground="white" background="red" effects="bold"] The server is not responding [/format]' . PHP_EOL
+                '[error] The server is not responding [/error]' . PHP_EOL
             );
         }
     }

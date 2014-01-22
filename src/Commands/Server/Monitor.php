@@ -68,9 +68,9 @@ class Monitor extends AbstractCommand
         $this->watcher->addPath(KARMA_ROOT . DIRECTORY_SEPARATOR . 'src');
         $this->watcher->addPath(KARMA_ROOT . DIRECTORY_SEPARATOR . 'app/config');
         $this->outputDriver->send(
-            '[format foreground="green" background="black" effects="bold"]' .
+            '[info]' .
             ' Starting file system monitor ... ' .
-            '[/format]' . PHP_EOL
+            '[/info]' . PHP_EOL
         );
         while (true) {
 

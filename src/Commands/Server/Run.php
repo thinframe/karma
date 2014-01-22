@@ -79,8 +79,7 @@ class Run extends AbstractCommand
             }
             if (ServerHelper::isRunning()) {
                 $this->outputDriver->send(
-                    '[format foreground="green" background="black" effects="bold"]' .
-                    ' Server is listening at {host}:{port} [/format]' . PHP_EOL,
+                    '[success] Server is listening at {host}:{port} [/success]' . PHP_EOL,
                     [
                         'host' => $this->server->getHost(),
                         'port' => $this->server->getPort()
@@ -88,7 +87,7 @@ class Run extends AbstractCommand
                 );
             } else {
                 $this->outputDriver->send(
-                    '[format foreground="red" background="black" effects="bold"] Failed to start server [/format]'
+                    '[error] Failed to start server [/error]'
                     . PHP_EOL
                 );
                 exit(1);
@@ -98,8 +97,7 @@ class Run extends AbstractCommand
         }
         $this->dispatcher->trigger(new SimpleEvent('thinframe.server.pre_start'));
         $this->outputDriver->send(
-            '[format foreground="red" background="black" effects="bold"]' .
-            ' Server will start listening at {host}:{port} [/format]' . PHP_EOL,
+            '[success]Server will start listening at {host}:{port}[/success]' . PHP_EOL,
             [
                 'host' => $this->server->getHost(),
                 'port' => $this->server->getPort()
