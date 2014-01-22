@@ -2,9 +2,8 @@
 
 namespace ThinFrame\Karma\Listeners;
 
-use ThinFrame\Annotations\Processor;
-use ThinFrame\Applications\AbstractApplication;
-use ThinFrame\Applications\DependencyInjection\ApplicationAwareInterface;
+use ThinFrame\Annotations\DependencyInjection\ProcessorAwareTrait;
+use ThinFrame\Applications\DependencyInjection\ApplicationAwareTrait;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Karma\Helpers\FileLoader;
 
@@ -14,38 +13,10 @@ use ThinFrame\Karma\Helpers\FileLoader;
  * @package ThinFrame\Karma\Listeners
  * @since   0.2
  */
-class ControllersListener implements ListenerInterface, ApplicationAwareInterface
+class ControllersListener implements ListenerInterface
 {
-    /**
-     * @var AbstractApplication
-     */
-    private $application;
-
-    /**
-     * @var Processor
-     */
-    private $processor;
-
-    /**
-     * @param Processor $processor
-     */
-    public function setProcessor(Processor $processor)
-    {
-        $this->processor = $processor;
-    }
-
-    /**
-     * Attach application to current instance
-     *
-     * @param AbstractApplication $application
-     *
-     * @return mixed
-     */
-    public function setApplication(AbstractApplication $application)
-    {
-        $this->application = $application;
-    }
-
+    use ApplicationAwareTrait;
+    use ProcessorAwareTrait;
 
     /**
      * Get event mappings ["event"=>["method"=>"methodName","priority"=>1]]

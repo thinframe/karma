@@ -1,7 +1,7 @@
 <?php
 namespace ThinFrame\Karma\Listeners;
 
-use ThinFrame\CommandLine\IO\OutputDriverInterface;
+use ThinFrame\CommandLine\DependencyInjection\OutputDriverAwareTrait;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Karma\Exceptions\PHPErrorException;
 
@@ -13,10 +13,7 @@ use ThinFrame\Karma\Exceptions\PHPErrorException;
  */
 class ErrorListener implements ListenerInterface
 {
-    /**
-     * @var OutputDriverInterface
-     */
-    private $outputDriver;
+    use OutputDriverAwareTrait;
 
     /**
      * Constructor
@@ -35,14 +32,6 @@ class ErrorListener implements ListenerInterface
     public function getEventMappings()
     {
         return [];
-    }
-
-    /**
-     * @param OutputDriverInterface $outputDriver
-     */
-    public function setOutputDriver(OutputDriverInterface $outputDriver)
-    {
-        $this->outputDriver = $outputDriver;
     }
 
     /**

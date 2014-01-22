@@ -4,9 +4,11 @@ namespace ThinFrame\Karma\Commands\Server;
 
 use ThinFrame\CommandLine\ArgumentsContainer;
 use ThinFrame\CommandLine\Commands\AbstractCommand;
+use ThinFrame\CommandLine\DependencyInjection\OutputDriverAwareTrait;
 use ThinFrame\CommandLine\IO\OutputDriverInterface;
 use ThinFrame\Events\Dispatcher;
 use ThinFrame\Events\DispatcherAwareInterface;
+use ThinFrame\Events\DispatcherAwareTrait;
 use ThinFrame\Events\SimpleEvent;
 use ThinFrame\Karma\Helpers\ServerHelper;
 use ThinFrame\Pcntl\Helpers\Exec;
@@ -18,12 +20,10 @@ use ThinFrame\Server\Server;
  * @package ThinFrame\Karma\Commands\Server
  * @since   0.2
  */
-class Run extends AbstractCommand implements DispatcherAwareInterface
+class Run extends AbstractCommand
 {
-    /**
-     * @var OutputDriverInterface;
-     */
-    private $outputDriver;
+    use OutputDriverAwareTrait;
+    use DispatcherAwareTrait;
 
     /**
      * @var Server
@@ -31,30 +31,14 @@ class Run extends AbstractCommand implements DispatcherAwareInterface
     private $server;
 
     /**
-     * @var Dispatcher
-     */
-    private $dispatcher;
-
-    /**
      * Constructor
      *
-     * @param Server                $server
-     * @param OutputDriverInterface $outputDriver
+     * @param Server $server
      */
-    public function __construct(Server $server, OutputDriverInterface $outputDriver)
+    public function __construct(Server $server)
     {
-        $this->server       = $server;
-        $this->outputDriver = $outputDriver;
+        $this->server = $server;
     }
-
-    /**
-     * @param Dispatcher $dispatcher
-     */
-    public function setDispatcher(Dispatcher $dispatcher)
-    {
-        $this->dispatcher = $dispatcher;
-    }
-
 
     /**
      * Get the argument the will trigger this command
@@ -109,6 +93,7 @@ class Run extends AbstractCommand implements DispatcherAwareInterface
                 );
                 exit(1);
             }
+
             return;
         }
         $this->dispatcher->trigger(new SimpleEvent('thinframe.server.pre_start'));

@@ -5,6 +5,7 @@ use ThinFrame\CommandLine\ArgumentsContainer;
 use ThinFrame\CommandLine\Commands\AbstractCommand;
 use ThinFrame\CommandLine\Commands\Commander;
 use ThinFrame\CommandLine\Commands\Iterators\DescriptionsIterator;
+use ThinFrame\CommandLine\DependencyInjection\OutputDriverAwareTrait;
 use ThinFrame\CommandLine\IO\OutputDriverInterface;
 
 /**
@@ -15,26 +16,21 @@ use ThinFrame\CommandLine\IO\OutputDriverInterface;
  */
 class Help extends AbstractCommand
 {
+    use OutputDriverAwareTrait;
+
     /**
      * @var Commander
      */
     private $commander;
 
     /**
-     * @var OutputDriverInterface
-     */
-    private $outputDriver;
-
-    /**
      * Constructor
      *
-     * @param Commander             $commander
-     * @param OutputDriverInterface $outputDriver
+     * @param Commander $commander
      */
-    public function __construct(Commander $commander, OutputDriverInterface $outputDriver)
+    public function __construct(Commander $commander)
     {
-        $this->commander    = $commander;
-        $this->outputDriver = $outputDriver;
+        $this->commander = $commander;
     }
 
     /**

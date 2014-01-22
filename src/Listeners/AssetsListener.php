@@ -5,6 +5,7 @@ use React\EventLoop\LoopInterface;
 use React\Stream\Stream;
 use ThinFrame\Applications\AbstractApplication;
 use ThinFrame\Applications\DependencyInjection\ApplicationAwareInterface;
+use ThinFrame\Applications\DependencyInjection\ApplicationAwareTrait;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Http\Utils\MimeTypeGuesser;
 use ThinFrame\Server\Events\HttpRequestEvent;
@@ -15,12 +16,9 @@ use ThinFrame\Server\Events\HttpRequestEvent;
  * @package ThinFrame\Karma\Listeners
  * @since   0.2
  */
-class AssetsListener implements ListenerInterface, ApplicationAwareInterface
+class AssetsListener implements ListenerInterface
 {
-    /**
-     * @var AbstractApplication
-     */
-    private $application;
+    use ApplicationAwareTrait;
 
     /**
      * @var LoopInterface
@@ -35,18 +33,6 @@ class AssetsListener implements ListenerInterface, ApplicationAwareInterface
     public function __construct(LoopInterface $serverLoop)
     {
         $this->serverLoop = $serverLoop;
-    }
-
-    /**
-     * Attach application to current instance
-     *
-     * @param AbstractApplication $application
-     *
-     * @return mixed
-     */
-    public function setApplication(AbstractApplication $application)
-    {
-        $this->application = $application;
     }
 
 

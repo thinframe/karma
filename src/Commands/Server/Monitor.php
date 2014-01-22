@@ -4,6 +4,7 @@ namespace ThinFrame\Karma\Commands\Server;
 
 use ThinFrame\CommandLine\ArgumentsContainer;
 use ThinFrame\CommandLine\Commands\AbstractCommand;
+use ThinFrame\CommandLine\DependencyInjection\OutputDriverAwareTrait;
 use ThinFrame\CommandLine\IO\OutputDriverInterface;
 use ThinFrame\Inotify\FileSystemWatcher;
 
@@ -15,10 +16,7 @@ use ThinFrame\Inotify\FileSystemWatcher;
  */
 class Monitor extends AbstractCommand
 {
-    /**
-     * @var OutputDriverInterface;
-     */
-    private $outputDriver;
+    use OutputDriverAwareTrait;
 
     /**
      * @var FileSystemWatcher
@@ -28,13 +26,11 @@ class Monitor extends AbstractCommand
     /**
      * Constructor
      *
-     * @param OutputDriverInterface $outputDriver
-     * @param FileSystemWatcher     $watcher
+     * @param FileSystemWatcher $watcher
      */
-    public function __construct(OutputDriverInterface $outputDriver, FileSystemWatcher $watcher)
+    public function __construct(FileSystemWatcher $watcher)
     {
-        $this->outputDriver = $outputDriver;
-        $this->watcher      = $watcher;
+        $this->watcher = $watcher;
     }
 
     /**

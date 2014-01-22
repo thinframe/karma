@@ -1,7 +1,7 @@
 services:
     thinframe.karma.commands.help:
         class: 'ThinFrame\Karma\Commands\Help'
-        arguments: ['@thinframe.cli.commander','@thinframe.cli.shortcodes_output_driver']
+        arguments: ['@thinframe.cli.commander']
         tags:
             - {name:'thinframe.cli.parent_command'}
 
@@ -12,30 +12,27 @@ services:
 
     thinframe.karma.commands.server.run:
         class: 'ThinFrame\Karma\Commands\Server\Run'
-        arguments: ['@thinframe.server','@thinframe.cli.shortcodes_output_driver']
+        arguments: ['@thinframe.server']
         tags:
             - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.server'}
 
     thinframe.karma.commands.server.stop:
         class: 'ThinFrame\Karma\Commands\Server\Stop'
-        arguments: ['@thinframe.cli.shortcodes_output_driver']
         tags:
             - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.server'}
 
     thinframe.karma.commands.server.status:
         class: 'ThinFrame\Karma\Commands\Server\Status'
-        arguments: ['@thinframe.cli.shortcodes_output_driver']
         tags:
             - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.server'}
 
     thinframe.karma.commands.server.restart:
         class: 'ThinFrame\Karma\Commands\Server\Restart'
-        arguments: ['@thinframe.cli.shortcodes_output_driver']
         tags:
             - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.server'}
 
     thinframe.karma.commands.server.monitor:
         class: 'ThinFrame\Karma\Commands\Server\Monitor'
-        arguments: ['@thinframe.cli.shortcodes_output_driver','@thinframe.inotify.file_system_watcher']
+        arguments: ['@thinframe.inotify.file_system_watcher']
         tags:
             - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.server'}

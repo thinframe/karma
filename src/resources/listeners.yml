@@ -16,8 +16,6 @@ services:
         class: 'ThinFrame\Karma\Listeners\ControllersListener'
         tags:
             - {name: 'thinframe.events.listener'}
-        calls:
-            - [setProcessor, ['@thinframe.annotations.processor']]
 
     thinframe.karma.listeners.request:
         class: 'ThinFrame\Karma\Listeners\RequestListener'
@@ -30,8 +28,6 @@ services:
         class: 'ThinFrame\Karma\Listeners\ErrorListener'
         tags:
             - {name: 'thinframe.events.listener'}
-        calls:
-            - [setOutputDriver,['@thinframe.cli.shortcodes_output_driver']]
 
     thinframe.karma.listeners.whoops:
         class: 'ThinFrame\Karma\Listeners\WhoopsListener'
@@ -43,8 +39,6 @@ services:
         class: 'ThinFrame\Karma\Listeners\MonitorListener'
         tags:
             - {name: 'thinframe.events.listener'}
-        arguments: ['@thinframe.cli.shortcodes_output_driver']
-
 
     thinframe.karma.listeners.assets:
         class: 'ThinFrame\Karma\Listeners\AssetsListener'

@@ -29,8 +29,8 @@
         "filp/whoops": "dev-master"
     },
     "autoload": {
-        "psr-0": {
-            "": "src/"
+        "psr-4": {
+            "ThinFrame\\Karma\\": "src/"
         }
     }
 }

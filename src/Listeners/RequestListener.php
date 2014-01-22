@@ -9,6 +9,7 @@ use Symfony\Component\Routing\RouteCollection;
 use ThinFrame\Events\Constants\Priority;
 use ThinFrame\Events\Dispatcher;
 use ThinFrame\Events\DispatcherAwareInterface;
+use ThinFrame\Events\DispatcherAwareTrait;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Karma\Events\ControllerActionEvent;
 use ThinFrame\Karma\Events\ControllerResponseEvent;
@@ -23,25 +24,14 @@ use ThinFrame\Server\Http\Response;
  * @package ThinFrame\Karma\Listeners
  * @since   0.2
  */
-class RequestListener implements ListenerInterface, DispatcherAwareInterface
+class RequestListener implements ListenerInterface
 {
-    /**
-     * @var Dispatcher
-     */
-    private $dispatcher;
+    use DispatcherAwareTrait;
 
     /**
      * @var RouteCollection
      */
     private $routeCollection;
-
-    /**
-     * @param Dispatcher $dispatcher
-     */
-    public function setDispatcher(Dispatcher $dispatcher)
-    {
-        $this->dispatcher = $dispatcher;
-    }
 
     /**
      * @param RouteCollection $routeCollection

@@ -2,7 +2,7 @@
 
 namespace ThinFrame\Karma\Listeners;
 
-use ThinFrame\CommandLine\IO\OutputDriverInterface;
+use ThinFrame\CommandLine\DependencyInjection\OutputDriverAwareTrait;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Pcntl\Helpers\Exec;
 
@@ -14,18 +14,7 @@ use ThinFrame\Pcntl\Helpers\Exec;
  */
 class MonitorListener implements ListenerInterface
 {
-    /**
-     * @var OutputDriverInterface
-     */
-    private $outputDriver;
-
-    /**
-     * @param OutputDriverInterface $outputDriver
-     */
-    public function __construct(OutputDriverInterface $outputDriver)
-    {
-        $this->outputDriver = $outputDriver;
-    }
+    use OutputDriverAwareTrait;
 
     /**
      * Get event mappings ["event"=>["method"=>"methodName","priority"=>1]]
