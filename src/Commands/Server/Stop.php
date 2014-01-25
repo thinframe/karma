@@ -1,11 +1,17 @@
 <?php
 
+/**
+ * src/Commands/Server/Stop.php
+ *
+ * @author    Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Commands\Server;
 
 use ThinFrame\CommandLine\ArgumentsContainer;
 use ThinFrame\CommandLine\Commands\AbstractCommand;
 use ThinFrame\CommandLine\DependencyInjection\OutputDriverAwareTrait;
-use ThinFrame\CommandLine\IO\OutputDriverInterface;
 use ThinFrame\Karma\Helpers\ServerHelper;
 use ThinFrame\Pcntl\Constants\Signal;
 use ThinFrame\Pcntl\Process;

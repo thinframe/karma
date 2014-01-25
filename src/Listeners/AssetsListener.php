@@ -1,10 +1,16 @@
 <?php
+
+/**
+ * src/Listeners/AssetsListener.php
+ *
+ * @author    Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Listeners;
 
 use React\EventLoop\LoopInterface;
 use React\Stream\Stream;
-use ThinFrame\Applications\AbstractApplication;
-use ThinFrame\Applications\DependencyInjection\ApplicationAwareInterface;
 use ThinFrame\Applications\DependencyInjection\ApplicationAwareTrait;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Http\Utils\MimeTypeGuesser;
