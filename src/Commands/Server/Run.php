@@ -85,15 +85,15 @@ class Run extends AbstractCommand
                         'port' => $this->server->getPort()
                     ]
                 );
+                exit(0);
             } else {
                 $this->outputDriver->send(
-                    '[error] Failed to start server [/error]'
-                    . PHP_EOL
+                    '[error] Failed to start server [/error]' . PHP_EOL,
+                    [],
+                    true
                 );
                 exit(1);
             }
-
-            return;
         }
         $this->dispatcher->trigger(new SimpleEvent('thinframe.server.pre_start'));
         $this->outputDriver->send(

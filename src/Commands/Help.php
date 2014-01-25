@@ -81,5 +81,6 @@ class Help extends AbstractCommand
         }
 
         $this->outputDriver->send(PHP_EOL);
+        exit(0);
     }
 }

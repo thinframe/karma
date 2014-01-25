@@ -58,11 +58,15 @@ class Status extends AbstractCommand
                 '[info] The server is running [/info]'
                 . PHP_EOL
             );
+            exit(0);
         } else {
             $this->outputDriver->send(
                 '[error] The server is not running [/error]'
-                . PHP_EOL
+                . PHP_EOL,
+                [],
+                true
             );
+            exit(1);
         }
     }
 }

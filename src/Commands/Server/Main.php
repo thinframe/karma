@@ -44,7 +44,7 @@ class Main extends AbstractCommand
      */
     public function execute(ArgumentsContainer $arguments)
     {
-
+        exit(0);
     }
 
 }

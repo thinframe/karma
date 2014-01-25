@@ -75,5 +75,6 @@ class Monitor extends AbstractCommand
         while (true) {
 
         }
+        exit(0);
     }
 }

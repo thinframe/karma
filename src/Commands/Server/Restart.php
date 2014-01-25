@@ -54,10 +54,11 @@ class Restart extends AbstractCommand
     {
         if (!ServerHelper::isRunning()) {
             $this->outputDriver->send(
-                '[error] Server is not running [/error]' . PHP_EOL
+                '[error] Server is not running [/error]' . PHP_EOL,
+                [],
+                true
             );
-
-            return;
+            exit(1);
         }
         $process = new Process(ServerHelper::getServerPID());
         if ($process->sendSignal(new Signal(Signal::KILL))) {
@@ -66,12 +67,14 @@ class Restart extends AbstractCommand
             $this->outputDriver->send(
                 '[info] The server will start shortly [/info]' . PHP_EOL
             );
-
-            return;
+            exit(0);
         } else {
             $this->outputDriver->send(
-                '[error] The server is not responding [/error]' . PHP_EOL
+                '[error] The server is not responding [/error]' . PHP_EOL,
+                [],
+                true
             );
+            exit(1);
         }
     }
 }
