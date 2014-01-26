@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "861ad2dd2466223e8f9e2030c9df1604",
+    "hash": "d5137026d624dca56a3c690ac9efaa69",
     "packages": [
         {
             "name": "danielstjules/stringy",
-            "version": "1.2.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/danielstjules/Stringy.git",
-                "reference": "6ba29637b2b2bc8cfd735539c6f9716ae8957477"
+                "reference": "9f930262af66f3943cb5b8baa8cbc3e31bce0746"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/6ba29637b2b2bc8cfd735539c6f9716ae8957477",
-                "reference": "6ba29637b2b2bc8cfd735539c6f9716ae8957477",
+                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/9f930262af66f3943cb5b8baa8cbc3e31bce0746",
+                "reference": "9f930262af66f3943cb5b8baa8cbc3e31bce0746",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
                 "utility",
                 "utils"
             ],
-            "time": "2013-12-05 04:36:17"
+            "time": "2013-12-17 02:04:30"
         },
         {
             "name": "evenement/evenement",
@@ -106,12 +106,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "ea8e2bc200ef2f475cd9a7b69d0850d72b5e6b24"
+                "reference": "3575d084a00f086f755b16c4a181cfa6ff912ed6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/ea8e2bc200ef2f475cd9a7b69d0850d72b5e6b24",
-                "reference": "ea8e2bc200ef2f475cd9a7b69d0850d72b5e6b24",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/3575d084a00f086f755b16c4a181cfa6ff912ed6",
+                "reference": "3575d084a00f086f755b16c4a181cfa6ff912ed6",
                 "shasum": ""
             },
             "require": {
@@ -149,7 +149,7 @@
                 "whoops",
                 "zf2"
             ],
-            "time": "2013-12-31 13:41:37"
+            "time": "2014-01-18 18:13:07"
         },
         {
             "name": "guzzle/parser",
@@ -264,16 +264,16 @@
         },
         {
             "name": "phpcollection/phpcollection",
-            "version": "0.3.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/php-collection.git",
-                "reference": "dbec93115a5ff149b476ee2d4ede3880239a3d77"
+                "reference": "cad39389bb3134aca06b1b7fad5d3ecf7c3b7d74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/php-collection/zipball/dbec93115a5ff149b476ee2d4ede3880239a3d77",
-                "reference": "dbec93115a5ff149b476ee2d4ede3880239a3d77",
+                "url": "https://api.github.com/repos/schmittjoh/php-collection/zipball/cad39389bb3134aca06b1b7fad5d3ecf7c3b7d74",
+                "reference": "cad39389bb3134aca06b1b7fad5d3ecf7c3b7d74",
                 "shasum": ""
             },
             "require": {
@@ -310,7 +310,7 @@
                 "sequence",
                 "set"
             ],
-            "time": "2013-12-13 09:27:51"
+            "time": "2014-01-26 10:18:52"
         },
         {
             "name": "phpoption/phpoption",
@@ -456,12 +456,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp/react.git",
-                "reference": "9d927565beb1948ac6c898372b920d5e239f0869"
+                "reference": "f98ff708d90c396f930a537d58a9527b2bd45c17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/react/zipball/9d927565beb1948ac6c898372b920d5e239f0869",
-                "reference": "9d927565beb1948ac6c898372b920d5e239f0869",
+                "url": "https://api.github.com/repos/reactphp/react/zipball/f98ff708d90c396f930a537d58a9527b2bd45c17",
+                "reference": "f98ff708d90c396f930a537d58a9527b2bd45c17",
                 "shasum": ""
             },
             "require": {
@@ -507,7 +507,7 @@
                 "event-loop",
                 "reactor"
             ],
-            "time": "2014-01-09 19:33:29"
+            "time": "2014-01-26 19:24:07"
         },
         {
             "name": "symfony/config",
@@ -663,37 +663,39 @@
         },
         {
             "name": "symfony/routing",
-            "version": "v2.3.7",
+            "version": "v2.4.1",
             "target-dir": "Symfony/Component/Routing",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Routing.git",
-                "reference": "7d41463094752e87a0fae60316d236abecb8a034"
+                "reference": "4abfb500aab8be458c9e3a227ea56b190584f78a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Routing/zipball/7d41463094752e87a0fae60316d236abecb8a034",
-                "reference": "7d41463094752e87a0fae60316d236abecb8a034",
+                "url": "https://api.github.com/repos/symfony/Routing/zipball/4abfb500aab8be458c9e3a227ea56b190584f78a",
+                "reference": "4abfb500aab8be458c9e3a227ea56b190584f78a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "doctrine/common": "~2.2",
+                "doctrine/annotations": "~1.0",
                 "psr/log": "~1.0",
                 "symfony/config": "~2.2",
+                "symfony/expression-language": "~2.4",
                 "symfony/yaml": "~2.0"
             },
             "suggest": {
-                "doctrine/common": "",
-                "symfony/config": "",
-                "symfony/yaml": ""
+                "doctrine/annotations": "For using the annotation loader",
+                "symfony/config": "For using the all-in-one router or any loader",
+                "symfony/expression-language": "For using expression matching",
+                "symfony/yaml": "For using the YAML loader"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -717,7 +719,13 @@
             ],
             "description": "Symfony Routing Component",
             "homepage": "http://symfony.com",
-            "time": "2013-09-29 19:41:41"
+            "keywords": [
+                "router",
+                "routing",
+                "uri",
+                "url"
+            ],
+            "time": "2014-01-05 02:10:50"
         },
         {
             "name": "symfony/yaml",
@@ -768,25 +776,25 @@
         },
         {
             "name": "thinframe/annotations",
-            "version": "dev-master",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thinframe/annotations.git",
-                "reference": "c6992051bf86b01922c91383dacbbafa70e45e3e"
+                "reference": "87e41d78c1ba599eae6577b108f4083d7357be21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thinframe/annotations/zipball/c6992051bf86b01922c91383dacbbafa70e45e3e",
-                "reference": "c6992051bf86b01922c91383dacbbafa70e45e3e",
+                "url": "https://api.github.com/repos/thinframe/annotations/zipball/87e41d78c1ba599eae6577b108f4083d7357be21",
+                "reference": "87e41d78c1ba599eae6577b108f4083d7357be21",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0",
-                "thinframe/foundation": "dev-master"
+                "thinframe/applications": "@stable",
+                "thinframe/foundation": "@stable"
             },
             "require-dev": {
-                "phpunit/phpunit": "3.7.*",
-                "thinframe/applications": "dev-master"
+                "phpunit/phpunit": "@stable"
             },
             "type": "library",
             "extra": {
@@ -818,20 +826,20 @@
                 "metadata",
                 "thinframe"
             ],
-            "time": "2014-01-22 20:52:37"
+            "time": "2014-01-26 18:50:58"
         },
         {
             "name": "thinframe/applications",
-            "version": "dev-master",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thinframe/applications.git",
-                "reference": "353ab1790d2bbc3ec7df3e23ae5966f73b65fe54"
+                "reference": "a8885fcd095c36e538e21edfed3093d86c7f4b02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thinframe/applications/zipball/353ab1790d2bbc3ec7df3e23ae5966f73b65fe54",
-                "reference": "353ab1790d2bbc3ec7df3e23ae5966f73b65fe54",
+                "url": "https://api.github.com/repos/thinframe/applications/zipball/a8885fcd095c36e538e21edfed3093d86c7f4b02",
+                "reference": "a8885fcd095c36e538e21edfed3093d86c7f4b02",
                 "shasum": ""
             },
             "require": {
@@ -839,7 +847,7 @@
                 "symfony/config": "@stable",
                 "symfony/dependency-injection": "@stable",
                 "symfony/yaml": "@stable",
-                "thinframe/foundation": "dev-master"
+                "thinframe/foundation": "@stable"
             },
             "type": "library",
             "autoload": {
@@ -866,26 +874,26 @@
                 "ecosystem",
                 "thinframe"
             ],
-            "time": "2014-01-22 19:30:50"
+            "time": "2014-01-26 18:37:39"
         },
         {
             "name": "thinframe/command_line",
-            "version": "dev-master",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thinframe/command_line.git",
-                "reference": "f424e2b7401ab04775fc78bcda25523bf990173f"
+                "reference": "edf8231ffdffe12facba8fc5f5dad27c3974c5b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thinframe/command_line/zipball/f424e2b7401ab04775fc78bcda25523bf990173f",
-                "reference": "f424e2b7401ab04775fc78bcda25523bf990173f",
+                "url": "https://api.github.com/repos/thinframe/command_line/zipball/edf8231ffdffe12facba8fc5f5dad27c3974c5b2",
+                "reference": "edf8231ffdffe12facba8fc5f5dad27c3974c5b2",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0",
-                "thinframe/foundation": "dev-master",
-                "thinframe/pcntl": "dev-master"
+                "thinframe/foundation": "@stable",
+                "thinframe/pcntl": "@stable"
             },
             "bin": [
                 "bin/.thinframerc",
@@ -894,6 +902,11 @@
                 "bin/thinframe"
             ],
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "ThinFrame\\CommandLine\\": "src/"
@@ -918,29 +931,29 @@
                 "command line",
                 "thinframe"
             ],
-            "time": "2014-01-22 20:19:32"
+            "time": "2014-01-26 20:04:01"
         },
         {
             "name": "thinframe/events",
-            "version": "dev-master",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thinframe/events.git",
-                "reference": "fbba4c2bad9654056a7e9fd2767eaea3e4cbe99b"
+                "reference": "098b9b25d3e520e2ae2e1f4a9b911f68349e1991"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thinframe/events/zipball/fbba4c2bad9654056a7e9fd2767eaea3e4cbe99b",
-                "reference": "fbba4c2bad9654056a7e9fd2767eaea3e4cbe99b",
+                "url": "https://api.github.com/repos/thinframe/events/zipball/098b9b25d3e520e2ae2e1f4a9b911f68349e1991",
+                "reference": "098b9b25d3e520e2ae2e1f4a9b911f68349e1991",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0",
-                "thinframe/applications": "dev-master",
-                "thinframe/foundation": "dev-master"
+                "thinframe/applications": "@stable",
+                "thinframe/foundation": "@stable"
             },
             "require-dev": {
-                "phpunit/phpunit": "3.7.*"
+                "phpunit/phpunit": "@stable"
             },
             "type": "library",
             "extra": {
@@ -971,29 +984,29 @@
                 "events",
                 "thinframe"
             ],
-            "time": "2014-01-22 19:35:35"
+            "time": "2014-01-26 18:45:28"
         },
         {
             "name": "thinframe/foundation",
-            "version": "dev-master",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thinframe/foundation.git",
-                "reference": "9185ddd7c9ac915ca98005beb4916f3cc010dce8"
+                "reference": "b95f50d5bcdec6c433e5b930e2b3e6724c21909b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thinframe/foundation/zipball/9185ddd7c9ac915ca98005beb4916f3cc010dce8",
-                "reference": "9185ddd7c9ac915ca98005beb4916f3cc010dce8",
+                "url": "https://api.github.com/repos/thinframe/foundation/zipball/b95f50d5bcdec6c433e5b930e2b3e6724c21909b",
+                "reference": "b95f50d5bcdec6c433e5b930e2b3e6724c21909b",
                 "shasum": ""
             },
             "require": {
-                "danielstjules/stringy": "1.2.*",
+                "danielstjules/stringy": "@stable",
                 "php": ">=5.4.0",
-                "phpcollection/phpcollection": "0.3.*"
+                "phpcollection/phpcollection": "@stable"
             },
             "require-dev": {
-                "phpunit/phpunit": "3.7.*"
+                "phpunit/phpunit": "@stable"
             },
             "type": "library",
             "extra": {
@@ -1024,7 +1037,7 @@
                 "foundation",
                 "thinframe"
             ],
-            "time": "2014-01-22 18:16:30"
+            "time": "2014-01-26 18:30:10"
         },
         {
             "name": "thinframe/http",
@@ -1032,17 +1045,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thinframe/http.git",
-                "reference": "98fddee5f12630aeb0e6d90a5f0bb7b89f41f583"
+                "reference": "4c550c2ee9bfc1eef4b11b6de28860348c734bfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thinframe/http/zipball/98fddee5f12630aeb0e6d90a5f0bb7b89f41f583",
-                "reference": "98fddee5f12630aeb0e6d90a5f0bb7b89f41f583",
+                "url": "https://api.github.com/repos/thinframe/http/zipball/4c550c2ee9bfc1eef4b11b6de28860348c734bfc",
+                "reference": "4c550c2ee9bfc1eef4b11b6de28860348c734bfc",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0",
-                "thinframe/foundation": "dev-master"
+                "thinframe/foundation": "@stable"
             },
             "type": "library",
             "autoload": {
@@ -1071,28 +1084,28 @@
                 "interfaces",
                 "thinframe"
             ],
-            "time": "2014-01-22 20:57:44"
+            "time": "2014-01-26 19:47:51"
         },
         {
             "name": "thinframe/inotify",
-            "version": "dev-master",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thinframe/inotify.git",
-                "reference": "45b8cceef5d1799e3d518551c98cd6fdbf91142e"
+                "reference": "fe5b0d2ffd7ea9f2a25a23f733bb319a34536bb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thinframe/inotify/zipball/45b8cceef5d1799e3d518551c98cd6fdbf91142e",
-                "reference": "45b8cceef5d1799e3d518551c98cd6fdbf91142e",
+                "url": "https://api.github.com/repos/thinframe/inotify/zipball/fe5b0d2ffd7ea9f2a25a23f733bb319a34536bb4",
+                "reference": "fe5b0d2ffd7ea9f2a25a23f733bb319a34536bb4",
                 "shasum": ""
             },
             "require": {
                 "ext-inotify": "@stable",
                 "php": ">=5.4.0",
-                "thinframe/applications": "dev-master",
-                "thinframe/events": "dev-master",
-                "thinframe/foundation": "dev-master"
+                "thinframe/applications": "@stable",
+                "thinframe/events": "@stable",
+                "thinframe/foundation": "@stable"
             },
             "type": "library",
             "autoload": {
@@ -1119,26 +1132,26 @@
                 "inotify",
                 "thinframe"
             ],
-            "time": "2014-01-22 21:12:13"
+            "time": "2014-01-26 22:10:04"
         },
         {
             "name": "thinframe/pcntl",
-            "version": "dev-master",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thinframe/pcntl.git",
-                "reference": "0e74112da247642273d2e96f08c467b69c726842"
+                "reference": "c487812cb701f64948c0d1fb4fea184d9b95539b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thinframe/pcntl/zipball/0e74112da247642273d2e96f08c467b69c726842",
-                "reference": "0e74112da247642273d2e96f08c467b69c726842",
+                "url": "https://api.github.com/repos/thinframe/pcntl/zipball/c487812cb701f64948c0d1fb4fea184d9b95539b",
+                "reference": "c487812cb701f64948c0d1fb4fea184d9b95539b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0",
-                "thinframe/events": "dev-master",
-                "thinframe/foundation": "dev-master"
+                "thinframe/events": "@stable",
+                "thinframe/foundation": "@stable"
             },
             "type": "library",
             "extra": {
@@ -1168,31 +1181,36 @@
                 "pcntl",
                 "thinframe"
             ],
-            "time": "2014-01-22 20:43:04"
+            "time": "2014-01-26 19:54:26"
         },
         {
             "name": "thinframe/server",
-            "version": "dev-master",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thinframe/server.git",
-                "reference": "7655f65cadecf51d7e18d87ad4e2e521f7182ef8"
+                "reference": "d778e2415e483f995fc6f65b9899eda2aa6a721a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thinframe/server/zipball/7655f65cadecf51d7e18d87ad4e2e521f7182ef8",
-                "reference": "7655f65cadecf51d7e18d87ad4e2e521f7182ef8",
+                "url": "https://api.github.com/repos/thinframe/server/zipball/d778e2415e483f995fc6f65b9899eda2aa6a721a",
+                "reference": "d778e2415e483f995fc6f65b9899eda2aa6a721a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0",
                 "react/react": "dev-master",
-                "thinframe/applications": "dev-master",
-                "thinframe/events": "dev-master",
-                "thinframe/foundation": "dev-master",
-                "thinframe/http": "dev-master"
+                "thinframe/applications": "@stable",
+                "thinframe/events": "@stable",
+                "thinframe/foundation": "@stable",
+                "thinframe/http": "@stable"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "ThinFrame\\Server\\": "src/"
@@ -1217,7 +1235,7 @@
                 "server",
                 "thinframe"
             ],
-            "time": "2014-01-22 21:26:53"
+            "time": "2014-01-26 22:01:24"
         }
     ],
     "packages-dev": [
@@ -1228,14 +1246,16 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "thinframe/foundation": 20,
-        "thinframe/events": 20,
-        "thinframe/applications": 20,
-        "thinframe/command_line": 20,
-        "thinframe/annotations": 20,
-        "thinframe/pcntl": 20,
-        "thinframe/server": 20,
-        "thinframe/inotify": 20,
+        "thinframe/foundation": 0,
+        "thinframe/events": 0,
+        "thinframe/applications": 0,
+        "thinframe/command_line": 0,
+        "thinframe/annotations": 0,
+        "thinframe/pcntl": 0,
+        "thinframe/server": 0,
+        "thinframe/inotify": 0,
+        "monolog/monolog": 0,
+        "symfony/routing": 0,
         "filp/whoops": 20
     },
     "platform": {

@@ -1,6 +1,10 @@
 #Karma
 New generation of PHP frameworks
 
+[![Latest Stable Version](https://poser.pugx.org/thinframe/karma/v/stable.png)](https://packagist.org/packages/thinframe/karma)
+[![Latest Unstable Version](https://poser.pugx.org/thinframe/karma/v/unstable.png)](https://packagist.org/packages/thinframe/karma)
+[![License](https://poser.pugx.org/thinframe/karma/license.png)](https://packagist.org/packages/thinframe/karma)
+
 ##What is the problem with the current generation?
 
 To explain the current problem let me start with simple introduction on how PHP websites work:
