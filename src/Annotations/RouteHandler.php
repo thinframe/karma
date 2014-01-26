@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * src/Annotations/RouteHandler.php
+ *
+ * @author    Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Annotations;
 
 use Symfony\Component\Routing\Route;

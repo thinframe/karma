@@ -1,11 +1,17 @@
 <?php
 
+/**
+ * src/Commands/Server/Monitor.php
+ *
+ * @author    Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Commands\Server;
 
 use ThinFrame\CommandLine\ArgumentsContainer;
 use ThinFrame\CommandLine\Commands\AbstractCommand;
 use ThinFrame\CommandLine\DependencyInjection\OutputDriverAwareTrait;
-use ThinFrame\CommandLine\IO\OutputDriverInterface;
 use ThinFrame\Inotify\FileSystemWatcher;
 
 /**
@@ -68,12 +74,13 @@ class Monitor extends AbstractCommand
         $this->watcher->addPath(KARMA_ROOT . DIRECTORY_SEPARATOR . 'src');
         $this->watcher->addPath(KARMA_ROOT . DIRECTORY_SEPARATOR . 'app/config');
         $this->outputDriver->send(
-            '[format foreground="green" background="black" effects="bold"]' .
+            '[info]' .
             ' Starting file system monitor ... ' .
-            '[/format]' . PHP_EOL
+            '[/info]' . PHP_EOL
         );
         while (true) {
 
         }
+        exit(0);
     }
 }

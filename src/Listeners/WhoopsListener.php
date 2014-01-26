@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * src/Listeners/WhoopsListener.php
+ *
+ * @author    Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Listeners;
 
 use ThinFrame\Events\ListenerInterface;
@@ -66,5 +73,4 @@ class WhoopsListener implements ListenerInterface
         $content = $this->whoops->handleException($event->getHttpException());
         $event->getResponse()->setContent($content);
     }
-
 }

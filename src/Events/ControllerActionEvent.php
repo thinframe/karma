@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * src/Events/ControllerActionEvent.php
+ *
+ * @author    Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Events;
 
 use ThinFrame\Events\AbstractEvent;
@@ -103,6 +110,7 @@ class ControllerActionEvent extends AbstractEvent
     public function setArguments(array $arguments)
     {
         $this->getPayload()->set('arguments', $arguments);
+
         return $this;
     }
 }

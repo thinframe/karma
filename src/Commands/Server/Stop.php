@@ -1,11 +1,17 @@
 <?php
 
+/**
+ * src/Commands/Server/Stop.php
+ *
+ * @author    Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Commands\Server;
 
 use ThinFrame\CommandLine\ArgumentsContainer;
 use ThinFrame\CommandLine\Commands\AbstractCommand;
 use ThinFrame\CommandLine\DependencyInjection\OutputDriverAwareTrait;
-use ThinFrame\CommandLine\IO\OutputDriverInterface;
 use ThinFrame\Karma\Helpers\ServerHelper;
 use ThinFrame\Pcntl\Constants\Signal;
 use ThinFrame\Pcntl\Process;
@@ -53,20 +59,25 @@ class Stop extends AbstractCommand
     {
         if (!ServerHelper::isRunning()) {
             $this->outputDriver->send(
-                '[format foreground="white" background="red" effects="bold"] Server is not running [/format]' . PHP_EOL
+                '[error] Server is not running [/error]' . PHP_EOL,
+                [],
+                true
             );
-
-            return;
+            exit(1);
         }
         $process = new Process(ServerHelper::getServerPID());
         if ($process->sendSignal(new Signal(Signal::KILL))) {
             $this->outputDriver->send(
-                '[format foreground="green" background="black" effects="bold"] Server will stop shortly [/format]' . PHP_EOL
+                '[success] Server will stop shortly [/success]' . PHP_EOL
             );
+            exit(0);
         } else {
             $this->outputDriver->send(
-                '[format foreground="white" background="red" effects="bold"] The server is not responding [/format]' . PHP_EOL
+                '[error] The server is not responding [/error]' . PHP_EOL,
+                [],
+                true
             );
+            exit(1);
         }
     }
 }

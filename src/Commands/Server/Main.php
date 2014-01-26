@@ -1,9 +1,14 @@
 <?php
 
+/**
+ * src/Commands/Server/Main.php
+ *
+ * @author    Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Commands\Server;
 
-
-use string;
 use ThinFrame\CommandLine\ArgumentsContainer;
 use ThinFrame\CommandLine\Commands\AbstractCommand;
 
@@ -44,7 +49,7 @@ class Main extends AbstractCommand
      */
     public function execute(ArgumentsContainer $arguments)
     {
-
+        exit(0);
     }
 
 }

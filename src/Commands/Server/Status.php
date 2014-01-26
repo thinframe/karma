@@ -1,13 +1,17 @@
 <?php
 
+/**
+ * src/Commands/Server/Status.php
+ *
+ * @author    Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Commands\Server;
 
 use ThinFrame\CommandLine\ArgumentsContainer;
 use ThinFrame\CommandLine\Commands\AbstractCommand;
 use ThinFrame\CommandLine\DependencyInjection\OutputDriverAwareTrait;
-use ThinFrame\CommandLine\IO\OutputDriverInterface;
-use ThinFrame\Events\Dispatcher;
-use ThinFrame\Events\DispatcherAwareInterface;
 use ThinFrame\Events\DispatcherAwareTrait;
 use ThinFrame\Karma\Helpers\ServerHelper;
 
@@ -55,14 +59,18 @@ class Status extends AbstractCommand
     {
         if (ServerHelper::isRunning()) {
             $this->outputDriver->send(
-                '[format background="black" foreground="green" effects="bold"] The server is running [/format]'
+                '[info] The server is running [/info]'
                 . PHP_EOL
             );
+            exit(0);
         } else {
             $this->outputDriver->send(
-                '[format background="black" foreground="red" effects="bold"] The server is not running [/format]'
-                . PHP_EOL
+                '[error] The server is not running [/error]'
+                . PHP_EOL,
+                [],
+                true
             );
+            exit(1);
         }
     }
 }

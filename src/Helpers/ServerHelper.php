@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * src/Helpers/ServerHelper.php
+ *
+ * @author    Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Helpers;
 
 
@@ -34,6 +41,7 @@ class ServerHelper
         if (trim($pid) == '') {
             return false;
         }
+
         return intval($pid);
     }
 
@@ -46,6 +54,7 @@ class ServerHelper
     {
         try {
             $process = new Process(self::getServerPID());
+
             return $process->isAlive();
         } catch (\Exception $e) {
             return false;

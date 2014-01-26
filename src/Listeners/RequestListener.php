@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * src/Listeners/RequestListener.php
+ *
+ * @author    Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Listeners;
 
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
@@ -7,8 +14,6 @@ use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouteCollection;
 use ThinFrame\Events\Constants\Priority;
-use ThinFrame\Events\Dispatcher;
-use ThinFrame\Events\DispatcherAwareInterface;
 use ThinFrame\Events\DispatcherAwareTrait;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Karma\Events\ControllerActionEvent;

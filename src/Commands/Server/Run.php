@@ -1,13 +1,17 @@
 <?php
 
+/**
+ * src/Commands/Server/Run.php
+ *
+ * @author    Sorin Badea <sorin.badea91@gmail.com>
+ * @license   MIT license (see the license file in the root directory)
+ */
+
 namespace ThinFrame\Karma\Commands\Server;
 
 use ThinFrame\CommandLine\ArgumentsContainer;
 use ThinFrame\CommandLine\Commands\AbstractCommand;
 use ThinFrame\CommandLine\DependencyInjection\OutputDriverAwareTrait;
-use ThinFrame\CommandLine\IO\OutputDriverInterface;
-use ThinFrame\Events\Dispatcher;
-use ThinFrame\Events\DispatcherAwareInterface;
 use ThinFrame\Events\DispatcherAwareTrait;
 use ThinFrame\Events\SimpleEvent;
 use ThinFrame\Karma\Helpers\ServerHelper;
@@ -79,27 +83,25 @@ class Run extends AbstractCommand
             }
             if (ServerHelper::isRunning()) {
                 $this->outputDriver->send(
-                    '[format foreground="green" background="black" effects="bold"]' .
-                    ' Server is listening at {host}:{port} [/format]' . PHP_EOL,
+                    '[success] Server is listening at {host}:{port} [/success]' . PHP_EOL,
                     [
                         'host' => $this->server->getHost(),
                         'port' => $this->server->getPort()
                     ]
                 );
+                exit(0);
             } else {
                 $this->outputDriver->send(
-                    '[format foreground="red" background="black" effects="bold"] Failed to start server [/format]'
-                    . PHP_EOL
+                    '[error] Failed to start server [/error]' . PHP_EOL,
+                    [],
+                    true
                 );
                 exit(1);
             }
-
-            return;
         }
         $this->dispatcher->trigger(new SimpleEvent('thinframe.server.pre_start'));
         $this->outputDriver->send(
-            '[format foreground="red" background="black" effects="bold"]' .
-            ' Server will start listening at {host}:{port} [/format]' . PHP_EOL,
+            '[success]Server will start listening at {host}:{port}[/success]' . PHP_EOL,
             [
                 'host' => $this->server->getHost(),
                 'port' => $this->server->getPort()
