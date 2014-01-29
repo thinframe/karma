@@ -71,10 +71,10 @@ class Applications extends AbstractCommand
                 ]
             );
             $this->outputDriver->send(
-                "[format effects='bold' ]{namespace}[/format]\n"
+                "[format effects='bold' ]{version}[/format]\n"
                 ,
                 [
-                    'namespace' => $details->get('application_namespace')->getOrElse('<none>')
+                    'version' => $details->get('application_version')->getOrElse('<none>')
                 ]
             );
         }
