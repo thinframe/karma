@@ -7,7 +7,7 @@ New generation of PHP frameworks
 
 ##What is the problem with the current generation?
 
-To explain the current problem let me start with simple introduction on how PHP websites work:
+To explain the current problem let me start with simple description on how PHP websites work:
 
 1. A user makes a request from his browser to a certain website that is running using PHP
 2. The HTTP server accept that request and handle it in different ways:
@@ -43,7 +43,7 @@ Some time ago, I've came across `ReactPHP`, it is a PHP library that offers Even
 
 Instead of using two programs to do one thing, the HTTP server and the PHP, why don't we use a single one that will act as both? 
 
-Basically, we merge the HTTP server, and the PHP framework that is behind the server, to make a single program written in PHP that will do both tasks. This way we will eliminate the recurent loading/initialization time for PHP dependencies and also save some time that is lost between the HTTP server and PHP. That means working at a socket level in PHP without the help of build in helpers from PHP core that only work on a SAPI. 
+Basically, we merge the HTTP server, and the PHP framework that is behind the server, to make a single program written in PHP that will do both tasks. This way we will eliminate the recurrent loading/initialization time for PHP dependencies and also save some time that is lost between the HTTP server and PHP.
 
 Painfull ? Not at all. 
 
@@ -52,4 +52,41 @@ It is a ` PHP Application ` that acts as a HTTP server and a PHP framework, all 
 
 It provides build-in routing using `Symfony Routing` component and all the arhitecture is build arount `Symfony Dependency Injection Container`. Most of the socket work is handled by the `ReactPHP` component. Basically, it is build with already existing PHP components. 
 
-[to be continued]
+##Installation
+
+    composer create-project thinframe/karma-project <project_name> --stability=dev
+
+If you want to use the command line component with completion support execute the following command in your project root:
+
+    bash bin/thinframe-installer
+
+From this point on, you can use the `thinframe` command in each karma project folder that you have.
+
+##Usage
+
+To see all available commands execute the following command: `thinframe help`. Pretty simple.
+
+      help                   - Show this list
+      server run             - Start the HTTP server
+      server run --daemon    - Start the HTTP server as a daemon
+      server stop            - Stop the HTTP server
+      server status          - Check HTTP server status
+      server restart         - Restart the HTTP server
+      server monitor         - Restart the HTTP server when source files are changed
+      debug routes           - Show all routes
+      debug applications     - Show all loaded applications
+
+The test the setup, run `thinframe server start` and in your browser go to `http://localhost:1337`. If you see a default Karma page, then everything works.
+
+By default, when you install `karma-project`, it creates a bootstrap project. All project related files are located in `src/Acme/DemoApp`.
+
+[to be continued ...]
+
+##TODO's
+
+* Write unit tests and functional tests
+* Optimize memory
+* More documentation
+* Implement PsySH
+* More logging
+* All kind of features
