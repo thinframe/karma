@@ -16,7 +16,7 @@ To explain the current problem let me start with simple description on how PHP w
 3. The HTTP server sends the response back to the client
 
 
-All good until know, but let look a little bit deeper. When a PHP script is executed the followings things take place:
+All good until now, but let look a little bit deeper. When a PHP script is executed the followings things take place:
 
 1. The necesary dependencies are loaded, lazy or all at once, and all the components are configured/initialized.
 2. Your logic is executed depending on the request and a response is returned.
