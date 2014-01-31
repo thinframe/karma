@@ -60,7 +60,7 @@ If you want to use the command line component with completion support execute th
 
     bash bin/thinframe-installer
 
-From this point on, you can use the `thinframe` command in each karma project folder that you have.
+From this point on, you can use the `thinframe` command in each karma project folder that you have. Otherwise, you can use `bin/thinframe` instead of `thinframe`.
 
 ##Usage
 
@@ -90,3 +90,17 @@ By default, when you install `karma-project`, it creates a bootstrap project. Al
 * Implement PsySH
 * More logging
 * All kind of features
+* Test on all Linux distributions.
+
+##OS Support
+
+Currently was tested on Ubuntu and Elementary OS. It should work on other Linux distributions pretty well.
+
+##Dependencies
+
+* PHP >= 5.4
+* ext-inotify - http://www.php.net/manual/en/inotify.install.php
+
+##Fair warning
+
+This project is experimental. I recommend that it shouldn't be used on a production environment (yet). 
