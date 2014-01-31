@@ -69,7 +69,7 @@ in a development process. So is this an overall solution ?
 
 
 
-Tom & David Kelley, the authors of the book `Creative Confidence` and of the company `IDEO`, say in their book that the best solution to an existing problem is to rethink the whole process that causes that problem. But the problem in this case is by design. PHP was made this way, right ? 
+Tom & David Kelley, the authors of the book `Creative Confidence` and owners of the company `IDEO`, say in their book that the best solution to an existing problem is to rethink the whole process that causes that problem. But the problem in this case is by design. PHP was made this way, right ? 
 
 
 
