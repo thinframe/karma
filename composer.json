@@ -26,7 +26,8 @@
         "thinframe/inotify": "@stable",
         "monolog/monolog": "@stable",
         "symfony/routing": "@stable",
-        "filp/whoops": "dev-master"
+        "filp/whoops": "dev-master",
+        "psy/psysh": "dev-master"
     },
     "autoload": {
         "psr-4": {

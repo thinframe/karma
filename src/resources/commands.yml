@@ -52,3 +52,8 @@ services:
         class: 'ThinFrame\Karma\Commands\Debug\Applications'
         tags:
             - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.debug'}
+
+    thinframe.karma.commands.debug.console:
+        class: 'ThinFrame\Karma\Commands\Debug\Console'
+        tags:
+            - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.debug'}
