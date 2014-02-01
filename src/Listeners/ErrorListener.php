@@ -9,6 +9,8 @@
 
 namespace ThinFrame\Karma\Listeners;
 
+use Psy\Shell;
+use ThinFrame\CommandLine\DependencyInjection\InputDriverAwareTrait;
 use ThinFrame\CommandLine\DependencyInjection\OutputDriverAwareTrait;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Karma\Exceptions\PHPErrorException;
@@ -22,6 +24,7 @@ use ThinFrame\Karma\Exceptions\PHPErrorException;
 class ErrorListener implements ListenerInterface
 {
     use OutputDriverAwareTrait;
+    use InputDriverAwareTrait;
 
     /**
      * Constructor
@@ -77,6 +80,10 @@ class ErrorListener implements ListenerInterface
         $this->sendErrorLine('For more details please check the logs');
         $this->sendErrorLine('');
         $this->outputDriver->send(PHP_EOL);
+
+        if ($this->inputDriver->readChoice("Debug exception in console ?", ['y', 'n']) == 'y') {
+            Shell::debug(['exception' => $exception]);
+        }
     }
 
     /**

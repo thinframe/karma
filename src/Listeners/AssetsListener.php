@@ -79,13 +79,13 @@ class AssetsListener implements ListenerInterface
                         'Content-Type',
                         MimeTypeGuesser::getMimeType($assumedFilePath)
                     );
+
                     $event->getResponse()->dispatchHeaders();
                     $fileStream->pipe($event->getResponse()->getReactResponse());
 
                     $fileStream->on('end', 'gc_collect_cycles');
 
                     gc_collect_cycles();
-
                 }
             }
         }
