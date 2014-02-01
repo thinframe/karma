@@ -57,3 +57,18 @@ services:
         class: 'ThinFrame\Karma\Commands\Debug\Console'
         tags:
             - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.debug'}
+
+    thinframe.karma.commands.cache:
+        class: 'ThinFrame\Karma\Commands\Cache\Main'
+        tags:
+            - {name:'thinframe.cli.parent_command'}
+
+    thinframe.karma.commands.cache.clear:
+        class: 'ThinFrame\Karma\Commands\Cache\Clear'
+        tags:
+            - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.cache'}
+
+    thinframe.karma.commands.cache.warmup:
+        class: 'ThinFrame\Karma\Commands\Cache\Warmup'
+        tags:
+            - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.cache'}

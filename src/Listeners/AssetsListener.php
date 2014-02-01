@@ -85,6 +85,7 @@ class AssetsListener implements ListenerInterface
                     $fileStream->on('end', 'gc_collect_cycles');
 
                     gc_collect_cycles();
+
                 }
             }
         }
