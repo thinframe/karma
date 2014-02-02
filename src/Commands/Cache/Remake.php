@@ -1,7 +1,7 @@
 <?php
 
 /**
- * src/Commands/Cache/Clear.php
+ * src/Commands/Cache/Remake.php
  *
  * @author    Sorin Badea <sorin.badea91@gmail.com>
  * @license   MIT license (see the license file in the root directory)
@@ -16,12 +16,12 @@ use ThinFrame\Events\DispatcherAwareTrait;
 use ThinFrame\Events\SimpleEvent;
 
 /**
- * Class Clear
+ * Class Remake
  *
  * @package ThinFrame\Karma\Commands\Cache
  * @since   0.2
  */
-class Clear extends AbstractCommand
+class Remake extends AbstractCommand
 {
     use DispatcherAwareTrait;
     use OutputDriverAwareTrait;
@@ -33,7 +33,7 @@ class Clear extends AbstractCommand
      */
     public function getArgument()
     {
-        return 'clear';
+        return 'remake';
     }
 
     /**
@@ -43,7 +43,7 @@ class Clear extends AbstractCommand
      */
     public function getDescriptions()
     {
-        return ['cache clear' => 'Clear all cache'];
+        return ['cache remake' => 'Remake all caches'];
     }
 
     /**
@@ -57,6 +57,8 @@ class Clear extends AbstractCommand
     {
         $this->outputDriver->send('[info]Clearing cache ...[/info]');
         $this->dispatcher->trigger(new SimpleEvent('karma.cache.clear'));
+        $this->outputDriver->send('[info]Warming up cache ...[/info]');
+        $this->dispatcher->trigger(new SimpleEvent('karma.cache.warmup'));
         $this->outputDriver->send('[success]Done[/success]');
         exit(0);
     }

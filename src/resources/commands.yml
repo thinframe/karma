@@ -72,3 +72,8 @@ services:
         class: 'ThinFrame\Karma\Commands\Cache\Warmup'
         tags:
             - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.cache'}
+
+    thinframe.karma.commands.cache.remake:
+        class: 'ThinFrame\Karma\Commands\Cache\Remake'
+        tags:
+            - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.cache'}

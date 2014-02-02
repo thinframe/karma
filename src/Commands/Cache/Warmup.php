@@ -55,6 +55,7 @@ class Warmup extends AbstractCommand
      */
     public function execute(ArgumentsContainer $arguments)
     {
+        $this->outputDriver->send('[info]Warming up cache ...[/info]');
         $this->dispatcher->trigger(new SimpleEvent('karma.cache.warmup'));
         $this->outputDriver->send('[success]Done[/success]');
         exit(0);
