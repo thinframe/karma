@@ -40,3 +40,7 @@ services:
         class: 'Whoops\Handler\PrettyPageHandler'
         calls:
             - [handleUnconditionally,[true]]
+
+    thinframe.karma.logger_file_handler:
+        class: 'Monolog\Handler\StreamHandler'
+        arguments: ['%karma.paths.logs%/karma.log']
