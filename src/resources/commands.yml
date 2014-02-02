@@ -10,8 +10,8 @@ services:
         tags:
             - {name:'thinframe.cli.parent_command'}
 
-    thinframe.karma.commands.server.run:
-        class: 'ThinFrame\Karma\Commands\Server\Run'
+    thinframe.karma.commands.server.start:
+        class: 'ThinFrame\Karma\Commands\Server\Start'
         arguments: ['@thinframe.server']
         tags:
             - {name:'thinframe.cli.child_command', parent: 'thinframe.karma.commands.server'}

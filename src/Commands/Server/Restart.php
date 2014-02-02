@@ -60,7 +60,7 @@ class Restart extends AbstractCommand
     {
         if (!ServerHelper::isRunning()) {
             $this->outputDriver->send(
-                '[error] Server is not running [/error]' . PHP_EOL,
+                '[error]Server is not running[/error]' . PHP_EOL,
                 [],
                 true
             );
@@ -69,14 +69,14 @@ class Restart extends AbstractCommand
         $process = new Process(ServerHelper::getServerPID());
         if ($process->sendSignal(new Signal(Signal::KILL))) {
             sleep(1);
-            Exec::viaPipe('bin/thinframe server run --daemon', KARMA_ROOT);
+            Exec::viaPipe('bin/thinframe server start --daemon', KARMA_ROOT);
             $this->outputDriver->send(
-                '[info] The server will start shortly [/info]' . PHP_EOL
+                '[info]The server will start shortly[/info]' . PHP_EOL
             );
             exit(0);
         } else {
             $this->outputDriver->send(
-                '[error] The server is not responding [/error]' . PHP_EOL,
+                '[error]The server is not responding[/error]' . PHP_EOL,
                 [],
                 true
             );

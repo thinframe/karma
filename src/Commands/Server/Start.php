@@ -24,7 +24,7 @@ use ThinFrame\Server\Server;
  * @package ThinFrame\Karma\Commands\Server
  * @since   0.2
  */
-class Run extends AbstractCommand
+class Start extends AbstractCommand
 {
     use OutputDriverAwareTrait;
     use DispatcherAwareTrait;
@@ -51,7 +51,7 @@ class Run extends AbstractCommand
      */
     public function getArgument()
     {
-        return 'run';
+        return 'start';
     }
 
     /**
@@ -62,8 +62,8 @@ class Run extends AbstractCommand
     public function getDescriptions()
     {
         return [
-            'server run'          => 'Start the HTTP server',
-            'server run --daemon' => 'Start the HTTP server as a daemon',
+            'server start'          => 'Start the HTTP server',
+            'server start --daemon' => 'Start the HTTP server as a daemon',
         ];
     }
 
@@ -78,12 +78,12 @@ class Run extends AbstractCommand
     {
         if ($arguments->getOption('daemon')) {
             if (!ServerHelper::isRunning()) {
-                Exec::viaPipe('bin/thinframe server run > /dev/null 2>&1 &', KARMA_ROOT);
+                Exec::viaPipe('bin/thinframe server start > /dev/null 2>&1 &', KARMA_ROOT);
                 sleep(2);
             }
             if (ServerHelper::isRunning()) {
                 $this->outputDriver->send(
-                    '[success] Server is listening at {host}:{port} [/success]' . PHP_EOL,
+                    '[success]Server is listening at {host}:{port}[/success]' . PHP_EOL,
                     [
                         'host' => $this->server->getHost(),
                         'port' => $this->server->getPort()
@@ -92,7 +92,7 @@ class Run extends AbstractCommand
                 exit(0);
             } else {
                 $this->outputDriver->send(
-                    '[error] Failed to start server [/error]' . PHP_EOL,
+                    '[error]Failed to start server[/error]' . PHP_EOL,
                     [],
                     true
                 );

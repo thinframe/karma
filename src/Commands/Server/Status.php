@@ -59,13 +59,13 @@ class Status extends AbstractCommand
     {
         if (ServerHelper::isRunning()) {
             $this->outputDriver->send(
-                '[info] The server is running [/info]'
+                '[info]The server is running[/info]'
                 . PHP_EOL
             );
             exit(0);
         } else {
             $this->outputDriver->send(
-                '[error] The server is not running [/error]'
+                '[error]The server is not running[/error]'
                 . PHP_EOL,
                 [],
                 true
