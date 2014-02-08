@@ -43,7 +43,7 @@ All good so far, but let's look a little bit deeper. When a PHP script is execut
 
 But there is a problem in this process, because one of those two steps is executed every single time. Oh well ... 
 
-Step 1 is executed for every single request, and every PHP developer knows that this is the bottleneck of any PHP application, because IO operations are very expensive. 
+Step 1 is executed for every single request, and from my point of view that is a bottleneck of PHP applications, since IO operations are very expensive. 
 
 
 
@@ -52,9 +52,8 @@ Step 1 is executed for every single request, and every PHP developer knows that 
 
 
 * Use bootstrap files like Symfony2 do.
-
 * Investing in hardware. This is a good solution if you have the MONEY.
-
+* OPcache
 * And so on ... 
 
 
