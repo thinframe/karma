@@ -51,13 +51,9 @@ Step 1 is executed for every single request, and every PHP developer knows that 
 
 
 
-* Mr Fabien Potencier, the arhitect behind Symfony2, the flag ship of modern PHP frameworks, tells us to cache the code, convert it to something like byte code. That is a GREAT idea, but doesn't it complicate things ? You will have a big component that will cache the actual code, that means extra code to support, and also this kind of caching complicates things
+* Use bootstrap files like Symfony2 do.
 
-in a development process. So is this an overall solution ? 
-
-
-
-* Others are investing in hardware. This is a good solution if you have the MONEY.
+* Investing in hardware. This is a good solution if you have the MONEY.
 
 * And so on ... 
 
