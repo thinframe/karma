@@ -35,6 +35,9 @@ class ControllersListener implements ListenerInterface
         return [
             'thinframe.server.pre_start' => [
                 'method' => 'onServerPreStart'
+            ],
+            'thinframe.routes.pre_load'  => [
+                'method' => 'onServerPreStart'
             ]
         ];
     }
