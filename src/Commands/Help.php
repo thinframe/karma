@@ -1,32 +1,23 @@
 <?php
 
-/**
- * src/Commands/Help.php
- *
- * @author    Sorin Badea <sorin.badea91@gmail.com>
- * @license   MIT license (see the license file in the root directory)
- */
-
 namespace ThinFrame\Karma\Commands;
 
-use ThinFrame\CommandLine\ArgumentsContainer;
 use ThinFrame\CommandLine\Commands\AbstractCommand;
 use ThinFrame\CommandLine\Commands\Commander;
-use ThinFrame\CommandLine\Commands\Iterators\DescriptionsIterator;
-use ThinFrame\CommandLine\DependencyInjection\OutputDriverAwareTrait;
+use ThinFrame\CommandLine\Commands\Processors\DescriptionsGathererProcessor;
+use ThinFrame\CommandLine\IO\InputDriverInterface;
+use ThinFrame\CommandLine\IO\OutputDriverInterface;
 
 /**
  * Class Help
  *
  * @package ThinFrame\Karma\Commands
- * @since   0.2
+ * @since   0.3
  */
 class Help extends AbstractCommand
 {
-    use OutputDriverAwareTrait;
-
     /**
-     * @var Commander
+     * @var \ThinFrame\CommandLine\Commands\Commander
      */
     private $commander;
 
@@ -41,7 +32,7 @@ class Help extends AbstractCommand
     }
 
     /**
-     * Get the argument the will trigger this command
+     * Get command argument
      *
      * @return string
      */
@@ -51,9 +42,9 @@ class Help extends AbstractCommand
     }
 
     /**
-     * Get the descriptions for this command
+     * Get command descriptions
      *
-     * @return string[]
+     * @return array
      */
     public function getDescriptions()
     {
@@ -61,33 +52,38 @@ class Help extends AbstractCommand
     }
 
     /**
-     * This method will be called if this command is triggered
+     * Code that will be executed when command is triggered
      *
-     * @param ArgumentsContainer $arguments
+     * @param InputDriverInterface  $inputDriver
+     * @param OutputDriverInterface $outputDriver
      *
-     * @return mixed
+     * @return bool
      */
-    public function execute(ArgumentsContainer $arguments)
+    public function execute(InputDriverInterface $inputDriver, OutputDriverInterface $outputDriver)
     {
-        $descriptionsIterator = new DescriptionsIterator();
-        $this->commander->iterate($descriptionsIterator);
+        $descriptionsGatherer = new DescriptionsGathererProcessor();
+        $this->commander->executeProcessor($descriptionsGatherer);
 
-        $maxSize = max(array_map('strlen', array_keys($descriptionsIterator->getDescriptions())));
+        $maxSize = max(array_map('strlen', array_keys($descriptionsGatherer->getDescriptions())));
 
-        $this->outputDriver->send(PHP_EOL);
+        $outputDriver->writeLine('');
 
-        foreach ($descriptionsIterator->getDescriptions() as $key => $value) {
-            $this->outputDriver->send(
-                '  [format foreground="green" effects="bold"]{command}[/format]',
-                ['command' => str_pad($key, $maxSize + 4, " ", STR_PAD_RIGHT)]
+        foreach ($descriptionsGatherer->getDescriptions() as $key => $value) {
+            $outputDriver->write(
+                '  [format foreground="green" effects="bold"]' . str_pad(
+                    $key,
+                    $maxSize + 4,
+                    " ",
+                    STR_PAD_RIGHT
+                ) . '[/format]'
             );
-            $this->outputDriver->send(
-                '- [format effects="bold"]{description}[/format]' . PHP_EOL,
-                ['description' => $value]
+            $outputDriver->writeLine(
+                '- [format effects="bold"]' . $value . '[/format]'
             );
         }
 
-        $this->outputDriver->send(PHP_EOL);
-        exit(0);
+        $outputDriver->writeLine('');
+
+        return true;
     }
 }

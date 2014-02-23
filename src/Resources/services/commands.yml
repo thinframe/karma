@@ -1,0 +1,6 @@
+services:
+    karma.commands.help:
+        class: '\ThinFrame\Karma\Commands\Help'
+        arguments: ['@cli.commander']
+        tags:
+            - { name: 'cli.command' }

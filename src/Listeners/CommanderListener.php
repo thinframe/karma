@@ -1,48 +1,43 @@
 <?php
 
-/**
- * src/Listeners/CommanderListener.php
- *
- * @author    Sorin Badea <sorin.badea91@gmail.com>
- * @license   MIT license (see the license file in the root directory)
- */
-
 namespace ThinFrame\Karma\Listeners;
 
-use ThinFrame\CommandLine\ArgumentsContainer;
 use ThinFrame\CommandLine\Commands\Commander;
-use ThinFrame\CommandLine\Commands\Iterators\CompletionIterator;
-use ThinFrame\CommandLine\Commands\Iterators\ExecuteIterator;
+use ThinFrame\CommandLine\Commands\Processors\CommandFinderProcessor;
+use ThinFrame\CommandLine\IO\ArgumentsContainerInterface;
+use ThinFrame\CommandLine\IO\InputDriverAwareTrait;
+use ThinFrame\CommandLine\IO\OutputDriverAwareTrait;
 use ThinFrame\Events\ListenerInterface;
-use ThinFrame\Events\SimpleEvent;
-use ThinFrame\Foundation\Exceptions\Exception;
-use ThinFrame\Karma\KarmaApplication;
+use ThinFrame\Foundation\Exceptions\InvalidArgumentException;
 
 /**
  * Class CommanderListener
  *
  * @package ThinFrame\Karma\Listeners
- * @since   0.2
+ * @since   0.3
  */
 class CommanderListener implements ListenerInterface
 {
+    use InputDriverAwareTrait;
+    use OutputDriverAwareTrait;
+
     /**
      * @var Commander
      */
     private $commander;
 
     /**
-     * @var ArgumentsContainer
+     * @var ArgumentsContainerInterface
      */
     private $argumentsContainer;
 
     /**
      * Constructor
      *
-     * @param Commander          $commander
-     * @param ArgumentsContainer $argumentsContainer
+     * @param Commander                   $commander
+     * @param ArgumentsContainerInterface $argumentsContainer
      */
-    public function __construct(Commander $commander, ArgumentsContainer $argumentsContainer)
+    public function __construct(Commander $commander, ArgumentsContainerInterface $argumentsContainer)
     {
         $this->commander          = $commander;
         $this->argumentsContainer = $argumentsContainer;
@@ -55,30 +50,26 @@ class CommanderListener implements ListenerInterface
      */
     public function getEventMappings()
     {
-        return [
-            KarmaApplication::POWER_UP_EVENT_ID => [
-                'method' => 'onPowerUp'
-            ]
-        ];
+        return ['power_up' => ['method' => 'onPowerUp']];
     }
 
     /**
+     * Execute the provided command
      *
-     * Handle power up event
-     *
-     * @param SimpleEvent $event
-     *
-     * @throws \ThinFrame\Foundation\Exceptions\Exception
+     * @throws \ThinFrame\Foundation\Exceptions\InvalidArgumentException
      */
-    public function onPowerUp(SimpleEvent $event)
+    public function onPowerUp()
     {
-        if ($this->argumentsContainer->getArgumentAt(0) == 'compgen') {
-            $this->commander->iterate(new CompletionIterator($this->argumentsContainer));
-        } else {
-            $this->commander->iterate($executor = new ExecuteIterator($this->argumentsContainer));
-            if (!$executor->isStopped()) {
-                throw new Exception('Cannot find the command you requested');
+        $processor = new CommandFinderProcessor($this->argumentsContainer);
+        $this->commander->executeProcessor($processor);
+
+        if ($command = $processor->getCommand()) {
+            if ($command->execute($this->inputDriver, $this->outputDriver)) {
+                exit(0);
             }
+            exit(1);
+        } else {
+            throw new InvalidArgumentException('Command cannot be found');
         }
     }
 }

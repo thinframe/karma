@@ -9,6 +9,7 @@
 
 namespace ThinFrame\Karma;
 
+use PhpCollection\Map;
 use ThinFrame\Annotations\AnnotationsApplication;
 use ThinFrame\Applications\AbstractApplication;
 use ThinFrame\Applications\DependencyInjection\ContainerConfigurator;
@@ -27,51 +28,22 @@ use ThinFrame\Server\ServerApplication;
  */
 class KarmaApplication extends AbstractApplication
 {
-    const POWER_UP_EVENT_ID = 'karma.power_up';
-
-    /**
-     * initialize configurator
-     *
-     * @param ContainerConfigurator $configurator
-     *
-     * @return mixed
-     */
-    public function initializeConfigurator(ContainerConfigurator $configurator)
-    {
-        //noop
-    }
-
-    /**
-     * Get configuration files
-     *
-     * @return mixed
-     */
-    public function getConfigurationFiles()
-    {
-        return [
-            'resources/listeners.yml',
-            'resources/commands.yml',
-            'resources/services.yml',
-            'resources/annotations.yml',
-        ];
-    }
-
     /**
      * Get application name
      *
      * @return string
      */
-    public function getApplicationName()
+    public function getName()
     {
-        return 'ThinFrameKarma';
+        return $this->reflector->getShortName();
     }
 
     /**
-     * Get parent applications
+     * Get application parents
      *
      * @return AbstractApplication[]
      */
-    protected function getParentApplications()
+    public function getParents()
     {
         return [
             new EventsApplication(),
@@ -81,5 +53,31 @@ class KarmaApplication extends AbstractApplication
             new PcntlApplication(),
             new InotifyApplication()
         ];
+    }
+
+    /**
+     * Set different options for the container configurator
+     *
+     * @param ContainerConfigurator $configurator
+     */
+    protected function setConfiguration(ContainerConfigurator $configurator)
+    {
+        $configurator->addResources(
+            [
+                'Resources/services/listeners.yml',
+                'Resources/services/commands.yml',
+            ]
+        );
+    }
+
+    /**
+     * Set application metadata
+     *
+     * @param Map $metadata
+     *
+     */
+    protected function setMetadata(Map $metadata)
+    {
+        // TODO: Implement setMetadata() method.
     }
 }

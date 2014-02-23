@@ -1,7 +1,0 @@
-services:
-    thinframe.karma.annotations.route_handler:
-        class: 'ThinFrame\Karma\Annotations\RouteHandler'
-        tags:
-            - {name:'thinframe.annotations.handler'}
-        calls:
-            - [setRouteCollection,['@thinframe.karma.route_collection']]
