@@ -1,6 +1,6 @@
 <?php
 
-namespace ThinFrame\Karma\Listeners;
+namespace ThinFrame\Karma\Listener;
 
 use ThinFrame\CommandLine\Commands\Commander;
 use ThinFrame\CommandLine\Commands\Processors\CommandFinderProcessor;

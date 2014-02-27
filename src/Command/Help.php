@@ -1,6 +1,6 @@
 <?php
 
-namespace ThinFrame\Karma\Commands;
+namespace ThinFrame\Karma\Command;
 
 use ThinFrame\CommandLine\Commands\AbstractCommand;
 use ThinFrame\CommandLine\Commands\Commander;
@@ -12,7 +12,7 @@ use ThinFrame\CommandLine\IO\OutputDriverInterface;
  * Class Help
  *
  * @package ThinFrame\Karma\Commands
- * @since   0.3
+ * @since   0.2
  */
 class Help extends AbstractCommand
 {

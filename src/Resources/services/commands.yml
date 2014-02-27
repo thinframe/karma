@@ -1,17 +1,35 @@
 services:
-    karma.commands.help:
-        class: '\ThinFrame\Karma\Commands\Help'
+    karma.command.help:
+        class: 'ThinFrame\Karma\Command\Help'
         arguments: ['@cli.commander']
         tags:
             - { name: 'cli.command' }
 
-    karma.commands.server:
-        class: '\ThinFrame\Karma\Commands\Server\Main'
+    karma.command.server:
+        class: 'ThinFrame\Karma\Command\Server\Main'
         tags:
             - { name: 'cli.command' }
 
-    karma.commands.server.start:
-        class: '\ThinFrame\Karma\Commands\Server\Start'
+    karma.command.server.start:
+        class: 'ThinFrame\Karma\Command\Server\Start'
         arguments: ['@karma.manager.server']
         tags:
-            - { name: 'cli.child_command', parent: 'karma.commands.server' }
+            - { name: 'cli.child_command', parent: 'karma.command.server' }
+
+    karma.command.server.stop:
+        class: 'ThinFrame\Karma\Command\Server\Stop'
+        arguments: ['@karma.manager.server']
+        tags:
+            - { name: 'cli.child_command', parent: 'karma.command.server' }
+
+    karma.command.server.restart:
+        class: 'ThinFrame\Karma\Command\Server\Restart'
+        arguments: ['@karma.manager.server']
+        tags:
+            - { name: 'cli.child_command', parent: 'karma.command.server' }
+
+    karma.command.server.status:
+        class: 'ThinFrame\Karma\Command\Server\Status'
+        arguments: ['@karma.manager.server']
+        tags:
+            - { name: 'cli.child_command', parent: 'karma.command.server' }

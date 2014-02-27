@@ -1,6 +1,6 @@
 <?php
 
-namespace ThinFrame\Karma\Commands\Server;
+namespace ThinFrame\Karma\Command\Server;
 
 use ThinFrame\CommandLine\Commands\AbstractCommand;
 use ThinFrame\CommandLine\IO\InputDriverInterface;
@@ -79,7 +79,7 @@ class Start extends AbstractCommand
             //todo: redirect output to files
             Exec::viaPipe('bin/thinframe server start > /dev/null 2>&1 &', KARMA_ROOT);
             $outputDriver->writeLine('[info]Waiting for the server to start...[/info]');
-            sleep(2);
+            sleep(1.5);
             if ($this->serverManager->isRunning()) {
                 $outputDriver->writeLine(
                     '[success]The server is listening at ' . $this->serverManager->getHost(

@@ -2,6 +2,7 @@
 
 namespace ThinFrame\Karma\Managers;
 
+use ThinFrame\Pcntl\Constants\Signal;
 use ThinFrame\Pcntl\Process;
 use ThinFrame\Server\Server;
 
@@ -41,6 +42,32 @@ class ServerManager
     {
         $this->savePID();
         $this->server->start();
+    }
+
+    /**
+     * Get server start command
+     *
+     * @return string
+     */
+    public function getStartCommand()
+    {
+        $process = new Process($this->getPID());
+
+        return $process->getStartCommand();
+    }
+
+    /**
+     * Stop the http server
+     */
+    public function stop()
+    {
+        $process = new Process($this->getPID());
+
+        if ($process->sendSignal(new Signal(Signal::KILL))) {
+            return true;
+        } elsE {
+            return false;
+        }
     }
 
     /**

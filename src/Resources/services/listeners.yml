@@ -1,6 +1,11 @@
 services:
-    karma.listeners.commander:
-        class: '\ThinFrame\Karma\Listeners\CommanderListener'
+    karma.listener.commander:
+        class: 'ThinFrame\Karma\Listener\CommanderListener'
         arguments: ['@cli.commander','@cli.arguments_container']
+        tags:
+            - { name: 'events.listener' }
+
+    karma.listener.output_buffer:
+        class: 'ThinFrame\Karma\Listener\OutputBufferListener'
         tags:
             - { name: 'events.listener' }
