@@ -1,6 +1,6 @@
 <?php
 
-namespace ThinFrame\Karma\Command\Server;
+namespace ThinFrame\Karma\Command\Debug\Applications;
 
 use ThinFrame\CommandLine\Commands\AbstractCommand;
 use ThinFrame\CommandLine\IO\InputDriverInterface;
@@ -9,8 +9,8 @@ use ThinFrame\CommandLine\IO\OutputDriverInterface;
 /**
  * Class Main
  *
- * @package ThinFrame\Karma\Commands\Server
- * @since   0.2
+ * @package ThinFrame\Karma\Command\Debug\Applications
+ * @since   0.3
  */
 class Main extends AbstractCommand
 {
@@ -21,7 +21,7 @@ class Main extends AbstractCommand
      */
     public function getArgument()
     {
-        return 'server';
+        return 'applications';
     }
 
     /**

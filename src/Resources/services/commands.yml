@@ -36,3 +36,18 @@ services:
         arguments: ['@karma.manager.server']
         tags:
             - { name: 'cli.child_command', parent: 'karma.command.server' }
+
+    karma.command.debug:
+        class: 'ThinFrame\Karma\Command\Debug\Main'
+        tags:
+            - { name: 'cli.command' }
+
+    karma.command.debug.applications:
+        class: 'ThinFrame\Karma\Command\Debug\Applications\Main'
+        tags:
+            - { name: 'cli.child_command', parent: 'karma.command.debug' }
+
+    karma.command.debug.applications.metadata:
+        class: 'ThinFrame\Karma\Command\Debug\Applications\Metadata'
+        tags:
+            - { name: 'cli.child_command', parent: 'karma.command.debug.applications' }
