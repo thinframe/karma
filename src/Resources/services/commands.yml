@@ -15,6 +15,9 @@ services:
         arguments: ['@karma.manager.server']
         tags:
             - { name: 'cli.child_command', parent: 'karma.command.server' }
+        calls:
+            - [ 'setOutputFile',['%thinframe.server.output_file%']]
+            - [ 'setErrorFile',['%thinframe.server.error_file%']]
 
     karma.command.server.stop:
         class: 'ThinFrame\Karma\Command\Server\Stop'

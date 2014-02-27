@@ -5,7 +5,7 @@ namespace ThinFrame\Karma\Command\Server;
 use ThinFrame\CommandLine\Commands\AbstractCommand;
 use ThinFrame\CommandLine\IO\InputDriverInterface;
 use ThinFrame\CommandLine\IO\OutputDriverInterface;
-use ThinFrame\Karma\Managers\ServerManager;
+use ThinFrame\Karma\Manager\ServerManager;
 use ThinFrame\Pcntl\Helpers\Exec;
 
 /**
@@ -22,6 +22,16 @@ class Start extends AbstractCommand
     private $serverManager;
 
     /**
+     * @var string
+     */
+    private $outputFile;
+
+    /**
+     * @var string
+     */
+    private $errorFile;
+
+    /**
      * Construct
      *
      * @param ServerManager $serverManager
@@ -29,6 +39,26 @@ class Start extends AbstractCommand
     public function __construct(ServerManager $serverManager)
     {
         $this->serverManager = $serverManager;
+    }
+
+    /**
+     * Set server input file when in daemon mode
+     *
+     * @param string $errorFile
+     */
+    public function setErrorFile($errorFile)
+    {
+        $this->errorFile = KARMA_ROOT . $errorFile;
+    }
+
+    /**
+     * Set server output file when in daemon mode
+     *
+     * @param string $outputFile
+     */
+    public function setOutputFile($outputFile)
+    {
+        $this->outputFile = KARMA_ROOT . $outputFile;
     }
 
     /**
@@ -76,8 +106,11 @@ class Start extends AbstractCommand
         }
 
         if ($inputDriver->getArgumentsContainer()->isOptionProvided('daemon')) {
-            //todo: redirect output to files
-            Exec::viaPipe('bin/thinframe server start > /dev/null 2>&1 &', KARMA_ROOT);
+            //set up output redirects
+            $redirects = '1>>' . $this->outputFile . ' 2>>' . $this->errorFile;
+
+            //execute the start command
+            Exec::viaPipe('bin/thinframe server start ' . $redirects . ' &', KARMA_ROOT);
             $outputDriver->writeLine('[info]Waiting for the server to start...[/info]');
             sleep(1.5);
             if ($this->serverManager->isRunning()) {

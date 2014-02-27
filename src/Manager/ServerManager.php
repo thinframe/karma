@@ -1,6 +1,6 @@
 <?php
 
-namespace ThinFrame\Karma\Managers;
+namespace ThinFrame\Karma\Manager;
 
 use ThinFrame\Pcntl\Constants\Signal;
 use ThinFrame\Pcntl\Process;
@@ -9,7 +9,7 @@ use ThinFrame\Server\Server;
 /**
  * Class ServerManager
  *
- * @package ThinFrame\Karma\Managers
+ * @package ThinFrame\Karma\Manager
  * @since   0.3
  */
 class ServerManager
@@ -22,7 +22,7 @@ class ServerManager
     /**
      * @var string
      */
-    private $PIDFile = 'app/pids/server.pid';
+    private $PIDFile = 'app/pid/server.pid';
 
     /**
      * Constructor
@@ -135,7 +135,7 @@ class ServerManager
     public function getPID()
     {
         @mkdir(dirname($this->PIDFile), 0755, true);
-        if ($pid = file_get_contents($this->PIDFile)) {
+        if ($pid = @file_get_contents($this->PIDFile)) {
             return intval($pid);
         }
 
