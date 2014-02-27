@@ -79,10 +79,10 @@ class Start extends AbstractCommand
     public function getDescriptions()
     {
         return [
-            'start'                  => 'Verbose start HTTP server',
-            'start --daemon'         => 'Start the HTTP server as a daemon',
-            'start --host=127.0.0.1' => 'Start the HTTP server on host 127.0.0.1',
-            'start --port=1337'      => 'Start the HTTP server on port 1337',
+            'server start'                  => 'Verbose start HTTP server',
+            'server start --daemon'         => 'Start the HTTP server as a daemon',
+            'server start --host=127.0.0.1' => 'Start the HTTP server on host 127.0.0.1',
+            'server start --port=1337'      => 'Start the HTTP server on port 1337',
         ];
     }
 
@@ -110,7 +110,7 @@ class Start extends AbstractCommand
             $redirects = '1>>' . $this->outputFile . ' 2>>' . $this->errorFile;
 
             //execute the start command
-            Exec::viaPipe('bin/thinframe server start ' . $redirects . ' &', KARMA_ROOT);
+            Exec::viaPipe('bin/thinframe server start --plain-text ' . $redirects . ' &', KARMA_ROOT);
             $outputDriver->writeLine('[info]Waiting for the server to start...[/info]');
             sleep(1.5);
             if ($this->serverManager->isRunning()) {

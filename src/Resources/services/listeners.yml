@@ -9,3 +9,14 @@ services:
         class: 'ThinFrame\Karma\Listener\OutputBufferListener'
         tags:
             - { name: 'events.listener' }
+
+    karma.listener.quiet_listener:
+        class: 'ThinFrame\Karma\Listener\QuietOutputListener'
+        tags:
+            - { name: 'events.listener' }
+
+    karma.listener.plain_text:
+        class: 'ThinFrame\Karma\Listener\PlainTextOutputListener'
+        arguments: ['@cli.shortcodes_processor']
+        tags:
+            - { name: 'events.listener' }

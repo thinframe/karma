@@ -48,7 +48,11 @@ class Help extends AbstractCommand
      */
     public function getDescriptions()
     {
-        return ['help' => 'Show this list'];
+        return [
+            'help'                   => 'Show this list',
+            '<command> --quiet'      => 'Suppress any output',
+            '<command> --plain-text' => 'Remove any text formatters'
+        ];
     }
 
     /**
