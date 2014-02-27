@@ -4,3 +4,14 @@ services:
         arguments: ['@cli.commander']
         tags:
             - { name: 'cli.command' }
+
+    karma.commands.server:
+        class: '\ThinFrame\Karma\Commands\Server\Main'
+        tags:
+            - { name: 'cli.command' }
+
+    karma.commands.server.start:
+        class: '\ThinFrame\Karma\Commands\Server\Start'
+        arguments: ['@karma.manager.server']
+        tags:
+            - { name: 'cli.child_command', parent: 'karma.commands.server' }

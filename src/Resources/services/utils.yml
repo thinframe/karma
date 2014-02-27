@@ -1,0 +1,4 @@
+services:
+    karma.manager.server:
+        class: '\ThinFrame\Karma\Managers\ServerManager'
+        arguments: ['@server']
