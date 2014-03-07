@@ -9,6 +9,7 @@ use ThinFrame\CommandLine\IO\InputDriverAwareTrait;
 use ThinFrame\CommandLine\IO\OutputDriverAwareTrait;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Foundation\Exceptions\InvalidArgumentException;
+use ThinFrame\Karma\Events;
 
 /**
  * Class CommanderListener
@@ -50,7 +51,7 @@ class CommanderListener implements ListenerInterface
      */
     public function getEventMappings()
     {
-        return ['power_up' => ['method' => 'onPowerUp']];
+        return [Events::POWER_UP => ['method' => 'onPowerUp']];
     }
 
     /**

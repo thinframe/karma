@@ -20,3 +20,14 @@ services:
         arguments: ['@cli.shortcodes_processor']
         tags:
             - { name: 'events.listener' }
+
+    karma.listener.http_request:
+        class: 'ThinFrame\Karma\Listener\RequestListener'
+        tags:
+            - { name: 'events.listener' }
+
+    karma.listener.controller:
+        class: 'ThinFrame\Karma\Listener\ControllerListener'
+        arguments: ['@annotations.processor']
+        tags:
+            - { name: 'events.listener' }

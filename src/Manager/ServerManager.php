@@ -2,6 +2,9 @@
 
 namespace ThinFrame\Karma\Manager;
 
+use ThinFrame\Events\DispatcherAwareTrait;
+use ThinFrame\Events\SimpleEvent;
+use ThinFrame\Karma\Events;
 use ThinFrame\Pcntl\Constants\Signal;
 use ThinFrame\Pcntl\Process;
 use ThinFrame\Server\Server;
@@ -14,6 +17,8 @@ use ThinFrame\Server\Server;
  */
 class ServerManager
 {
+    use DispatcherAwareTrait;
+
     /**
      * @var Server
      */
@@ -41,6 +46,7 @@ class ServerManager
     public function start()
     {
         $this->savePID();
+        $this->dispatcher->trigger(new SimpleEvent(Events::PRE_SERVER_START));
         $this->server->start();
     }
 

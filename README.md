@@ -53,3 +53,7 @@ It is a ` PHP Application ` that acts as a HTTP server and a PHP framework, all 
 It provides build-in routing using `Symfony Routing` component and all the arhitecture is build arount `Symfony Dependency Injection Container`. Most of the socket work is handled by the `ReactPHP` component. Basically, it is build with already existing PHP components. 
 
 [to be continued]
+
+#Thanks
+
+* For the PhpStorm license that JetBrains provided

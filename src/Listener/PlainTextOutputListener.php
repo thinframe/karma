@@ -8,6 +8,7 @@ use ThinFrame\CommandLine\IO\OutputDriverAwareTrait;
 use ThinFrame\Events\Constants\Priority;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Foundation\Helpers\ShortCodesProcessor;
+use ThinFrame\Karma\Events;
 use ThinFrame\Karma\IO\Formatter\PlainTextShortCodeFormatter;
 
 /**
@@ -44,7 +45,7 @@ class PlainTextOutputListener implements ListenerInterface
     public function getEventMappings()
     {
         return [
-            'power_up' => [
+            Events::POWER_UP => [
                 'method'   => 'onPowerUp',
                 'priority' => Priority::CRITICAL
             ]

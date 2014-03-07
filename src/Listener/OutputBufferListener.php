@@ -5,6 +5,7 @@ namespace ThinFrame\Karma\Listener;
 use ThinFrame\CommandLine\IO\OutputDriverAwareTrait;
 use ThinFrame\Events\Constants\Priority;
 use ThinFrame\Events\ListenerInterface;
+use ThinFrame\Karma\Events;
 
 /**
  * Class OutputBufferListener
@@ -24,7 +25,7 @@ class OutputBufferListener implements ListenerInterface
     public function getEventMappings()
     {
         return [
-            'power_up' => [
+            Events::POWER_UP => [
                 'method'   => 'onPowerUp',
                 'priority' => Priority::CRITICAL
             ]
@@ -36,7 +37,8 @@ class OutputBufferListener implements ListenerInterface
      */
     public function onPowerUp()
     {
-        ob_start([$this, 'handleOutput']);
+        ob_implicit_flush(true);
+        ob_start([$this, 'handleOutput'], 2);
     }
 
     /**
