@@ -21,11 +21,6 @@ services:
         tags:
             - { name: 'events.listener' }
 
-    karma.listener.http_request:
-        class: 'ThinFrame\Karma\Listener\RequestListener'
-        tags:
-            - { name: 'events.listener' }
-
     karma.listener.controllers:
         class: 'ThinFrame\Karma\Listener\ControllersListener'
         tags:
@@ -34,5 +29,11 @@ services:
     karma.listener.routes_loader:
         class: 'ThinFrame\Karma\Listener\RoutesLoaderListener'
         arguments: ['@karma.router','@annotations.processor']
+        tags:
+            - { name: 'events.listener' }
+
+    karma.listener.request:
+        class: 'ThinFrame\Karma\Listener\RequestListener'
+        arguments: ['@karma.router','@karma.route_collection']
         tags:
             - { name: 'events.listener' }

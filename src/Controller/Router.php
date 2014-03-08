@@ -2,8 +2,10 @@
 
 namespace ThinFrame\Karma\Controller;
 
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
+use ThinFrame\Events\DispatcherAwareTrait;
 
 /**
  * Class Router
@@ -13,6 +15,9 @@ use Symfony\Component\Routing\RouteCollection;
  */
 class Router
 {
+    use DispatcherAwareTrait;
+    use ContainerAwareTrait;
+
     /**
      * @var RouteCollection
      */
@@ -21,12 +26,17 @@ class Router
     /**
      * @var array
      */
-    private $controllers = [];
+    private $controllersMapping = [];
 
     /**
      * @var RouteCollection[]
      */
     private $subCollections = [];
+
+    /**
+     * @var AbstractController[]
+     */
+    private $controllers = [];
 
     /**
      * Constructor
@@ -46,11 +56,11 @@ class Router
      */
     public function registerController($namespace, $controllerClass)
     {
-        if (!isset($this->controllers[$namespace])) {
-            $this->controllers[$namespace]    = [];
-            $this->subCollections[$namespace] = new RouteCollection();
+        if (!isset($this->controllersMapping[$namespace])) {
+            $this->controllersMapping[$namespace] = [];
+            $this->subCollections[$namespace]     = new RouteCollection();
         }
-        $this->controllers[$namespace][] = $controllerClass;
+        $this->controllersMapping[$namespace][] = $controllerClass;
     }
 
     /**
@@ -112,12 +122,30 @@ class Router
      */
     private function getControllerBaseNamespace($controller)
     {
-        foreach ($this->controllers as $namespace => $controllers) {
+        foreach ($this->controllersMapping as $namespace => $controllers) {
             if (in_array($controller, $controllers)) {
                 return $namespace;
             }
         }
 
         return null;
+    }
+
+    /**
+     * Get controller instance
+     *
+     * @param string $controllerClass
+     *
+     * @return AbstractController
+     */
+    public function getController($controllerClass)
+    {
+        if (!isset($this->controllers[$controllerClass])) {
+            $this->controllers[$controllerClass] = new $controllerClass();
+            $this->controllers[$controllerClass]->setContainer($this->container);
+            $this->controllers[$controllerClass]->setDispatcher($this->dispatcher);
+        }
+
+        return $this->controllers[$controllerClass];
     }
 }
