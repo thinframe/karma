@@ -26,8 +26,13 @@ services:
         tags:
             - { name: 'events.listener' }
 
-    karma.listener.controller:
-        class: 'ThinFrame\Karma\Listener\ControllerListener'
-        arguments: ['@annotations.processor']
+    karma.listener.controllers:
+        class: 'ThinFrame\Karma\Listener\ControllersListener'
+        tags:
+            - { name: 'events.listener' }
+
+    karma.listener.routes_loader:
+        class: 'ThinFrame\Karma\Listener\RoutesLoaderListener'
+        arguments: ['@karma.router','@annotations.processor']
         tags:
             - { name: 'events.listener' }

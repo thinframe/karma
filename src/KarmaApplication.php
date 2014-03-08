@@ -80,6 +80,6 @@ class KarmaApplication extends AbstractApplication
      */
     protected function setMetadata(Map $metadata)
     {
-        // TODO: Implement setMetadata() method.
+        //noop
     }
 }

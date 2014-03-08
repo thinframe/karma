@@ -1,4 +1,11 @@
 services:
     karma.manager.server:
-        class: '\ThinFrame\Karma\Manager\ServerManager'
+        class: 'ThinFrame\Karma\Manager\ServerManager'
         arguments: ['@server']
+
+    karma.route_collection:
+        class: 'Symfony\Component\Routing\RouteCollection'
+
+    karma.router:
+        class: 'ThinFrame\Karma\Controller\Router'
+        arguments: ['@karma.route_collection']

@@ -51,3 +51,9 @@ services:
         class: 'ThinFrame\Karma\Command\Debug\Applications\Metadata'
         tags:
             - { name: 'cli.child_command', parent: 'karma.command.debug.applications' }
+
+    karma.command.debug.router:
+        class: 'ThinFrame\Karma\Command\Debug\Router'
+        arguments: ['@karma.route_collection']
+        tags:
+            - { name: 'cli.child_command', parent: 'karma.command.debug' }

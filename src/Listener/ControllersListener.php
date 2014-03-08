@@ -4,35 +4,20 @@ namespace ThinFrame\Karma\Listener;
 
 use Stringy\StaticStringy;
 use Symfony\Component\Finder\Finder;
-use ThinFrame\Annotations\Processor;
 use ThinFrame\Applications\DependencyInjection\ApplicationAwareTrait;
+use ThinFrame\Events\Constants\Priority;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Karma\Events;
 
 /**
- * Class ControllerListener
+ * Class ControllersListener
  *
  * @package ThinFrame\Karma\Listener
  * @since   0.3
  */
-class ControllerListener implements ListenerInterface
+class ControllersListener implements ListenerInterface
 {
     use ApplicationAwareTrait;
-
-    /**
-     * @var Processor
-     */
-    private $processor;
-
-    /**
-     * Construct
-     *
-     * @param Processor $processor
-     */
-    public function __construct(Processor $processor)
-    {
-        $this->processor = $processor;
-    }
 
     /**
      * Get event mappings ["event"=>["method"=>"methodName","priority"=>1]]
@@ -43,21 +28,23 @@ class ControllerListener implements ListenerInterface
     {
         return [
             Events::PRE_SERVER_START => [
-                'method' => 'loadRoutes'
+                'method'   => 'loadControllers',
+                'priority' => Priority::MAX
             ]
         ];
     }
 
     /**
-     * Load routes
+     * Load controllers
      */
-    public function loadRoutes()
+    public function loadControllers()
     {
         $controllersFinder = new Finder();
         $controllersFinder->files();
-        foreach ($this->application->getMetadata() as $appName => $metadata) {
-            foreach ($metadata->get('controllers')->getOrElse([]) as $controllersPath) {
-                $controllersFinder->in($metadata->get('path')->get() . DIRECTORY_SEPARATOR . $controllersPath);
+        foreach ($this->application->getMetadata() as $metadata) {
+            $controllersLocations = $metadata->get('controllers')->getOrElse([]);
+            foreach ($controllersLocations as $location) {
+                $controllersFinder->in($metadata->get('path')->get() . DIRECTORY_SEPARATOR . $location);
             }
         }
         $controllersFinder->filter(
@@ -69,14 +56,9 @@ class ControllerListener implements ListenerInterface
                 return false;
             }
         );
+
         foreach ($controllersFinder as $file) {
             require_once $file;
-        }
-
-        foreach (get_declared_classes() as $class) {
-            if (in_array('ThinFrame\Karma\Controller\AbstractController', class_parents($class))) {
-                $this->processor->processClass($class);
-            }
         }
     }
 }

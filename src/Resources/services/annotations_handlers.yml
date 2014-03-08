@@ -1,5 +1,6 @@
 services:
     karma.annotation_handler.route:
         class: 'ThinFrame\Karma\AnnotationHandler\RouteHandler'
+        arguments: ['@karma.router']
         tags:
             - { name: 'annotations.handler' }
