@@ -2,6 +2,9 @@
 
 namespace ThinFrame\Karma\Command\Debug;
 
+use Psy\Shell;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use ThinFrame\Applications\DependencyInjection\ApplicationAwareTrait;
 use ThinFrame\CommandLine\Commands\AbstractCommand;
 use ThinFrame\CommandLine\IO\InputDriverInterface;
 use ThinFrame\CommandLine\IO\OutputDriverInterface;
@@ -14,6 +17,9 @@ use ThinFrame\CommandLine\IO\OutputDriverInterface;
  */
 class Main extends AbstractCommand
 {
+    use ApplicationAwareTrait;
+    use ContainerAwareTrait;
+
     /**
      * Get command argument
      *
@@ -31,7 +37,9 @@ class Main extends AbstractCommand
      */
     public function getDescriptions()
     {
-        return [];
+        return [
+            'debug' => 'Open PsySh repl'
+        ];
     }
 
     /**
@@ -44,6 +52,8 @@ class Main extends AbstractCommand
      */
     public function execute(InputDriverInterface $inputDriver, OutputDriverInterface $outputDriver)
     {
+        Shell::debug(['container' => $this->container, 'application' => $this->application]);
+
         return true;
     }
 }
