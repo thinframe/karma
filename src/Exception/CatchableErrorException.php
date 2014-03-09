@@ -2,7 +2,7 @@
 
 namespace ThinFrame\Karma\Exception;
 
-use ThinFrame\Foundation\Exceptions\RuntimeException;
+use ThinFrame\Foundation\Exception\RuntimeException;
 
 /**
  * Class CatchableErrorException

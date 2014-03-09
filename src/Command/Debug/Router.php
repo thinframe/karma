@@ -4,7 +4,7 @@ namespace ThinFrame\Karma\Command\Debug;
 
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
-use ThinFrame\CommandLine\Commands\AbstractCommand;
+use ThinFrame\CommandLine\Command\AbstractCommand;
 use ThinFrame\CommandLine\IO\InputDriverInterface;
 use ThinFrame\CommandLine\IO\OutputDriverInterface;
 use ThinFrame\Events\DispatcherAwareTrait;

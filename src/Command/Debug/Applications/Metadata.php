@@ -4,7 +4,7 @@ namespace ThinFrame\Karma\Command\Debug\Applications;
 
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use ThinFrame\Applications\DependencyInjection\ApplicationAwareTrait;
-use ThinFrame\CommandLine\Commands\AbstractCommand;
+use ThinFrame\CommandLine\Command\AbstractCommand;
 use ThinFrame\CommandLine\IO\InputDriverInterface;
 use ThinFrame\CommandLine\IO\OutputDriverInterface;
 

@@ -2,8 +2,8 @@
 
 namespace ThinFrame\Karma\IO\Formatter;
 
-use ThinFrame\CommandLine\IO\Formatters\ShortCodesFormatter;
-use ThinFrame\Foundation\Helpers\ShortCodesProcessor;
+use ThinFrame\CommandLine\IO\Formatter\ShortCodesFormatter;
+use ThinFrame\Foundation\Helper\ShortCodesProcessor;
 
 /**
  * Class PlainTestShortCodeFormatter

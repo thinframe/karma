@@ -4,7 +4,7 @@ namespace ThinFrame\Karma\AnnotationHandler;
 
 use Symfony\Component\Routing\Route;
 use ThinFrame\Annotations\AnnotationsHandlerInterface;
-use ThinFrame\Foundation\Exceptions\RuntimeException;
+use ThinFrame\Foundation\Exception\RuntimeException;
 use ThinFrame\Karma\Controller\Router;
 
 /**

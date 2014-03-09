@@ -2,13 +2,13 @@
 
 namespace ThinFrame\Karma\Listener;
 
-use ThinFrame\CommandLine\Commands\Commander;
-use ThinFrame\CommandLine\Commands\Processors\CommandFinderProcessor;
+use ThinFrame\CommandLine\Command\Commander;
+use ThinFrame\CommandLine\Command\Processor\CommandFinderProcessor;
 use ThinFrame\CommandLine\IO\ArgumentsContainerInterface;
 use ThinFrame\CommandLine\IO\InputDriverAwareTrait;
 use ThinFrame\CommandLine\IO\OutputDriverAwareTrait;
 use ThinFrame\Events\ListenerInterface;
-use ThinFrame\Foundation\Exceptions\InvalidArgumentException;
+use ThinFrame\Foundation\Exception\InvalidArgumentException;
 use ThinFrame\Karma\Events;
 
 /**
@@ -57,7 +57,7 @@ class CommanderListener implements ListenerInterface
     /**
      * Execute the provided command
      *
-     * @throws \ThinFrame\Foundation\Exceptions\InvalidArgumentException
+     * @throws \ThinFrame\Foundation\Exception\InvalidArgumentException
      */
     public function onPowerUp()
     {

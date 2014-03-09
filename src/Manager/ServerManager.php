@@ -5,7 +5,7 @@ namespace ThinFrame\Karma\Manager;
 use ThinFrame\Events\DispatcherAwareTrait;
 use ThinFrame\Events\SimpleEvent;
 use ThinFrame\Karma\Events;
-use ThinFrame\Pcntl\Constants\Signal;
+use ThinFrame\Pcntl\Constant\Signal;
 use ThinFrame\Pcntl\Process;
 use ThinFrame\Server\Server;
 

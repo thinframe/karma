@@ -2,7 +2,7 @@
 
 namespace ThinFrame\Karma\Command\Server;
 
-use ThinFrame\CommandLine\Commands\AbstractCommand;
+use ThinFrame\CommandLine\Command\AbstractCommand;
 use ThinFrame\CommandLine\IO\InputDriverInterface;
 use ThinFrame\CommandLine\IO\OutputDriverInterface;
 use ThinFrame\Karma\Manager\ServerManager;

@@ -2,12 +2,12 @@
 
 namespace ThinFrame\Karma\Listener;
 
-use ThinFrame\CommandLine\IO\Formatters\ShortCodesFormatter;
+use ThinFrame\CommandLine\IO\Formatter\ShortCodesFormatter;
 use ThinFrame\CommandLine\IO\InputDriverAwareTrait;
 use ThinFrame\CommandLine\IO\OutputDriverAwareTrait;
-use ThinFrame\Events\Constants\Priority;
+use ThinFrame\Events\Constant\Priority;
 use ThinFrame\Events\ListenerInterface;
-use ThinFrame\Foundation\Helpers\ShortCodesProcessor;
+use ThinFrame\Foundation\Helper\ShortCodesProcessor;
 use ThinFrame\Karma\Events;
 use ThinFrame\Karma\IO\Formatter\PlainTextShortCodeFormatter;
 

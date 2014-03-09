@@ -2,7 +2,7 @@
 
 namespace ThinFrame\Karma;
 
-use ThinFrame\Foundation\DataTypes\AbstractEnum;
+use ThinFrame\Foundation\DataType\AbstractEnum;
 
 /**
  * Class Environment

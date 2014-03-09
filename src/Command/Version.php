@@ -3,11 +3,11 @@
 namespace ThinFrame\Karma\Command;
 
 use ThinFrame\Applications\DependencyInjection\ApplicationAwareTrait;
-use ThinFrame\CommandLine\Commands\AbstractCommand;
+use ThinFrame\CommandLine\Command\AbstractCommand;
 use ThinFrame\CommandLine\IO\InputDriverInterface;
 use ThinFrame\CommandLine\IO\OutputDriverInterface;
-use ThinFrame\Foundation\Exceptions\RuntimeException;
-use ThinFrame\Pcntl\Helpers\Exec;
+use ThinFrame\Foundation\Exception\RuntimeException;
+use ThinFrame\Pcntl\Helper\Exec;
 
 /**
  * Class Version

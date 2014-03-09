@@ -64,10 +64,10 @@ class KarmaApplication extends AbstractApplication
     {
         $configurator->addResources(
             [
-                'Resources/services/listeners.yml',
-                'Resources/services/commands.yml',
-                'Resources/services/utils.yml',
-                'Resources/services/annotations_handlers.yml',
+                'Resources/config/listeners.yml',
+                'Resources/config/commands.yml',
+                'Resources/config/utils.yml',
+                'Resources/config/annotations_handlers.yml',
             ]
         );
     }

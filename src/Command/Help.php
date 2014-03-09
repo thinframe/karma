@@ -2,9 +2,9 @@
 
 namespace ThinFrame\Karma\Command;
 
-use ThinFrame\CommandLine\Commands\AbstractCommand;
-use ThinFrame\CommandLine\Commands\Commander;
-use ThinFrame\CommandLine\Commands\Processors\DescriptionsGathererProcessor;
+use ThinFrame\CommandLine\Command\AbstractCommand;
+use ThinFrame\CommandLine\Command\Commander;
+use ThinFrame\CommandLine\Command\Processor\DescriptionsGathererProcessor;
 use ThinFrame\CommandLine\IO\InputDriverInterface;
 use ThinFrame\CommandLine\IO\OutputDriverInterface;
 
@@ -17,7 +17,7 @@ use ThinFrame\CommandLine\IO\OutputDriverInterface;
 class Help extends AbstractCommand
 {
     /**
-     * @var \ThinFrame\CommandLine\Commands\Commander
+     * @var \ThinFrame\CommandLine\Command\Commander
      */
     private $commander;
 

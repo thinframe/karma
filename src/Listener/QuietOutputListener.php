@@ -4,7 +4,7 @@ namespace ThinFrame\Karma\Listener;
 
 use ThinFrame\CommandLine\IO\InputDriverAwareTrait;
 use ThinFrame\CommandLine\IO\OutputDriverAwareTrait;
-use ThinFrame\Events\Constants\Priority;
+use ThinFrame\Events\Constant\Priority;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Karma\Events;
 use ThinFrame\Karma\IO\Formatter\QuietFormatter;

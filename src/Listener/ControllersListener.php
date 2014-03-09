@@ -5,7 +5,7 @@ namespace ThinFrame\Karma\Listener;
 use Stringy\StaticStringy;
 use Symfony\Component\Finder\Finder;
 use ThinFrame\Applications\DependencyInjection\ApplicationAwareTrait;
-use ThinFrame\Events\Constants\Priority;
+use ThinFrame\Events\Constant\Priority;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Karma\Events;
 
