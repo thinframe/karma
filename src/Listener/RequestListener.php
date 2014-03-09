@@ -13,8 +13,8 @@ use ThinFrame\Http\Foundation\ResponseInterface;
 use ThinFrame\Karma\Controller\Router;
 use ThinFrame\Karma\Event\ControllerActionEvent;
 use ThinFrame\Karma\Event\ControllerResponseEvent;
-use ThinFrame\Server\Events\HttpRequestEvent;
-use ThinFrame\Server\Exceptions\NotFoundHttpException;
+use ThinFrame\Server\Event\HttpRequestEvent;
+use ThinFrame\Server\Exception\NotFoundHttpException;
 
 /**
  * Class RequestListener
@@ -91,6 +91,8 @@ class RequestListener implements ListenerInterface
     {
         $route = $this->routeCollection->get($routeDetails['_route']);
         unset($routeDetails['_route']);
+        unset($routeDetails['_controller']);
+        unset($routeDetails['_method']);
         $controller = $this->router->getController($route->getDefault('_controller'));
         $preEvent   = new ControllerActionEvent(
             $controller,

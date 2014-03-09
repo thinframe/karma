@@ -37,3 +37,8 @@ services:
         arguments: ['@karma.router','@karma.route_collection']
         tags:
             - { name: 'events.listener' }
+
+    karma.listener.error:
+        class: 'ThinFrame\Karma\Listener\ErrorListener'
+        tags:
+            - { name: 'events.listener' }

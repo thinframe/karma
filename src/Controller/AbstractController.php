@@ -6,7 +6,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use ThinFrame\Events\DispatcherAwareTrait;
 use ThinFrame\Http\Foundation\RequestInterface;
 use ThinFrame\Http\Foundation\ResponseInterface;
-use ThinFrame\Server\Exceptions\NotFoundHttpException;
+use ThinFrame\Server\Exception\NotFoundHttpException;
 
 /**
  * Class AbstractController

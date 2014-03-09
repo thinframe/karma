@@ -129,7 +129,9 @@ class ServerManager
      */
     public function savePID()
     {
-        @mkdir(dirname($this->PIDFile), 0755, true);
+        if (!file_exists($this->PIDFile)) {
+            mkdir(dirname($this->PIDFile), 0755, true);
+        }
         file_put_contents($this->PIDFile, getmypid());
     }
 
@@ -140,7 +142,9 @@ class ServerManager
      */
     public function getPID()
     {
-        @mkdir(dirname($this->PIDFile), 0755, true);
+        if (!file_exists($this->PIDFile)) {
+            mkdir(dirname($this->PIDFile), 0755, true);
+        }
         if ($pid = @file_get_contents($this->PIDFile)) {
             return intval($pid);
         }
