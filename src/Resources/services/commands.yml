@@ -57,3 +57,8 @@ services:
         arguments: ['@karma.route_collection']
         tags:
             - { name: 'cli.child_command', parent: 'karma.command.debug' }
+
+    karma.command.version:
+        class: 'ThinFrame\Karma\Command\Version'
+        tags:
+            - { name: 'cli.command' }
