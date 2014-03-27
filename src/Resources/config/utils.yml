@@ -9,3 +9,15 @@ services:
     karma.router:
         class: 'ThinFrame\Karma\Controller\Router'
         arguments: ['@karma.route_collection']
+
+    karma.logger.file_handler.development:
+        class: 'Monolog\Handler\StreamHandler'
+        arguments: ['app/logs/development.log',100]
+
+    karma.logger.file_handler.production:
+        class: 'Monolog\Handler\StreamHandler'
+        arguments: ['app/logs/production.log',600]
+
+    karma.logger.file_handler.test:
+        class: 'Monolog\Handler\StreamHandler'
+        arguments: ['app/logs/test.log',600]
