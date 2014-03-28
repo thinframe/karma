@@ -20,14 +20,17 @@ abstract class AbstractController
     use ContainerAwareTrait;
 
     /**
-     * @var RequestInterface
+     * @var \ReflectionClass
      */
-    protected $request;
+    private $reflection;
 
     /**
-     * @var ResponseInterface
+     * Constructor
      */
-    protected $response;
+    public function __construct()
+    {
+        $this->reflection = new \ReflectionClass($this);
+    }
 
     /**
      * Trigger method
@@ -50,9 +53,26 @@ abstract class AbstractController
         if (!method_exists($this, $method)) {
             throw new NotFoundHttpException;
         }
-        $this->request  = $request;
-        $this->response = $response;
 
-        return call_user_func_array([$this, $method], $arguments);
+        $parameters = [];
+
+        foreach ($this->reflection->getMethod($method)->getParameters() as $parameter) {
+            switch ($parameter->getName()) {
+                case 'request':
+                    $parameters[] = $request;
+                    break;
+                case 'response':
+                    $parameters[] = $response;
+                    break;
+                default:
+                    if (isset($arguments[$parameter->getName()])) {
+                        $parameters[] = $arguments[$parameter->getName()];
+                    } else {
+                        $parameters[] = null;
+                    }
+            }
+        }
+
+        return call_user_func_array([$this, $method], $parameters);
     }
 }
