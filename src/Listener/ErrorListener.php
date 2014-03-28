@@ -2,6 +2,7 @@
 
 namespace ThinFrame\Karma\Listener;
 
+use Psr\Log\LoggerAwareTrait;
 use Psy\Shell;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use ThinFrame\Applications\DependencyInjection\ApplicationAwareTrait;
@@ -23,6 +24,7 @@ class ErrorListener implements ListenerInterface
     use OutputDriverAwareTrait;
     use ContainerAwareTrait;
     use ApplicationAwareTrait;
+    use LoggerAwareTrait;
 
     /**
      * Constructor
@@ -65,6 +67,8 @@ class ErrorListener implements ListenerInterface
      */
     public function handleException(\Exception $exception)
     {
+        $this->logger->critical($exception->getMessage(), ['exception' => $exception]);
+
         $this->outputDriver->writeLine("[error]An exception occurred[/error]");
 
         $environment = $this->application->getMetadata()[$this->application->getName()]->get('environment')->getOrElse(

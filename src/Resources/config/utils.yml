@@ -13,3 +13,9 @@ services:
     karma.logger.file_handler:
         class: 'Monolog\Handler\StreamHandler'
         arguments: ['%karma.paths.logs%/%environment%.log',100]
+
+    karma.logger.memory_peak_usage_processor:
+        class: 'Monolog\Processor\MemoryPeakUsageProcessor'
+
+    karma.logger.memory_usage_processor:
+        class: 'Monolog\Processor\MemoryUsageProcessor'
