@@ -37,6 +37,13 @@ services:
         tags:
             - { name: 'cli.child_command', parent: 'karma.command.server' }
 
+    karma.command.server.monitor:
+        class: 'ThinFrame\Karma\Command\Server\Monitor'
+        arguments: ['@inotify.file_system_watcher', '@karma.manager.server' , '%karma.monitor%']
+        tags:
+            - { name: 'cli.child_command' , parent: 'karma.command.server' }
+            - { name: 'events.listener' }
+
     karma.command.debug:
         class: 'ThinFrame\Karma\Command\Debug\Main'
         tags:
