@@ -77,6 +77,16 @@ class Router
     }
 
     /**
+     * Register instantiated controller
+     *
+     * @param AbstractController $controller
+     */
+    public function registerInstantiatedController(AbstractController $controller)
+    {
+        $this->controllers[get_class($controller)] = $controller;
+    }
+
+    /**
      * Add route
      *
      * @param string $name
@@ -142,9 +152,9 @@ class Router
     {
         if (!isset($this->controllers[$controllerClass])) {
             $this->controllers[$controllerClass] = new $controllerClass();
-            $this->controllers[$controllerClass]->setContainer($this->container);
-            $this->controllers[$controllerClass]->setDispatcher($this->dispatcher);
         }
+        $this->controllers[$controllerClass]->setContainer($this->container);
+        $this->controllers[$controllerClass]->setDispatcher($this->dispatcher);
 
         return $this->controllers[$controllerClass];
     }

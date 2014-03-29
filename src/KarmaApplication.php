@@ -16,6 +16,7 @@ use ThinFrame\Applications\DependencyInjection\ContainerConfigurator;
 use ThinFrame\CommandLine\CommandLineApplication;
 use ThinFrame\Events\EventsApplication;
 use ThinFrame\Inotify\InotifyApplication;
+use ThinFrame\Karma\DependencyInjection\CompilerPass;
 use ThinFrame\Pcntl\PcntlApplication;
 use ThinFrame\Server\ServerApplication;
 
@@ -70,6 +71,7 @@ class KarmaApplication extends AbstractApplication
                 'Resources/config/annotations_handlers.yml',
             ]
         );
+        $configurator->addCompilerPass(new CompilerPass());
     }
 
     /**
