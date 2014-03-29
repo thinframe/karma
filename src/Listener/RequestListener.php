@@ -8,6 +8,7 @@ use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouteCollection;
 use ThinFrame\Events\DispatcherAwareTrait;
 use ThinFrame\Events\ListenerInterface;
+use ThinFrame\Foundation\Exception\RuntimeException;
 use ThinFrame\Http\Foundation\RequestInterface;
 use ThinFrame\Http\Foundation\ResponseInterface;
 use ThinFrame\Karma\Controller\Router;
@@ -119,6 +120,17 @@ class RequestListener implements ListenerInterface
             $result
         );
         $this->dispatcher->trigger($postEvent);
-        $response->setContent((string)$postEvent->getActionResult());
+
+        $actionResult = $postEvent->getActionResult();
+
+        if (is_object($actionResult)) {
+            if (!method_exists($actionResult, '__toString')) {
+                throw new RuntimeException('Action response objects must have defined the "__toString" method');
+            }
+        } elseif (is_array($actionResult) || settype($actionResult, 'string') == false) {
+            throw new RuntimeException('Action response doesn\'t have a string representation');
+        }
+        $response->setContent((string)$actionResult);
     }
 }
+
