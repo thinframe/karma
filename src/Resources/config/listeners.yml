@@ -42,3 +42,9 @@ services:
         class: 'ThinFrame\Karma\Listener\ErrorListener'
         tags:
             - { name: 'events.listener' }
+
+    karma.listener.assets_resolver:
+        class: 'ThinFrame\Karma\Listener\AssetsResolverListener'
+        arguments: ['@server.react.event_loop']
+        tags:
+            - { name: 'events.listener' }
