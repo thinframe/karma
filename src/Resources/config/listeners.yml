@@ -48,3 +48,9 @@ services:
         arguments: ['@server.react.event_loop']
         tags:
             - { name: 'events.listener' }
+
+    karma.listener.whoops:
+        class: 'ThinFrame\Karma\Listener\WhoopsListener'
+        arguments: ['@karma.whoops','%environment%']
+        tags:
+            - { name: 'events.listener' }

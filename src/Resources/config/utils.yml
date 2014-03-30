@@ -10,6 +10,16 @@ services:
         class: 'ThinFrame\Karma\Controller\Router'
         arguments: ['@karma.route_collection']
 
+    karma.whoops:
+        class: 'Whoops\Run'
+        calls:
+            - ['pushHandler',['@karma.whoops.handler']]
+
+    karma.whoops.handler:
+        class: 'Whoops\Handler\PrettyPageHandler'
+        calls:
+            - [handleUnconditionally,[true]]
+
     karma.logger.file_handler:
         class: 'Monolog\Handler\StreamHandler'
         arguments: ['%karma.paths.logs%/%environment%.log',100]
