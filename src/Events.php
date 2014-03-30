@@ -12,4 +12,6 @@ final class Events
 {
     const POWER_UP         = 'power_up';
     const PRE_SERVER_START = 'pre_server_start';
+    const CACHE_CLEAR      = 'cache.clear';
+    const CACHE_WARMUP     = 'cache.warmup';
 }

@@ -69,3 +69,13 @@ services:
         class: 'ThinFrame\Karma\Command\Version'
         tags:
             - { name: 'cli.command' }
+
+    karma.command.cache:
+        class: 'ThinFrame\Karma\Command\Cache\Main'
+        tags:
+            - { name: 'cli.command' }
+
+    karma.command.cache.clear:
+        class: 'ThinFrame\Karma\Command\Cache\Clear'
+        tags:
+            - { name: 'cli.child_command', parent: 'karma.command.cache' }
