@@ -3,6 +3,8 @@
 namespace ThinFrame\Karma\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Symfony\Component\Routing\Generator\UrlGenerator;
+use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 use ThinFrame\Events\DispatcherAwareTrait;
@@ -39,6 +41,11 @@ class Router
     private $controllers = [];
 
     /**
+     * @var UrlGenerator
+     */
+    private $urlGenerator;
+
+    /**
      * Constructor
      *
      * @param RouteCollection $routeCollection
@@ -46,6 +53,7 @@ class Router
     public function __construct(RouteCollection $routeCollection)
     {
         $this->routeCollection = $routeCollection;
+        $this->urlGenerator    = new UrlGenerator($this->routeCollection, new RequestContext());
     }
 
     /**
@@ -155,7 +163,21 @@ class Router
         }
         $this->controllers[$controllerClass]->setContainer($this->container);
         $this->controllers[$controllerClass]->setDispatcher($this->dispatcher);
+        $this->controllers[$controllerClass]->setRouter($this);
 
         return $this->controllers[$controllerClass];
+    }
+
+    /**
+     * Generate url
+     *
+     * @param string $routeName
+     * @param array  $routeParams
+     *
+     * @return string
+     */
+    public function generateUrl($routeName, array $routeParams = [])
+    {
+        return $this->urlGenerator->generate($routeName, $routeParams, UrlGenerator::ABSOLUTE_PATH);
     }
 }

@@ -25,6 +25,11 @@ abstract class AbstractController
     private $reflection;
 
     /**
+     * @var Router
+     */
+    private $router;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -74,5 +79,32 @@ abstract class AbstractController
         }
 
         return call_user_func_array([$this, $method], $parameters);
+    }
+
+    /**
+     * Set the router
+     *
+     * @param Router $router
+     *
+     * @return $this
+     */
+    public function setRouter(Router $router)
+    {
+        $this->router = $router;
+
+        return $this;
+    }
+
+    /**
+     * Generate url
+     *
+     * @param string $routeName
+     * @param array  $routeParams
+     *
+     * @return string
+     */
+    public function generateUrl($routeName, array $routeParams = [])
+    {
+        return $this->router->generateUrl($routeName, $routeParams);
     }
 }
