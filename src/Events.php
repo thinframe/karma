@@ -14,4 +14,5 @@ final class Events
     const PRE_SERVER_START = 'pre_server_start';
     const CACHE_CLEAR      = 'cache.clear';
     const CACHE_WARMUP     = 'cache.warmup';
+    const ASSETS_MAP       = 'assets.map';
 }

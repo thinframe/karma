@@ -3,6 +3,9 @@ services:
         class: 'ThinFrame\Karma\Manager\ServerManager'
         arguments: ['@server']
 
+    karma.manager.assets:
+        class: 'ThinFrame\Karma\Manager\AssetsManager'
+
     karma.route_collection:
         class: 'Symfony\Component\Routing\RouteCollection'
 

@@ -54,3 +54,9 @@ services:
         arguments: ['@karma.whoops','%environment%']
         tags:
             - { name: 'events.listener' }
+
+    karma.listener.assets:
+        class: 'ThinFrame\Karma\Listener\AssetsListener'
+        arguments: ['@karma.manager.assets','%karma.paths.root%','%karma.paths.assets%']
+        tags:
+            - { name: 'events.listener' }

@@ -79,3 +79,14 @@ services:
         class: 'ThinFrame\Karma\Command\Cache\Clear'
         tags:
             - { name: 'cli.child_command', parent: 'karma.command.cache' }
+
+    karma.command.assets:
+        class: 'ThinFrame\Karma\Command\Assets\Main'
+        tags:
+            - { name: 'cli.command' }
+
+    karma.command.assets.install:
+        class: 'ThinFrame\Karma\Command\Assets\Install'
+        arguments: ['@karma.manager.assets','%karma.paths.root%','%karma.paths.assets%']
+        tags:
+            - { name: 'cli.child_command', parent: 'karma.command.assets' }
