@@ -9,6 +9,7 @@ use ThinFrame\CommandLine\IO\InputDriverAwareTrait;
 use ThinFrame\CommandLine\IO\OutputDriverAwareTrait;
 use ThinFrame\Events\ListenerInterface;
 use ThinFrame\Foundation\Exception\InvalidArgumentException;
+use ThinFrame\Karma\Command\Help;
 use ThinFrame\Karma\Events;
 
 /**
@@ -66,6 +67,12 @@ class CommanderListener implements ListenerInterface
 
         if ($command = $processor->getCommand()) {
             if ($command->execute($this->inputDriver, $this->outputDriver)) {
+                exit(0);
+            }
+            exit(1);
+        } elseif ($this->argumentsContainer->getArgumentsCount() == 0) {
+            $helpCommand = new Help($this->commander);
+            if ($helpCommand->execute($this->inputDriver, $this->outputDriver)) {
                 exit(0);
             }
             exit(1);

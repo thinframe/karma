@@ -15,4 +15,5 @@ final class Events
     const CACHE_CLEAR      = 'cache.clear';
     const CACHE_WARMUP     = 'cache.warmup';
     const ASSETS_MAP       = 'assets.map';
+    const VIEWS_MAP        = 'views.map';
 }
