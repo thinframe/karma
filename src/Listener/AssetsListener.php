@@ -2,15 +2,20 @@
 
 namespace ThinFrame\Karma\Listener;
 
+use React\EventLoop\LoopInterface;
+use React\Stream\Stream;
 use Symfony\Component\Finder\Finder;
 use ThinFrame\Applications\DependencyInjection\ApplicationAwareTrait;
 use ThinFrame\Events\Constant\Priority;
 use ThinFrame\Events\ListenerInterface;
+use ThinFrame\Http\Util\MimeTypeGuesser;
 use ThinFrame\Karma\Events;
 use ThinFrame\Karma\Manager\AssetsManager;
+use ThinFrame\Server\Event\HttpRequestEvent;
 
 /**
  * Class AssetsListener
+ *
  * @package ThinFrame\Karma\Listener
  * @since   0.3
  */
@@ -34,6 +39,11 @@ class AssetsListener implements ListenerInterface
     private $assetsRoot;
 
     /**
+     * @var LoopInterface
+     */
+    private $serverLoop;
+
+    /**
      * Constructor
      *
      * @param AssetsManager $assetsManager
@@ -48,6 +58,16 @@ class AssetsListener implements ListenerInterface
     }
 
     /**
+     * Set the server loop
+     *
+     * @param LoopInterface $loop
+     */
+    public function setServerLoop(LoopInterface $loop)
+    {
+        $this->serverLoop = $loop;
+    }
+
+    /**
      * Get event mappings ["event"=>["method"=>"methodName","priority"=>1]]
      *
      * @return array
@@ -55,8 +75,38 @@ class AssetsListener implements ListenerInterface
     public function getEventMappings()
     {
         return [
-            Events::ASSETS_MAP => ['method' => 'onAssetsMap', 'priority' => Priority::HIGH]
+            Events::ASSETS_MAP         => ['method' => 'onAssetsMap', 'priority' => Priority::HIGH],
+            Events::PRE_SERVER_START   => ['method' => 'onAssetsMap', 'priority' => Priority::HIGH],
+            HttpRequestEvent::EVENT_ID => ['method' => 'onRequest', 'priority' => Priority::HIGH]
         ];
+    }
+
+    /**
+     * Serve assets
+     *
+     * @param HttpRequestEvent $event
+     */
+    public function onRequest(HttpRequestEvent $event)
+    {
+        $asset = $this->projectRoot . $this->assetsRoot . $event->getRequest()->getPath();
+        
+        if (file_exists($asset) && is_file($asset)) {
+            $event->stopPropagation();
+
+            $fileStream = new Stream(fopen($asset, 'r'), $this->serverLoop);
+
+            $event->getResponse()->getHeaders()->set('Content-Type', MimeTypeGuesser::getMimeType($asset));
+
+            $event->getResponse()->dispatchHeaders();
+
+            $fileStream->pipe($event->getResponse()->getReactResponse());
+
+            $fileStream->on('end', 'gc_collect_cycles');
+
+            gc_collect_cycles();
+
+            return;
+        }
     }
 
     /**
