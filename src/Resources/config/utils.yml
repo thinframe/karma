@@ -1,34 +1,45 @@
+parameters:
+    karma.manager.server.class: 'ThinFrame\Karma\Manager\ServerManager'
+    karma.manager.assets.class: 'ThinFrame\Karma\Manager\AssetsManager'
+    karma.route_collection.class: 'Symfony\Component\Routing\RouteCollection'
+    karma.router.class: 'ThinFrame\Karma\Controller\Router'
+    karma.whoops.class: 'Whoops\Run'
+    karma.whoops.handler.class: 'Whoops\Handler\PrettyPageHandler'
+    karma.logger.file_handler.class: 'Monolog\Handler\StreamHandler'
+    karma.logger.memory_peak_usage_processor.class: 'Monolog\Processor\MemoryPeakUsageProcessor'
+    karma.logger.memory_usage_processor.class: 'Monolog\Processor\MemoryUsageProcessor'
+
 services:
     karma.manager.server:
-        class: 'ThinFrame\Karma\Manager\ServerManager'
+        class: '%karma.manager.server.class%'
         arguments: ['@server']
 
     karma.manager.assets:
-        class: 'ThinFrame\Karma\Manager\AssetsManager'
+        class: '%karma.manager.assets.class%'
 
     karma.route_collection:
-        class: 'Symfony\Component\Routing\RouteCollection'
+        class: '%karma.route_collection.class%'
 
     karma.router:
-        class: 'ThinFrame\Karma\Controller\Router'
+        class: '%karma.router.class%'
         arguments: ['@karma.route_collection']
 
     karma.whoops:
-        class: 'Whoops\Run'
+        class: '%karma.whoops.class%'
         calls:
             - ['pushHandler',['@karma.whoops.handler']]
 
     karma.whoops.handler:
-        class: 'Whoops\Handler\PrettyPageHandler'
+        class: '%karma.whoops.handler.class%'
         calls:
             - [handleUnconditionally,[true]]
 
     karma.logger.file_handler:
-        class: 'Monolog\Handler\StreamHandler'
+        class: '%karma.logger.file_handler.class%'
         arguments: ['%karma.paths.logs%/%environment%.log',100]
 
     karma.logger.memory_peak_usage_processor:
-        class: 'Monolog\Processor\MemoryPeakUsageProcessor'
+        class: '%karma.logger.memory_peak_usage_processor.class%'
 
     karma.logger.memory_usage_processor:
-        class: 'Monolog\Processor\MemoryUsageProcessor'
+        class: '%karma.logger.memory_usage_processor.class%'

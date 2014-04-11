@@ -1,56 +1,69 @@
+parameters:
+    karma.listener.commander.class: 'ThinFrame\Karma\Listener\CommanderListener'
+    karma.listener.output_buffer.class: 'ThinFrame\Karma\Listener\OutputBufferListener'
+    karma.listener.quiet_listener.class: 'ThinFrame\Karma\Listener\QuietOutputListener'
+    karma.listener.plain_text.class: 'ThinFrame\Karma\Listener\PlainTextOutputListener'
+    karma.listener.controllers.class: 'ThinFrame\Karma\Listener\ControllersListener'
+    karma.listener.routes_loader.class: 'ThinFrame\Karma\Listener\RoutesLoaderListener'
+    karma.listener.request.class: 'ThinFrame\Karma\Listener\RequestListener'
+    karma.listener.error.class: 'ThinFrame\Karma\Listener\ErrorListener'
+    karma.listener.whoops.class: 'ThinFrame\Karma\Listener\WhoopsListener'
+    karma.listener.assets.class: 'ThinFrame\Karma\Listener\AssetsListener'
+
+
 services:
     karma.listener.commander:
-        class: 'ThinFrame\Karma\Listener\CommanderListener'
+        class: '%karma.listener.commander.class%'
         arguments: ['@cli.commander','@cli.arguments_container']
         tags:
             - { name: 'events.listener' }
 
     karma.listener.output_buffer:
-        class: 'ThinFrame\Karma\Listener\OutputBufferListener'
+        class: '%karma.listener.output_buffer.class%'
         tags:
             - { name: 'events.listener' }
 
     karma.listener.quiet_listener:
-        class: 'ThinFrame\Karma\Listener\QuietOutputListener'
+        class: '%karma.listener.quiet_listener.class%'
         tags:
             - { name: 'events.listener' }
 
     karma.listener.plain_text:
-        class: 'ThinFrame\Karma\Listener\PlainTextOutputListener'
+        class: '%karma.listener.plain_text.class%'
         arguments: ['@cli.shortcodes_processor']
         tags:
             - { name: 'events.listener' }
 
     karma.listener.controllers:
-        class: 'ThinFrame\Karma\Listener\ControllersListener'
+        class: '%karma.listener.controllers.class%'
         tags:
             - { name: 'events.listener' }
 
     karma.listener.routes_loader:
-        class: 'ThinFrame\Karma\Listener\RoutesLoaderListener'
+        class: '%karma.listener.routes_loader.class%'
         arguments: ['@karma.router','@annotations.processor']
         tags:
             - { name: 'events.listener' }
 
     karma.listener.request:
-        class: 'ThinFrame\Karma\Listener\RequestListener'
+        class: '%karma.listener.request.class%'
         arguments: ['@karma.router','@karma.route_collection']
         tags:
             - { name: 'events.listener' }
 
     karma.listener.error:
-        class: 'ThinFrame\Karma\Listener\ErrorListener'
+        class: '%karma.listener.error.class%'
         tags:
             - { name: 'events.listener' }
 
     karma.listener.whoops:
-        class: 'ThinFrame\Karma\Listener\WhoopsListener'
+        class: '%karma.listener.whoops.class%'
         arguments: ['@karma.whoops','%environment%']
         tags:
             - { name: 'events.listener' }
 
     karma.listener.assets:
-        class: 'ThinFrame\Karma\Listener\AssetsListener'
+        class: '%karma.listener.assets.class%'
         arguments: ['@karma.manager.assets','%karma.paths.root%','%karma.paths.assets%']
         tags:
             - { name: 'events.listener' }

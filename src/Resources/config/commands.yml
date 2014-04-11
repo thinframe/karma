@@ -1,17 +1,35 @@
+parameters:
+    karma.command.help.class: 'ThinFrame\Karma\Command\Help'
+    karma.command.server.class: 'ThinFrame\Karma\Command\Server\Main'
+    karma.command.server.start.class: 'ThinFrame\Karma\Command\Server\Start'
+    karma.command.server.stop.class: 'ThinFrame\Karma\Command\Server\Stop'
+    karma.command.server.restart.class: 'ThinFrame\Karma\Command\Server\Restart'
+    karma.command.server.status.class: 'ThinFrame\Karma\Command\Server\Status'
+    karma.command.server.monitor.class: 'ThinFrame\Karma\Command\Server\Monitor'
+    karma.command.debug.class: 'ThinFrame\Karma\Command\Debug\Main'
+    karma.command.debug.applications.class: 'ThinFrame\Karma\Command\Debug\Applications\Main'
+    karma.command.debug.applications.metadata.class: 'ThinFrame\Karma\Command\Debug\Applications\Metadata'
+    karma.command.debug.router.class: 'ThinFrame\Karma\Command\Debug\Router'
+    karma.command.version.class: 'ThinFrame\Karma\Command\Version'
+    karma.command.cache.class: 'ThinFrame\Karma\Command\Cache\Main'
+    karma.command.cache.clear.class: 'ThinFrame\Karma\Command\Cache\Clear'
+    karma.command.assets.class: 'ThinFrame\Karma\Command\Assets\Main'
+    karma.command.assets.install.class: 'ThinFrame\Karma\Command\Assets\Install'
+
 services:
     karma.command.help:
-        class: 'ThinFrame\Karma\Command\Help'
+        class: '%karma.command.help.class%'
         arguments: ['@cli.commander']
         tags:
             - { name: 'cli.command' }
 
     karma.command.server:
-        class: 'ThinFrame\Karma\Command\Server\Main'
+        class: '%karma.command.server.class%'
         tags:
             - { name: 'cli.command' }
 
     karma.command.server.start:
-        class: 'ThinFrame\Karma\Command\Server\Start'
+        class: '%karma.command.server.start.class%'
         arguments: ['@karma.manager.server']
         tags:
             - { name: 'cli.child_command', parent: 'karma.command.server' }
@@ -20,73 +38,73 @@ services:
             - [ 'setErrorFile',['%thinframe.server.error_file%']]
 
     karma.command.server.stop:
-        class: 'ThinFrame\Karma\Command\Server\Stop'
+        class: '%karma.command.server.stop.class%'
         arguments: ['@karma.manager.server']
         tags:
             - { name: 'cli.child_command', parent: 'karma.command.server' }
 
     karma.command.server.restart:
-        class: 'ThinFrame\Karma\Command\Server\Restart'
+        class: '%karma.command.server.restart.class%'
         arguments: ['@karma.manager.server']
         tags:
             - { name: 'cli.child_command', parent: 'karma.command.server' }
 
     karma.command.server.status:
-        class: 'ThinFrame\Karma\Command\Server\Status'
+        class: '%karma.command.server.status.class%'
         arguments: ['@karma.manager.server']
         tags:
             - { name: 'cli.child_command', parent: 'karma.command.server' }
 
     karma.command.server.monitor:
-        class: 'ThinFrame\Karma\Command\Server\Monitor'
+        class: '%karma.command.server.monitor.class%'
         arguments: ['@inotify.file_system_watcher', '@karma.manager.server' , '%karma.monitor%']
         tags:
             - { name: 'cli.child_command' , parent: 'karma.command.server' }
             - { name: 'events.listener' }
 
     karma.command.debug:
-        class: 'ThinFrame\Karma\Command\Debug\Main'
+        class: '%karma.command.debug.class%'
         tags:
             - { name: 'cli.command' }
 
     karma.command.debug.applications:
-        class: 'ThinFrame\Karma\Command\Debug\Applications\Main'
+        class: '%karma.command.debug.applications.class%'
         tags:
             - { name: 'cli.child_command', parent: 'karma.command.debug' }
 
     karma.command.debug.applications.metadata:
-        class: 'ThinFrame\Karma\Command\Debug\Applications\Metadata'
+        class: '%karma.command.debug.applications.metadata.class%'
         tags:
             - { name: 'cli.child_command', parent: 'karma.command.debug.applications' }
 
     karma.command.debug.router:
-        class: 'ThinFrame\Karma\Command\Debug\Router'
+        class: '%karma.command.debug.router.class%'
         arguments: ['@karma.route_collection']
         tags:
             - { name: 'cli.child_command', parent: 'karma.command.debug' }
 
     karma.command.version:
-        class: 'ThinFrame\Karma\Command\Version'
+        class: '%karma.command.version.class%'
         tags:
             - { name: 'cli.command' }
 
     karma.command.cache:
-        class: 'ThinFrame\Karma\Command\Cache\Main'
+        class: '%karma.command.cache.class%'
         tags:
             - { name: 'cli.command' }
 
     karma.command.cache.clear:
-        class: 'ThinFrame\Karma\Command\Cache\Clear'
+        class: '%karma.command.cache.clear.class%'
         tags:
             - { name: 'cli.child_command', parent: 'karma.command.cache' }
 
     karma.command.assets:
-        class: 'ThinFrame\Karma\Command\Assets\Main'
+        class: '%karma.command.assets.class%'
         tags:
             - { name: 'cli.command' }
 
     karma.command.assets.install:
-        class: 'ThinFrame\Karma\Command\Assets\Install'
+        class: '%karma.command.assets.install.class%'
         arguments: ['@karma.manager.assets','%karma.paths.root%','%karma.paths.assets%']
         tags:
             - { name: 'cli.child_command', parent: 'karma.command.assets' }
