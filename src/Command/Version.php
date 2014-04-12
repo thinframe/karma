@@ -55,10 +55,10 @@ class Version extends AbstractCommand
     {
         $karmaPath = dirname($this->application->getMetadata()['KarmaApplication']->get('path')->get());
         $result    = Exec::viaPipe('git describe --tags', $karmaPath);
-        if ($result['exitStatus'] != 0) {
+        if (!$result->isSuccessful()) {
             throw new RuntimeException('Cannot compute Karma version');
         }
-        $outputDriver->writeLine('[info] Version: ' . trim($result['stdOut']) . '[/info]');
+        $outputDriver->writeLine('[info] Version: ' . $result->getStdOut() . '[/info]');
 
         return true;
     }
